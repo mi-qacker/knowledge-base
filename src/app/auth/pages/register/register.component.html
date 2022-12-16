@@ -1,0 +1,40 @@
+<div class="login-container">
+  <div class="login-form">
+    <h1>Регистрация</h1>
+
+    <mat-form-field appearance="outline" class="login-form_input">
+      <mat-label>Имя</mat-label>
+      <input type="text" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="login-form_input">
+      <mat-label>Фамилия</mat-label>
+      <input type="text" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="login-form_input">
+      <mat-label>Email</mat-label>
+      <input type="text" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="login-form_input">
+      <mat-label>Логин</mat-label>
+      <input type="text" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="login-form_input">
+      <mat-label>Пароль</mat-label>
+      <input type="password" matInput />
+      <button matSuffix mat-icon-button>
+        <mat-icon>visibility</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <button class="login-form_button" mat-flat-button color="primary">
+      Зарегистрироваться
+    </button>
+    <a class="login-form_button" mat-stroked-button routerLink="../login">
+      Уже есть аккаунт? Войдите!
+    </a>
+  </div>
+</div>

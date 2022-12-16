@@ -1,0 +1,34 @@
+<h2 class="'info">Информация о профиле</h2>
+<div class="profile-container">
+  <section>
+    <div class="grid-profile">
+    <img class="avatar"  *ngIf="user?.avatar==null"  src="https://okeygeek.ru/wp-content/uploads/2020/03/no_avatar.png"> 
+    <img class="avatar" src={{user?.avatar}}>
+    <div class="profile-name">Имя: {{ user?.firstName }}</div>
+    <div class="profile-surname">Фамилия: {{ user?.lastName }}</div>
+    </div>
+    <div class="profile-login">Логин: {{ user?.login }}</div>
+    <div class="profile-email">Email: {{ user?.email }}</div>
+  </section>
+
+  <section class="buttons">
+    <div class="example-button-row">
+      <button class="primary" mat-raised-button color="primary">Настройки</button>
+      <button class = "warn" mat-raised-button color="warn">Выйти</button>
+    </div>
+  </section>
+</div>
+  <div class="vl"></div>
+  <button class="create-button" mat-raised-button color="primary"> + Создать статью</button>
+  <div class="article">Мои статьи:</div>
+  <!-- <mat-card>
+    <mat-card-header>
+      <mat-card-title>Actions Buttons</mat-card-title>
+      <mat-card-subtitle>Start</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div> -->

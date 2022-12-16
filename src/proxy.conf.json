@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "http://constructor.mpu-cloud.ru:4014",
+    "secure": false
+  }
+}

@@ -1,0 +1,32 @@
+<div class="login-container">
+  <form [formGroup]="loginForm" class="login-form">
+    <h1>Вход в аккаунт</h1>
+    <mat-form-field appearance="outline" class="login-form_input">
+      <mat-label>Email</mat-label>
+      <input type="text" matInput formControlName="login" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="login-form_input">
+      <mat-label>Пароль</mat-label>
+      <input
+        formControlName="password"
+        [type]="isVisible ? 'text' : 'password'"
+        matInput
+      />
+      <button matSuffix mat-icon-button (click)="toggleVisible()" type="button">
+        <mat-icon>{{ isVisible ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <button
+      class="login-form_button"
+      mat-flat-button
+      color="primary"
+      (click)="loginUser()"
+      [disabled]="loginForm.invalid"
+    >
+      Войти
+    </button>
+    <a class="login-form_button" mat-stroked-button routerLink="../register">
+      Создать аккаунт
+    </a>
+  </form>
+</div>
