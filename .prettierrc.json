@@ -4,5 +4,5 @@
   "bracketSpacing": false,
   "bracketSameLine": true,
   "arrowParens": "avoid",
-  "endOfLine": "crlf"
+  "endOfLine": "auto"
 }
