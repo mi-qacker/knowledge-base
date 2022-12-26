@@ -5,8 +5,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 
 import {ProfileComponent} from './pages/profile/profile.component';
+import {ProfilePostsComponent} from './pages/profile-posts/profile-posts.component';
 import {ProfileRoutingModule} from './profile-routing.module';
-import { ProfilePostsComponent } from './pages/profile-posts/profile-posts.component';
 
 @NgModule({
   declarations: [ProfileComponent, ProfilePostsComponent],

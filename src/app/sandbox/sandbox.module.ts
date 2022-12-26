@@ -1,19 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
 
-import { SandboxRoutingModule } from './sandbox-routing.module';
-import { NewPostComponent } from './pages/new-post/new-post.component';
-import { PostsListComponent } from './pages/posts-list/posts-list.component';
-
+import {NewPostComponent} from './pages/new-post/new-post.component';
+import {PostsListComponent} from './pages/posts-list/posts-list.component';
+import {SandboxRoutingModule} from './sandbox-routing.module';
 
 @NgModule({
-  declarations: [
-    NewPostComponent,
-    PostsListComponent
-  ],
-  imports: [
-    CommonModule,
-    SandboxRoutingModule
-  ]
+  declarations: [NewPostComponent, PostsListComponent],
+  imports: [CommonModule, SandboxRoutingModule],
 })
-export class SandboxModule { }
+export class SandboxModule {}

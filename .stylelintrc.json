@@ -3,5 +3,8 @@
     "stylelint-config-standard-scss",
     "stylelint-config-prettier",
     "stylelint-config-clean-order"
-  ]
+  ],
+  "rules": {
+    "no-empty-source": null
+  }
 }

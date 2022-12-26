@@ -1,17 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
 
-import { PostRoutingModule } from './post-routing.module';
-import { PostPageComponent } from './pages/post-page/post-page.component';
-
+import {PostPageComponent} from './pages/post-page/post-page.component';
+import {PostRoutingModule} from './post-routing.module';
 
 @NgModule({
-  declarations: [
-    PostPageComponent
-  ],
-  imports: [
-    CommonModule,
-    PostRoutingModule
-  ]
+  declarations: [PostPageComponent],
+  imports: [CommonModule, PostRoutingModule],
 })
-export class PostModule { }
+export class PostModule {}
