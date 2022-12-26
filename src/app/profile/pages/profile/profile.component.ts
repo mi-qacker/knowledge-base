@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ProfileHttpService } from '../../services/profile-http.service';
-import { IUser } from '../../interfaces/user.interface';
+import {Component, OnInit} from '@angular/core';
+
+import {IUser} from '../../interfaces/user.interface';
+import {ProfileHttpService} from '../../services/profile-http.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +13,7 @@ export class ProfileComponent implements OnInit {
   constructor(private profileHttpService: ProfileHttpService) {}
 
   ngOnInit(): void {
-    this.profileHttpService.getUserInfo().subscribe((user) => {
+    this.profileHttpService.getUserInfo().subscribe(user => {
       this.user = user;
     });
   }

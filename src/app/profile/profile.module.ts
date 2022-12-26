@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import {CommonModule} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
+import {NgModule} from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 
-import { ProfileRoutingModule } from './profile-routing.module';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import {ProfileComponent} from './pages/profile/profile.component';
+import {ProfileRoutingModule} from './profile-routing.module';
 
 @NgModule({
   declarations: [ProfileComponent],
