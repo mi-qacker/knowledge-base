@@ -4,10 +4,23 @@
     <span>База знаний</span>
   </a>
   <span class="example-spacer"></span>
-  <!--<button mat-icon-button>
-    <mat-icon>person</mat-icon>
-  </button>-->
-  <a mat-flat-button routerLink="/auth">Войти</a>
+  <ng-container *ngIf="user$ | async as user; else noLogin">
+    <a mat-icon-button matTooltip="Песочница" routerLink="/sandbox">
+      <mat-icon>article</mat-icon>
+    </a>
+    <a
+      mat-icon-button
+      matTooltip="Профиль"
+      [routerLink]="'/profile/' + user._id">
+      <mat-icon>person</mat-icon>
+    </a>
+    <button mat-icon-button matTooltip="Выйти" (click)="logoutUser()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </ng-container>
+  <ng-template #noLogin>
+    <a mat-flat-button routerLink="/auth">Войти</a>
+  </ng-template>
 </mat-toolbar>
 
 <main class="container">
