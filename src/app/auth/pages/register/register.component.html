@@ -1,40 +1,56 @@
-<div class="login-container">
-  <div class="login-form">
+<div class="register-container">
+  <form [formGroup]="registerForm" class="register-form">
     <h1>Регистрация</h1>
 
-    <mat-form-field appearance="outline" class="login-form_input">
+    <mat-form-field appearance="outline" class="register-form_input">
       <mat-label>Имя</mat-label>
-      <input type="text" matInput />
+      <input formControlName="firstName" type="text" matInput />
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="login-form_input">
+    <mat-form-field appearance="outline" class="register-form_input">
       <mat-label>Фамилия</mat-label>
-      <input type="text" matInput />
+      <input formControlName="lastName" type="text" matInput />
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="login-form_input">
+    <mat-form-field appearance="outline" class="register-form_input">
       <mat-label>Email</mat-label>
-      <input type="text" matInput />
+      <input formControlName="email" type="text" matInput />
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="login-form_input">
+    <mat-form-field appearance="outline" class="register-form_input">
       <mat-label>Логин</mat-label>
-      <input type="text" matInput />
+      <mat-hint>
+        Логин должен содержать латинские символы и цифру (но не начинаться с
+        неё)
+      </mat-hint>
+      <input formControlName="login" type="text" matInput />
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="login-form_input">
+    <mat-form-field appearance="outline" class="register-form_input">
       <mat-label>Пароль</mat-label>
-      <input type="password" matInput />
-      <button matSuffix mat-icon-button>
-        <mat-icon>visibility</mat-icon>
+      <input
+        [type]="isVisible ? 'text' : 'password'"
+        formControlName="password"
+        matInput />
+      <mat-hint>
+        Пароль должен содержать не менее 8 знаков, включать минимум 1 заглавную
+        букву и спецсимвол
+      </mat-hint>
+      <button (click)="toggleVisible()" matSuffix mat-icon-button>
+        <mat-icon>{{ isVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
     </mat-form-field>
 
-    <button class="login-form_button" mat-flat-button color="primary">
+    <button
+      (click)="registerUser()"
+      [disabled]="registerForm.invalid"
+      class="register-form_button"
+      mat-flat-button
+      color="primary">
       Зарегистрироваться
     </button>
-    <a class="login-form_button" mat-stroked-button routerLink="../login">
+    <a class="register-form_button" mat-stroked-button routerLink="../login">
       Уже есть аккаунт? Войдите!
     </a>
-  </div>
+  </form>
 </div>
