@@ -1,1 +1,15 @@
-<p>new-post works!</p>
+<div class="article-editor">
+  <div class="panel-one">
+    <h2>Editor JS</h2>
+    <div id="editorjs"></div>
+
+    <button (click)="saveEditorData()">Save Article</button>
+  </div>
+
+  <div class="panel-two">
+    <h2>Clean Data</h2>
+    <div class="article-data-container">
+      <pre [innerHTML]="editorData"></pre>
+    </div>
+  </div>
+</div>

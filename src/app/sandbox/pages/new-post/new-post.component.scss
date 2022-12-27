@@ -1,0 +1,55 @@
+.article-editor {
+  display: flex;
+
+  height: 100%;
+  padding: 3em;
+
+  font-family: Lato;
+
+  background: rgb(233 233 233);
+}
+
+#editorjs {
+  min-height: 700px;
+  background: white;
+}
+
+button {
+  display: inline-block;
+
+  padding: 15px 32px;
+
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+
+  background-color: #4caf50; /* Green */
+  border: none;
+}
+
+::ng-deep .ce-block__content,
+::ng-deep .ce-toolbar__content {
+  max-width: unset;
+}
+
+.panel-one {
+  flex: 0 0 50%;
+}
+
+.panel-two {
+  flex: 1;
+  margin: 0 3em;
+}
+
+.article-data-container {
+  min-height: 700px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  background: white;
+}
+
+pre {
+  word-break: keep-all;
+  white-space: pre-wrap;
+}
