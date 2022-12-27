@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 
 import {RegisterUserDto} from '../../models/user.model';
 import {AuthHttpService} from '../../services/auth-http/auth-http.service';
+import {LoggedUserService} from '../../services/logged-user/logged-user.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authHttpService: AuthHttpService
+    private authHttpService: AuthHttpService,
+    private loggedUserService: LoggedUserService
   ) {}
 
   ngOnInit(): void {
@@ -54,7 +56,8 @@ export class RegisterComponent implements OnInit {
 
   registerUser() {
     const registerUserDto: RegisterUserDto = this.registerForm.value;
-    this.authHttpService.registerUser(registerUserDto).subscribe(async () => {
+    this.authHttpService.registerUser(registerUserDto).subscribe(async user => {
+      this.loggedUserService.loginUser(user);
       await this.router.navigateByUrl('/');
     });
   }

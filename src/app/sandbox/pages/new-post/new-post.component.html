@@ -1,15 +1,8 @@
-<div class="article-editor">
-  <div class="panel-one">
-    <h2>Editor JS</h2>
-    <div id="editorjs"></div>
-
-    <button (click)="saveEditorData()">Save Article</button>
-  </div>
-
-  <div class="panel-two">
-    <h2>Clean Data</h2>
-    <div class="article-data-container">
-      <pre [innerHTML]="editorData"></pre>
-    </div>
-  </div>
+<div class="container">
+  <input type="text" class="input-header" placeholder="Заголовок" autofocus />
+  <div id="editorjs" class="editor"></div>
+  <button mat-flat-button color="accent" class="save-button">
+    <mat-icon>check</mat-icon>
+    <span>Опубликовать</span>
+  </button>
 </div>

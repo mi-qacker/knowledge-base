@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 
 import {LoginUserDto} from '../../models/user.model';
 import {AuthHttpService} from '../../services/auth-http/auth-http.service';
+import {LoggedUserService} from '../../services/logged-user/logged-user.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authHttpService: AuthHttpService
+    private authHttpService: AuthHttpService,
+    private loggedUserService: LoggedUserService
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +34,8 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
     const loginUserDto: LoginUserDto = this.loginForm.value;
-    this.authHttpService.loginUser(loginUserDto).subscribe(async () => {
+    this.authHttpService.loginUser(loginUserDto).subscribe(async user => {
+      this.loggedUserService.loginUser(user);
       await this.router.navigateByUrl('/');
     });
   }

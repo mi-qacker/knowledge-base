@@ -15,4 +15,5 @@ export const editorjsConfig = {
     list: List,
     embed: Embed,
   },
+  placeholder: 'Нажмите Tab для выбора инструмента',
 };
