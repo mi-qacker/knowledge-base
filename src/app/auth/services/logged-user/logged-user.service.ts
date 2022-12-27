@@ -7,7 +7,7 @@ import {User} from '../../models/user.model';
   providedIn: 'root',
 })
 export class LoggedUserService {
-  private _user$ = new BehaviorSubject<User | null>(null);
+  private _user$ = new BehaviorSubject<User | undefined | null>(undefined);
   public user$ = this._user$.asObservable();
 
   loginUser(user: User) {

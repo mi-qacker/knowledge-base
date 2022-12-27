@@ -25,4 +25,7 @@
 
 <main class="container">
   <router-outlet></router-outlet>
+  <div *ngIf="loading$ | async" class="spinner">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
 </main>
