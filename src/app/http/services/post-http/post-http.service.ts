@@ -17,6 +17,10 @@ export class PostHttpService {
     });
   }
 
+  getPostById(id: string): Observable<IPost> {
+    return this.http.get<IPost>(`${this.apiPath}/${id}`);
+  }
+
   postNewPost(newPost: Omit<IPost, 'id'>): Observable<IPost> {
     return this.http.post<IPost>(this.apiPath, newPost);
   }

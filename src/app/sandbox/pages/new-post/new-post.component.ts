@@ -14,7 +14,6 @@ import {editorjsConfig} from './editor.config';
   styleUrls: ['./new-post.component.scss'],
 })
 export class NewPostComponent implements OnInit {
-  editorData: any;
   header: string = '';
   editor!: EditorJS;
 

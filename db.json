@@ -2,7 +2,7 @@
   "posts": [
     {
       "userId": "63aa00afd7ea13c381bf2af0",
-      "moderation": false,
+      "moderation": true,
       "title": "Lorem ipsum dolor",
       "data": {
         "time": 1672258239097,
@@ -74,6 +74,47 @@
       },
       "likes": ["63aa00afd7ea13c381bf2af1"],
       "id": 2
+    },
+    {
+      "userId": "63aa00afd7ea13c381bf2af0",
+      "moderation": false,
+      "title": "Kafka",
+      "data": {
+        "time": 1672259289324,
+        "blocks": [
+          {
+            "id": "scVWCsizCG",
+            "type": "paragraph",
+            "data": {
+              "text": "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin."
+            }
+          },
+          {
+            "id": "seN29tDe-3",
+            "type": "paragraph",
+            "data": {
+              "text": "He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment."
+            }
+          },
+          {
+            "id": "6KuyWM6B-7",
+            "type": "paragraph",
+            "data": {
+              "text": "His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked. \"What's happened to me? \" he thought. It wasn't a dream. His room, a proper human room although a little too small, lay peacefully between its four familiar walls."
+            }
+          },
+          {
+            "id": "_j3YCfHZl2",
+            "type": "paragraph",
+            "data": {
+              "text": "A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame. It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur muff that covered the whole of her lower arm towards the viewer. Gregor then turned to look out the window at the dull weather. Drops"
+            }
+          }
+        ],
+        "version": "2.26.4"
+      },
+      "likes": ["63aa00afd7ea13c381bf2af0"],
+      "id": 3
     }
   ]
 }
