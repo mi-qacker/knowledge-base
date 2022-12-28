@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Observable} from 'rxjs';
+import {shareReplay} from 'rxjs/operators';
 
-import {IUser} from '../../interfaces/user.interface';
+import {IPost} from '../../../http/services/post-http/post.interface';
+import {PostHttpService} from '../../../http/services/post-http/post-http.service';
 import {ProfileHttpService} from '../../services/profile-http.service';
 
 @Component({
@@ -9,12 +13,21 @@ import {ProfileHttpService} from '../../services/profile-http.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  user: IUser | null = null;
-  constructor(private profileHttpService: ProfileHttpService) {}
+  user$ = this.profileHttpService.getUserInfo().pipe(shareReplay(1));
+  posts$!: Observable<IPost[]>;
+  userId!: string;
+
+  constructor(
+    private route: ActivatedRoute,
+    private profileHttpService: ProfileHttpService,
+    private postHttpService: PostHttpService
+  ) {
+    this.route.params.subscribe(({id}) => {
+      this.userId = id;
+    });
+  }
 
   ngOnInit(): void {
-    this.profileHttpService.getUserInfo().subscribe(user => {
-      this.user = user;
-    });
+    this.posts$ = this.postHttpService.getPostByUserId(this.userId);
   }
 }

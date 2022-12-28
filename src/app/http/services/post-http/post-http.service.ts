@@ -21,6 +21,10 @@ export class PostHttpService {
     return this.http.get<IPost>(`${this.apiPath}/${id}`);
   }
 
+  getPostByUserId(userId: string): Observable<IPost[]> {
+    return this.http.get<IPost[]>(this.apiPath, {params: {userId}});
+  }
+
   postNewPost(newPost: Omit<IPost, 'id'>): Observable<IPost> {
     return this.http.post<IPost>(this.apiPath, newPost);
   }

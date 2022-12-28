@@ -1,4 +1,41 @@
-<h2 class="'info">Информация о профиле</h2>
+<div class="container">
+  <div class="info" *ngIf="user$ | async as user">
+    <h1>Информация о профиле</h1>
+
+    <ng-container *ngIf="user.avatar !== null; else noAvatar">
+      <img class="info_avatar" [src]="user.avatar" />
+    </ng-container>
+    <ng-template #noAvatar>
+      <img
+        class="info_avatar"
+        src="https://okeygeek.ru/wp-content/uploads/2020/03/no_avatar.png" />
+    </ng-template>
+    <div class="info_field">Имя: {{ user.firstName }}</div>
+    <div class="info_field">Фамилия: {{ user.lastName }}</div>
+    <div class="info_field">Логин: {{ user.login }}</div>
+    <div class="info_field">Email: {{ user.email }}</div>
+  </div>
+
+  <mat-divider [vertical]="true"></mat-divider>
+
+  <div class="posts" *ngIf="user$ | async as user">
+    <h1>Статьи профиля:</h1>
+    <div class="button">
+      <a mat-flat-button color="accent" routerLink="/sandbox/new">
+        <mat-icon>add</mat-icon>
+        <span>Создать</span>
+      </a>
+    </div>
+    <div *ngIf="posts$ | async as posts" class="list-container">
+      <app-post-card
+        *ngFor="let post of posts"
+        [post]="post"
+        [userId]="user._id"></app-post-card>
+    </div>
+  </div>
+</div>
+
+<!-- <h2 class="'info">Информация о профиле</h2>
 <div class="profile-container">
   <section>
     <div class="grid-profile">
@@ -28,7 +65,7 @@
 <button class="create-button" mat-raised-button color="primary">
   + Создать статью
 </button>
-<div class="article">Мои статьи:</div>
+<div class="article">Мои статьи:</div> -->
 <!-- <mat-card>
     <mat-card-header>
       <mat-card-title>Actions Buttons</mat-card-title>
