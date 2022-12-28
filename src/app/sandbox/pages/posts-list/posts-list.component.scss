@@ -6,6 +6,8 @@
 }
 
 .list-container {
+  overflow-y: auto;
   max-width: 680px;
+  height: calc(100% - 64px);
   margin: 0 auto;
 }
