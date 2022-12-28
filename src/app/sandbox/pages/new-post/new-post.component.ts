@@ -1,6 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import EditorJS from '@editorjs/editorjs';
+import {EMPTY, switchMap} from 'rxjs';
+import {IPost} from 'src/app/http/services/post-http/post.interface';
 
+import {LoggedUserService} from '../../../auth/services/logged-user/logged-user.service';
+import {PostHttpService} from '../../../http/services/post-http/post-http.service';
 import {editorjsConfig} from './editor.config';
 
 @Component({
@@ -10,16 +15,36 @@ import {editorjsConfig} from './editor.config';
 })
 export class NewPostComponent implements OnInit {
   editorData: any;
+  header: string = '';
   editor!: EditorJS;
 
-  constructor() {}
+  constructor(
+    private router: Router,
+    private postHttpService: PostHttpService,
+    private loggedUserService: LoggedUserService
+  ) {}
   ngOnInit(): void {
     this.editor = new EditorJS(editorjsConfig);
   }
 
-  saveEditorData(): void {
-    this.editor.save().then(outputData => {
-      this.editorData = JSON.stringify(outputData);
-    });
+  async saveEditorData() {
+    const outputData = await this.editor.save();
+    this.loggedUserService.user$
+      .pipe(
+        switchMap(user => {
+          if (!user) return EMPTY;
+          const newPost: Omit<IPost, 'id'> = {
+            userId: user._id,
+            moderation: false,
+            title: this.header,
+            data: outputData,
+            likes: 0,
+          };
+          return this.postHttpService.postNewPost(newPost);
+        })
+      )
+      .subscribe(async () => {
+        await this.router.navigate(['../']);
+      });
   }
 }

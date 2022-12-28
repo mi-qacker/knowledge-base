@@ -14,4 +14,8 @@ export class PostHttpService {
   getAllPosts(): Observable<IPost> {
     return this.http.get<IPost>(`${this.apiPath}`);
   }
+
+  postNewPost(newPost: Omit<IPost, 'id'>): Observable<IPost> {
+    return this.http.post<IPost>(this.apiPath, newPost);
+  }
 }

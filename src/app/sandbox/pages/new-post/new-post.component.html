@@ -1,7 +1,17 @@
 <div class="container">
-  <input type="text" class="input-header" placeholder="Заголовок" autofocus />
+  <input
+    type="text"
+    class="input-header"
+    [(ngModel)]="header"
+    placeholder="Заголовок"
+    autofocus />
   <div id="editorjs" class="editor"></div>
-  <button mat-flat-button color="accent" class="save-button">
+  <button
+    mat-flat-button
+    color="accent"
+    class="save-button"
+    [disabled]="header === ''"
+    (click)="saveEditorData()">
     <mat-icon>check</mat-icon>
     <span>Опубликовать</span>
   </button>
