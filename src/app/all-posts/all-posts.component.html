@@ -1,1 +1,6 @@
-<p>all-posts works!</p>
+<div *ngIf="posts$ | async as posts" class="list-container">
+  <app-post-card
+    *ngFor="let post of posts"
+    [post]="post"
+    [userId]="userId$ | async"></app-post-card>
+</div>
