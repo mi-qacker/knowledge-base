@@ -1,7 +1,15 @@
 <mat-toolbar>
-  <span class="example-spacer"></span>
-  <a mat-flat-button color="accent" routerLink="new">
-    <mat-icon>add</mat-icon>
-    <span>Создать</span>
-  </a>
+  <div class="toolbar-container">
+    <a mat-flat-button color="accent" routerLink="new">
+      <mat-icon>add</mat-icon>
+      <span>Создать</span>
+    </a>
+  </div>
 </mat-toolbar>
+
+<div *ngIf="posts$ | async as posts" class="list-container">
+  <app-post-card
+    *ngFor="let post of posts"
+    [post]="post"
+    [userId]="userId$ | async"></app-post-card>
+</div>

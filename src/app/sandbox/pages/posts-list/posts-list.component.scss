@@ -1,3 +1,11 @@
-.example-spacer {
-  flex: 1 1 auto;
+.toolbar-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 680px;
+  margin: 0 auto;
+}
+
+.list-container {
+  max-width: 680px;
+  margin: 0 auto;
 }

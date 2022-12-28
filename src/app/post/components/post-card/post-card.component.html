@@ -1,0 +1,19 @@
+<div class="post-card">
+  <a [routerLink]="'/post/' + post.id" class="title">
+    {{ post.title }}
+  </a>
+  <div>{{ post.data | postStart }}</div>
+  <div class="likes">
+    <ng-container *ngIf="likeOwner; else noLike">
+      <button mat-icon-button color="primary">
+        <mat-icon>thumb_up</mat-icon>
+      </button>
+    </ng-container>
+    <ng-template #noLike>
+      <button mat-icon-button>
+        <mat-icon>thumb_up</mat-icon>
+      </button>
+    </ng-template>
+    <span>{{ post.likes.length }}</span>
+  </div>
+</div>

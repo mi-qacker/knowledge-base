@@ -28,7 +28,7 @@ export class NewPostComponent implements OnInit {
   }
 
   async saveEditorData() {
-    const outputData = await this.editor.save();
+    const outputData: any = await this.editor.save();
     this.loggedUserService.user$
       .pipe(
         switchMap(user => {
@@ -38,13 +38,13 @@ export class NewPostComponent implements OnInit {
             moderation: false,
             title: this.header,
             data: outputData,
-            likes: 0,
+            likes: [user._id],
           };
           return this.postHttpService.postNewPost(newPost);
         })
       )
       .subscribe(async () => {
-        await this.router.navigate(['../']);
+        await this.router.navigate(['/sandbox']);
       });
   }
 }

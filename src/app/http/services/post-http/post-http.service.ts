@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
@@ -11,8 +11,10 @@ export class PostHttpService {
   private apiPath = 'api/v1/posts';
   constructor(private http: HttpClient) {}
 
-  getAllPosts(): Observable<IPost> {
-    return this.http.get<IPost>(`${this.apiPath}`);
+  getPosts(moderation: boolean): Observable<IPost[]> {
+    return this.http.get<IPost[]>(`${this.apiPath}`, {
+      params: {moderation: `${moderation}`},
+    });
   }
 
   postNewPost(newPost: Omit<IPost, 'id'>): Observable<IPost> {

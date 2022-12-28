@@ -11,12 +11,7 @@ import {PostHttpService} from '../http/services/post-http/post-http.service';
   templateUrl: './all-posts.component.html',
   styleUrls: ['./all-posts.component.scss'],
 })
-export class AllPostsComponent implements OnInit {
+export class AllPostsComponent {
+  posts$ = this.postHttpService.getPosts(true);
   constructor(private postHttpService: PostHttpService) {}
-
-  ngOnInit(): void {
-    this.postHttpService.getAllPosts().subscribe(d => {
-      console.log(d);
-    });
-  }
 }
