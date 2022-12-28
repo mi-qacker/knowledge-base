@@ -21,7 +21,8 @@ export class PostCardComponent implements OnInit {
   }
 
   likePost() {
-    const userId: string = this.userId!;
+    const userId = this.userId;
+    if (!userId) return;
     const request = this.likeOwner
       ? this.postHttpService.removeLike(this.post, userId)
       : this.postHttpService.addLike(this.post, userId);
