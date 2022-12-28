@@ -3,7 +3,6 @@
   flex-direction: column;
 
   box-sizing: border-box;
-  max-width: 650px;
   height: 100%;
   margin: auto;
   padding: 16px 0;
@@ -11,6 +10,8 @@
 
 .input-header {
   width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
 
   font-family: inherit;
   font-size: 36px;
@@ -35,6 +36,10 @@
 }
 
 .save-button {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
   padding: 2px 8px;
+
   font-size: 18px;
 }
