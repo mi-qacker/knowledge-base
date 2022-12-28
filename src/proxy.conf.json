@@ -1,4 +1,8 @@
 {
+  "/api/v1": {
+    "target": "http://localhost:4014",
+    "secure": false
+  },
   "/api": {
     "target": "http://constructor.mpu-cloud.ru:4014",
     "secure": false
