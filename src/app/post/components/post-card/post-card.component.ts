@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IPost} from 'src/app/http/services/post-http/post.interface';
+
+import {IPost} from '../../../http/services/post-http/post.interface';
+import {PostHttpService} from '../../../http/services/post-http/post-http.service';
 
 @Component({
   selector: 'app-post-card',
@@ -10,11 +12,23 @@ export class PostCardComponent implements OnInit {
   @Input() public post!: IPost;
   @Input() public userId?: string | null;
   likeOwner = false;
-  constructor() {}
+  constructor(private postHttpService: PostHttpService) {}
 
   ngOnInit(): void {
     if (this.userId) {
       this.likeOwner = this.post.likes.includes(this.userId);
     }
+  }
+
+  likePost() {
+    const userId: string = this.userId!;
+    const request = this.likeOwner
+      ? this.postHttpService.removeLike(this.post, userId)
+      : this.postHttpService.addLike(this.post, userId);
+
+    request.subscribe(post => {
+      this.likeOwner = !this.likeOwner;
+      this.post = post;
+    });
   }
 }

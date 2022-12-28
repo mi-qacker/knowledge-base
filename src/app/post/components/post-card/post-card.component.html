@@ -5,12 +5,12 @@
   <div>{{ post.data | postStart }}</div>
   <div class="likes">
     <ng-container *ngIf="likeOwner; else noLike">
-      <button mat-icon-button color="primary">
+      <button mat-icon-button color="primary" (click)="likePost()">
         <mat-icon>thumb_up</mat-icon>
       </button>
     </ng-container>
     <ng-template #noLike>
-      <button mat-icon-button>
+      <button mat-icon-button (click)="likePost()">
         <mat-icon>thumb_up</mat-icon>
       </button>
     </ng-template>

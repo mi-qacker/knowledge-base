@@ -2,7 +2,7 @@
   "posts": [
     {
       "userId": "63aa00afd7ea13c381bf2af0",
-      "moderation": true,
+      "moderation": false,
       "title": "Lorem ipsum dolor",
       "data": {
         "time": 1672258239097,
@@ -38,7 +38,7 @@
     },
     {
       "userId": "63aa00afd7ea13c381bf2af0",
-      "moderation": false,
+      "moderation": true,
       "title": "Cicero",
       "data": {
         "time": 1672258986972,
@@ -75,7 +75,9 @@
         "version": "2.26.4"
       },
       "likes": [
-        "63aa00afd7ea13c381bf2af1"
+        "63aa00afd7ea13c381bf2af1",
+        "63aa00afd7ea13c381bf2af0",
+        "63acb6f5d7ea13c381bf2f56"
       ],
       "id": 2
     },
@@ -124,7 +126,7 @@
     },
     {
       "userId": "63aa00afd7ea13c381bf2af0",
-      "moderation": false,
+      "moderation": true,
       "title": "Li Europan lingues",
       "data": {
         "time": 1672261150339,
@@ -203,7 +205,8 @@
         "version": "2.26.4"
       },
       "likes": [
-        "63aa00afd7ea13c381bf2af0"
+        "63aa00afd7ea13c381bf2af0",
+        "63acb6f5d7ea13c381bf2f56"
       ],
       "id": 4
     }
