@@ -1,4 +1,4 @@
-<div *ngIf="posts$ | async as posts" class="list-container">
+<div class="list-container" [@listAnimation]="posts.length">
   <app-post-card
     *ngFor="let post of posts"
     [post]="post"
