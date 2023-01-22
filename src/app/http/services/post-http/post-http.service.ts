@@ -8,7 +8,7 @@ import {IPost} from './post.interface';
   providedIn: 'root',
 })
 export class PostHttpService {
-  private apiPath = 'api/v1/posts';
+  private apiPath = 'api/articles';
   constructor(private http: HttpClient) {}
 
   getPosts(moderation: boolean): Observable<IPost[]> {
@@ -47,5 +47,9 @@ export class PostHttpService {
       likes,
       moderation,
     });
+  }
+
+  deletePost(postId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiPath}/${postId}`);
   }
 }

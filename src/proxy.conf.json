@@ -4,7 +4,7 @@
     "secure": false
   },
   "/api": {
-    "target": "http://localhost:8080",
+    "target": "http://constructor.mpu-cloud.ru:4014",
     "secure": false
   }
 }
