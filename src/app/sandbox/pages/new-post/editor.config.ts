@@ -16,7 +16,14 @@ export const editorjsConfig = {
     list: List,
     embed: Embed,
     Marker: Marker,
-    // image: ImageTool,
+    image: {
+      class: ImageTool,
+      config: {
+        endpoints: {
+          byFile: 'api/image/upload', // Your backend file uploader endpoint
+        },
+      },
+    },
   },
   placeholder: 'Нажмите Tab для выбора инструмента',
 };

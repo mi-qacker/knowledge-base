@@ -16,7 +16,7 @@ export const editorjsConfig = {
     list: List,
     embed: Embed,
     Marker: Marker,
-    // image: ImageTool,
+    image: ImageTool,
   },
   readOnly: true,
 };
