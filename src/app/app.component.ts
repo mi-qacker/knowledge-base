@@ -2,9 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {LoginGuard} from './auth/guards/login/login.guard';
-import {NonLoginGuard} from './auth/guards/non-login/non-login.guard';
-import {AuthHttpService} from './auth/services/auth-http/auth-http.service';
 import {LoggedUserService} from './auth/services/logged-user/logged-user.service';
+import {AuthHttpService} from './http/services/auth-http/auth-http.service';
 
 @Component({
   selector: 'app-root',

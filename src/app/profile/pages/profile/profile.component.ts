@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {IPost} from 'app/http/services/post-http/post.interface';
+import {PostHttpService} from 'app/http/services/post-http/post-http.service';
+import {ProfileHttpService} from 'app/http/services/profile-http/profile-http.service';
 import {Observable} from 'rxjs';
 import {shareReplay} from 'rxjs/operators';
-
-import {IPost} from '../../../http/services/post-http/post.interface';
-import {PostHttpService} from '../../../http/services/post-http/post-http.service';
-import {ProfileHttpService} from '../../services/profile-http.service';
 
 @Component({
   selector: 'app-profile',

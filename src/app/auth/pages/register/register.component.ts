@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {AuthHttpService} from 'app/http/services/auth-http/auth-http.service';
 
 import {RegisterUserDto} from '../../models/user.model';
-import {AuthHttpService} from '../../services/auth-http/auth-http.service';
 import {LoggedUserService} from '../../services/logged-user/logged-user.service';
 
 @Component({

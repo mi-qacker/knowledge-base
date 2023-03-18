@@ -7,11 +7,10 @@ import {
   trigger,
 } from '@angular/animations';
 import {Component, OnInit} from '@angular/core';
+import {LoggedUserService} from 'app/auth/services/logged-user/logged-user.service';
+import {IPost} from 'app/http/services/post-http/post.interface';
+import {PostHttpService} from 'app/http/services/post-http/post-http.service';
 import {map} from 'rxjs';
-import {IPost} from 'src/app/http/services/post-http/post.interface';
-
-import {LoggedUserService} from '../../../auth/services/logged-user/logged-user.service';
-import {PostHttpService} from '../../../http/services/post-http/post-http.service';
 
 @Component({
   selector: 'app-posts-list',

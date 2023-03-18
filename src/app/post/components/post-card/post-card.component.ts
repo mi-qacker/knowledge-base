@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-
-import {IPost} from '../../../http/services/post-http/post.interface';
-import {PostHttpService} from '../../../http/services/post-http/post-http.service';
+import {IPost} from 'app/http/services/post-http/post.interface';
+import {PostHttpService} from 'app/http/services/post-http/post-http.service';
 
 @Component({
   selector: 'app-post-card',

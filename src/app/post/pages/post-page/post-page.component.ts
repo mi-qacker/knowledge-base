@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import EditorJS from '@editorjs/editorjs';
-import {map} from 'rxjs/operators';
-import {LoggedUserService} from 'src/app/auth/services/logged-user/logged-user.service';
-import {IPost} from 'src/app/http/services/post-http/post.interface';
-import {PostHttpService} from 'src/app/http/services/post-http/post-http.service';
+import {IPost} from 'app/http/services/post-http/post.interface';
+import {PostHttpService} from 'app/http/services/post-http/post-http.service';
 
 import {editorjsConfig} from './editor.config';
 

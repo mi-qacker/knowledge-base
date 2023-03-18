@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {AuthHttpService} from 'app/http/services/auth-http/auth-http.service';
 
 import {LoginUserDto} from '../../models/user.model';
-import {AuthHttpService} from '../../services/auth-http/auth-http.service';
 import {LoggedUserService} from '../../services/logged-user/logged-user.service';
 
 @Component({
@@ -14,6 +14,7 @@ import {LoggedUserService} from '../../services/logged-user/logged-user.service'
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   isVisible = false;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,

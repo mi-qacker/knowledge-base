@@ -1,11 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import EditorJS from '@editorjs/editorjs';
+import {LoggedUserService} from 'app/auth/services/logged-user/logged-user.service';
+import {IPost} from 'app/http/services/post-http/post.interface';
+import {PostHttpService} from 'app/http/services/post-http/post-http.service';
 import {EMPTY, switchMap} from 'rxjs';
-import {IPost} from 'src/app/http/services/post-http/post.interface';
 
-import {LoggedUserService} from '../../../auth/services/logged-user/logged-user.service';
-import {PostHttpService} from '../../../http/services/post-http/post-http.service';
 import {editorjsConfig} from './editor.config';
 
 @Component({
@@ -22,6 +22,7 @@ export class NewPostComponent implements OnInit {
     private postHttpService: PostHttpService,
     private loggedUserService: LoggedUserService
   ) {}
+
   ngOnInit(): void {
     this.editor = new EditorJS(editorjsConfig);
   }
