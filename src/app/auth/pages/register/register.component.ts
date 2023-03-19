@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {AuthHttpService} from 'app/http/services/auth-http/auth-http.service';
+import {AuthHttpService} from 'app/http/auth-http/auth-http.service';
 
-import {RegisterUserDto} from '../../models/user.model';
+import {IRegisterUserDto} from '../../../http/auth-http/user.interface';
 import {LoggedUserService} from '../../services/logged-user/logged-user.service';
 
 @Component({
@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser() {
-    const registerUserDto: RegisterUserDto = this.registerForm.value;
+    const registerUserDto: IRegisterUserDto = this.registerForm.value;
     this.authHttpService.registerUser(registerUserDto).subscribe(async user => {
       this.loggedUserService.loginUser(user);
       await this.router.navigateByUrl('/');

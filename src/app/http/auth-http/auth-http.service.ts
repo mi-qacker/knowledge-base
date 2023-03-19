@@ -1,6 +1,10 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {LoginUserDto, RegisterUserDto, User} from 'app/auth/models/user.model';
+import {
+  ILoginUserDto,
+  IRegisterUserDto,
+  IUser,
+} from 'app/http/auth-http/user.interface';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -10,20 +14,20 @@ export class AuthHttpService {
   private apiPath = 'api/user';
   constructor(private http: HttpClient) {}
 
-  getLoggedUser(): Observable<User> {
-    return this.http.get<User>(this.apiPath, {
+  getLoggedUser(): Observable<IUser> {
+    return this.http.get<IUser>(this.apiPath, {
       withCredentials: true,
     });
   }
 
-  loginUser(user: LoginUserDto): Observable<User> {
-    return this.http.post<User>(`${this.apiPath}/login`, user, {
+  loginUser(user: ILoginUserDto): Observable<IUser> {
+    return this.http.post<IUser>(`${this.apiPath}/login`, user, {
       withCredentials: true,
     });
   }
 
-  registerUser(user: RegisterUserDto): Observable<User> {
-    return this.http.post<User>(`${this.apiPath}/register`, user, {
+  registerUser(user: IRegisterUserDto): Observable<IUser> {
+    return this.http.post<IUser>(`${this.apiPath}/register`, user, {
       withCredentials: true,
     });
   }

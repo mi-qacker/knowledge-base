@@ -1,4 +1,4 @@
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
@@ -9,6 +9,7 @@ import {IPost} from './post.interface';
 })
 export class PostHttpService {
   private apiPath = 'api/articles';
+
   constructor(private http: HttpClient) {}
 
   getPosts(moderation: boolean): Observable<IPost[]> {

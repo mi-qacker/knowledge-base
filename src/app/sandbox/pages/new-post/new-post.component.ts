@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import EditorJS from '@editorjs/editorjs';
 import {LoggedUserService} from 'app/auth/services/logged-user/logged-user.service';
-import {IPost} from 'app/http/services/post-http/post.interface';
-import {PostHttpService} from 'app/http/services/post-http/post-http.service';
+import {IPost} from 'app/http/post-http/post.interface';
+import {PostHttpService} from 'app/http/post-http/post-http.service';
 import {EMPTY, switchMap} from 'rxjs';
 
 import {editorjsConfig} from './editor.config';
@@ -34,11 +34,11 @@ export class NewPostComponent implements OnInit {
         switchMap(user => {
           if (!user) return EMPTY;
           const newPost: Omit<IPost, 'id'> = {
-            userId: user._id,
+            userId: user.user._id,
             moderation: false,
             title: this.header,
             data: outputData,
-            likes: [user._id],
+            likes: [user.user._id],
           };
           return this.postHttpService.postNewPost(newPost);
         })

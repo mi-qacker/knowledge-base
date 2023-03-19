@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {IPostData} from 'app/http/services/post-http/post.interface';
+import {IPostData} from 'app/http/post-http/post.interface';
 
 @Pipe({
   name: 'postStart',

@@ -1,9 +1,9 @@
-export interface LoginUserDto {
+export interface ILoginUserDto {
   login: string;
   password: string;
 }
 
-export interface RegisterUserDto {
+export interface IRegisterUserDto {
   login: string;
   email: string;
   password: string;
@@ -11,7 +11,7 @@ export interface RegisterUserDto {
   lastName: string;
 }
 
-export interface User {
+export interface IUser {
   _id: string;
   lastName: string;
   firstName: string;

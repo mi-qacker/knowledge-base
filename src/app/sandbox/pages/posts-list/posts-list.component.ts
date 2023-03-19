@@ -8,8 +8,8 @@ import {
 } from '@angular/animations';
 import {Component, OnInit} from '@angular/core';
 import {LoggedUserService} from 'app/auth/services/logged-user/logged-user.service';
-import {IPost} from 'app/http/services/post-http/post.interface';
-import {PostHttpService} from 'app/http/services/post-http/post-http.service';
+import {IPost} from 'app/http/post-http/post.interface';
+import {PostHttpService} from 'app/http/post-http/post-http.service';
 import {map} from 'rxjs';
 
 @Component({
@@ -33,7 +33,8 @@ import {map} from 'rxjs';
 })
 export class PostsListComponent implements OnInit {
   posts: IPost[] = [];
-  userId$ = this.loggedUserService.user$.pipe(map(user => user?._id));
+  userId$ = this.loggedUserService.user$.pipe(map(user => user?.user._id));
+
   constructor(
     private postHttpService: PostHttpService,
     private loggedUserService: LoggedUserService

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {AuthHttpService} from 'app/http/services/auth-http/auth-http.service';
+import {AuthHttpService} from 'app/http/auth-http/auth-http.service';
 
-import {LoginUserDto} from '../../models/user.model';
+import {ILoginUserDto} from '../../../http/auth-http/user.interface';
 import {LoggedUserService} from '../../services/logged-user/logged-user.service';
 
 @Component({
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-    const loginUserDto: LoginUserDto = this.loginForm.value;
+    const loginUserDto: ILoginUserDto = this.loginForm.value;
     this.authHttpService.loginUser(loginUserDto).subscribe(async user => {
       this.loggedUserService.loginUser(user);
       await this.router.navigateByUrl('/');

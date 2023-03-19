@@ -11,7 +11,7 @@
     <a
       mat-icon-button
       matTooltip="Профиль"
-      [routerLink]="'/profile/' + user._id">
+      [routerLink]="'/profile/' + user.id">
       <mat-icon>person</mat-icon>
     </a>
     <button mat-icon-button matTooltip="Выйти" (click)="logoutUser()">
