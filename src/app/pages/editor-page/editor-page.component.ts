@@ -1,19 +1,25 @@
+import {CommonModule} from '@angular/common';
 import {Component, OnInit} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 import {Router} from '@angular/router';
 import EditorJS from '@editorjs/editorjs';
-import {LoggedUserService} from 'app/auth/services/logged-user/logged-user.service';
-import {IPost} from 'app/http/post-http/post.interface';
-import {PostHttpService} from 'app/http/post-http/post-http.service';
 import {EMPTY, switchMap} from 'rxjs';
 
+import {LoggedUserService} from '../../auth/services/logged-user/logged-user.service';
+import {IPost} from '../../http/post-http/post.interface';
+import {PostHttpService} from '../../http/post-http/post-http.service';
 import {editorjsConfig} from './editor.config';
 
 @Component({
-  selector: 'app-new-post',
-  templateUrl: './new-post.component.html',
-  styleUrls: ['./new-post.component.scss'],
+  selector: 'app-editor-page',
+  standalone: true,
+  imports: [CommonModule, FormsModule, MatIconModule, MatButtonModule],
+  templateUrl: './editor-page.component.html',
+  styleUrls: ['./editor-page.component.scss'],
 })
-export class NewPostComponent implements OnInit {
+export class EditorPageComponent implements OnInit {
   header: string = '';
   editor!: EditorJS;
 
@@ -44,7 +50,7 @@ export class NewPostComponent implements OnInit {
         })
       )
       .subscribe(async () => {
-        await this.router.navigate(['/sandbox']);
+        await this.router.navigate(['/']);
       });
   }
 }

@@ -32,9 +32,11 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'sandbox',
-    loadChildren: () =>
-      import('./sandbox/sandbox.module').then(m => m.SandboxModule),
+    path: 'new',
+    loadComponent: () =>
+      import('./pages/editor-page/editor-page.component').then(
+        c => c.EditorPageComponent
+      ),
   },
   {
     path: 'post',
