@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 
 import {LoginGuard} from './auth/guards/login/login.guard';
 import {LoggedUserService} from './auth/services/logged-user/logged-user.service';
@@ -11,10 +10,9 @@ import {AuthHttpService} from './http/auth-http/auth-http.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  user$ = this.loggedUserService.user$;
   loading$ = this.loginGuard.loading$;
+
   constructor(
-    private router: Router,
     private authHttpService: AuthHttpService,
     private loggedUserService: LoggedUserService,
     private loginGuard: LoginGuard
@@ -24,13 +22,6 @@ export class AppComponent implements OnInit {
     this.authHttpService.getLoggedUser().subscribe({
       next: user => this.loggedUserService.loginUser(user),
       error: () => this.loggedUserService.logoutUser(),
-    });
-  }
-
-  logoutUser() {
-    this.authHttpService.logoutUser().subscribe(async () => {
-      this.loggedUserService.logoutUser();
-      await this.router.navigateByUrl('/');
     });
   }
 }

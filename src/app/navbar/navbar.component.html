@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+  <a class="link" routerLink="/">
+    <mat-icon>book</mat-icon>
+    <span>База знаний</span>
+  </a>
+  <span class="example-spacer"></span>
+  <ng-container *ngIf="user$ | async as user; else noLogin">
+    <a mat-icon-button matTooltip="Песочница" routerLink="/sandbox">
+      <mat-icon>article</mat-icon>
+    </a>
+    <a
+      [routerLink]="'/profile/' + user.id"
+      mat-icon-button
+      matTooltip="Профиль">
+      <mat-icon>person</mat-icon>
+    </a>
+    <button (click)="logoutUser()" mat-icon-button matTooltip="Выйти">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </ng-container>
+  <ng-template #noLogin>
+    <a mat-flat-button routerLink="/auth">Войти</a>
+  </ng-template>
+</mat-toolbar>
