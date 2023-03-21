@@ -1,0 +1,36 @@
+<div class="container">
+  <div *ngIf="user$ | async as user" class="info">
+    <h1>Информация о профиле</h1>
+
+    <ng-container *ngIf="user.avatar !== null; else noAvatar">
+      <img [src]="user.avatar" alt="user avatar" class="info_avatar" />
+    </ng-container>
+    <ng-template #noAvatar>
+      <img
+        alt="user avatar placeholder"
+        class="info_avatar" src="https://okeygeek.ru/wp-content/uploads/2020/03/no_avatar.png" />
+    </ng-template>
+    <div class="info_field">Имя: {{ user.firstName }}</div>
+    <div class="info_field">Фамилия: {{ user.lastName }}</div>
+    <div class="info_field">Логин: {{ user.login }}</div>
+    <div class="info_field">Email: {{ user.email }}</div>
+  </div>
+
+  <mat-divider [vertical]="true"></mat-divider>
+
+  <div *ngIf="user$ | async as user" class="posts">
+    <h1>Статьи профиля:</h1>
+    <div class="button">
+      <a color="accent" mat-flat-button routerLink="/sandbox/new">
+        <mat-icon>add</mat-icon>
+        <span>Создать</span>
+      </a>
+    </div>
+    <div *ngIf="posts$ | async as posts" class="list-container">
+      <!--<app-post-card
+        *ngFor="let post of posts"
+        [post]="post"
+        [userId]="user._id"></app-post-card>-->
+    </div>
+  </div>
+</div>

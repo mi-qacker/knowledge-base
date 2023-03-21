@@ -1,17 +1,17 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ProfilePostsComponent} from './profile-posts.component';
+import {ProfilePageComponent} from './profile-page.component';
 
-describe('ProfilePostsComponent', () => {
-  let component: ProfilePostsComponent;
-  let fixture: ComponentFixture<ProfilePostsComponent>;
+describe('ProfilePageComponent', () => {
+  let component: ProfilePageComponent;
+  let fixture: ComponentFixture<ProfilePageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProfilePostsComponent],
+      declarations: [ProfilePageComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ProfilePostsComponent);
+    fixture = TestBed.createComponent(ProfilePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

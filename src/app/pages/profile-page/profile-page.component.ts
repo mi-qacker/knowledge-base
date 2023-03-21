@@ -1,17 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {AuthHttpService} from 'app/http/auth-http/auth-http.service';
-import {IPost} from 'app/http/post-http/post.interface';
-import {PostHttpService} from 'app/http/post-http/post-http.service';
 import {Observable} from 'rxjs';
 import {shareReplay} from 'rxjs/operators';
 
+import {AuthHttpService} from '../../http/auth-http/auth-http.service';
+import {IPost} from '../../http/post-http/post.interface';
+import {PostHttpService} from '../../http/post-http/post-http.service';
+
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss'],
+  selector: 'app-profile-page',
+  templateUrl: './profile-page.component.html',
+  styleUrls: ['./profile-page.component.scss'],
 })
-export class ProfileComponent implements OnInit {
+export class ProfilePageComponent implements OnInit {
   user$ = this.authHttpService.getLoggedUser().pipe(shareReplay(1));
   posts$!: Observable<IPost[]>;
   userId!: string;

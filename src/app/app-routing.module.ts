@@ -27,7 +27,9 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () =>
-      import('./profile/profile.module').then(m => m.ProfileModule),
+      import('./pages/profile-page/profile-page.module').then(
+        m => m.ProfilePageModule
+      ),
   },
   {
     path: 'sandbox',
