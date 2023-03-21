@@ -11,14 +11,13 @@ import {Component, OnInit} from '@angular/core';
 import {map} from 'rxjs/operators';
 
 import {LoggedUserService} from '../../auth/services/logged-user/logged-user.service';
-import {HttpModule} from '../../http/http.module';
 import {IPost} from '../../http/post-http/post.interface';
 import {PostHttpService} from '../../http/post-http/post-http.service';
 
 @Component({
   selector: 'app-all-posts',
   standalone: true,
-  imports: [CommonModule, HttpModule],
+  imports: [CommonModule],
   templateUrl: './all-posts.component.html',
   styleUrls: ['./all-posts.component.scss'],
   animations: [

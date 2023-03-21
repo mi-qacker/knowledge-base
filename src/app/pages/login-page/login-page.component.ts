@@ -14,7 +14,6 @@ import {Router, RouterModule} from '@angular/router';
 import {LoggedUserService} from '../../auth/services/logged-user/logged-user.service';
 import {AuthHttpService} from '../../http/auth-http/auth-http.service';
 import {ILoginUserDto} from '../../http/auth-http/user.interface';
-import {HttpModule} from '../../http/http.module';
 
 @Component({
   selector: 'app-login-page',
@@ -26,7 +25,6 @@ import {HttpModule} from '../../http/http.module';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    HttpModule,
   ],
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
@@ -34,12 +32,14 @@ import {HttpModule} from '../../http/http.module';
 export class LoginPageComponent implements OnInit {
   loginForm!: FormGroup;
   isVisible = false;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private authHttpService: AuthHttpService,
     private loggedUserService: LoggedUserService
   ) {}
+
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       login: ['', Validators.required],

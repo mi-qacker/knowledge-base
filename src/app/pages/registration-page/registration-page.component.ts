@@ -14,7 +14,6 @@ import {Router, RouterModule} from '@angular/router';
 import {LoggedUserService} from '../../auth/services/logged-user/logged-user.service';
 import {AuthHttpService} from '../../http/auth-http/auth-http.service';
 import {IRegisterUserDto} from '../../http/auth-http/user.interface';
-import {HttpModule} from '../../http/http.module';
 
 @Component({
   selector: 'app-registration-page',
@@ -26,7 +25,6 @@ import {HttpModule} from '../../http/http.module';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    HttpModule,
   ],
   templateUrl: './registration-page.component.html',
   styleUrls: ['./registration-page.component.scss'],
