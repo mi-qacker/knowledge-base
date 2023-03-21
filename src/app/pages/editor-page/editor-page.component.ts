@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 import EditorJS from '@editorjs/editorjs';
 import {EMPTY, switchMap} from 'rxjs';
 
-import {LoggedUserService} from '../../auth/services/logged-user/logged-user.service';
+import {LoggedUserService} from '../../auth/logged-user-service/logged-user.service';
 import {IPost} from '../../http/post-http/post.interface';
 import {PostHttpService} from '../../http/post-http/post-http.service';
 import {editorjsConfig} from './editor.config';

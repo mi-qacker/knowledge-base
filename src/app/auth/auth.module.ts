@@ -1,8 +1,10 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
-import {MatFormFieldModule} from '@angular/material/form-field';
+
+import {LoggedUserService} from './logged-user-service/logged-user.service';
 
 @NgModule({
-  imports: [CommonModule, MatFormFieldModule],
+  imports: [CommonModule],
+  providers: [LoggedUserService],
 })
 export class AuthModule {}

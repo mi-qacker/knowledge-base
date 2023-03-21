@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-import {LoginGuard} from './auth/guards/login/login.guard';
-import {LoggedUserService} from './auth/services/logged-user/logged-user.service';
+import {LoggedUserService} from './auth/logged-user-service/logged-user.service';
 import {AuthHttpService} from './http/auth-http/auth-http.service';
 
 @Component({
@@ -10,12 +9,11 @@ import {AuthHttpService} from './http/auth-http/auth-http.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  loading$ = this.loginGuard.loading$;
+  // loading$ = this.loginGuard.loading$;
 
   constructor(
     private authHttpService: AuthHttpService,
-    private loggedUserService: LoggedUserService,
-    private loginGuard: LoginGuard
+    private loggedUserService: LoggedUserService
   ) {}
 
   ngOnInit(): void {

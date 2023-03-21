@@ -2,12 +2,10 @@ import {Injectable} from '@angular/core';
 import {KnowledgeUsersHttpService} from 'app/http/knowledge-users-http/knowledge-users-http.service';
 import {BehaviorSubject, Observable, of, switchMap} from 'rxjs';
 
-import {IUser} from '../../../http/auth-http/user.interface';
-import {IKnowledgeUser} from '../../../http/knowledge-users-http/knowledge-user';
+import {IUser} from '../../http/auth-http/user.interface';
+import {IKnowledgeUser} from '../../http/knowledge-users-http/knowledge-user';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class LoggedUserService {
   private _user$ = new BehaviorSubject<IUser | undefined | null>(undefined);
   public user$: Observable<null | undefined | IKnowledgeUser> =

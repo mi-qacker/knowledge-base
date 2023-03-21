@@ -10,7 +10,7 @@ import {CommonModule} from '@angular/common';
 import {Component, OnInit} from '@angular/core';
 import {map} from 'rxjs/operators';
 
-import {LoggedUserService} from '../../auth/services/logged-user/logged-user.service';
+import {LoggedUserService} from '../../auth/logged-user-service/logged-user.service';
 import {IPost} from '../../http/post-http/post.interface';
 import {PostHttpService} from '../../http/post-http/post-http.service';
 import {PostModule} from '../../post/post.module';

@@ -11,7 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {Router, RouterModule} from '@angular/router';
 
-import {LoggedUserService} from '../../auth/services/logged-user/logged-user.service';
+import {LoggedUserService} from '../../auth/logged-user-service/logged-user.service';
 import {AuthHttpService} from '../../http/auth-http/auth-http.service';
 import {IRegisterUserDto} from '../../http/auth-http/user.interface';
 

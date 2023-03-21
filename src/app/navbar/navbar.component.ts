@@ -6,7 +6,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {Router, RouterModule} from '@angular/router';
 
-import {LoggedUserService} from '../auth/services/logged-user/logged-user.service';
+import {LoggedUserService} from '../auth/logged-user-service/logged-user.service';
 import {AuthHttpService} from '../http/auth-http/auth-http.service';
 
 @Component({
