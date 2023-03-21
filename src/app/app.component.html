@@ -9,12 +9,12 @@
       <mat-icon>article</mat-icon>
     </a>
     <a
+      [routerLink]="'/profile/' + user.id"
       mat-icon-button
-      matTooltip="Профиль"
-      [routerLink]="'/profile/' + user.id">
+      matTooltip="Профиль">
       <mat-icon>person</mat-icon>
     </a>
-    <button mat-icon-button matTooltip="Выйти" (click)="logoutUser()">
+    <button (click)="logoutUser()" mat-icon-button matTooltip="Выйти">
       <mat-icon>logout</mat-icon>
     </button>
   </ng-container>
@@ -25,7 +25,5 @@
 
 <main class="container">
   <router-outlet></router-outlet>
-  <div *ngIf="loading$ | async" class="spinner">
-    <mat-spinner color="accent"></mat-spinner>
-  </div>
+  <app-spinner *ngIf="loading$ | async"></app-spinner>
 </main>
