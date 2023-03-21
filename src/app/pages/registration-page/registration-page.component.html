@@ -4,17 +4,17 @@
 
     <mat-form-field appearance="outline" class="register-form_input">
       <mat-label>Имя</mat-label>
-      <input formControlName="firstName" type="text" matInput />
+      <input formControlName="firstName" matInput type="text" />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="register-form_input">
       <mat-label>Фамилия</mat-label>
-      <input formControlName="lastName" type="text" matInput />
+      <input formControlName="lastName" matInput type="text" />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="register-form_input">
       <mat-label>Email</mat-label>
-      <input formControlName="email" type="text" matInput />
+      <input formControlName="email" matInput type="text" />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="register-form_input">
@@ -23,7 +23,7 @@
         Логин должен содержать латинские символы и цифру (но не начинаться с
         неё)
       </mat-hint>
-      <input formControlName="login" type="text" matInput />
+      <input formControlName="login" matInput type="text" />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="register-form_input">
@@ -36,7 +36,7 @@
         Пароль должен содержать не менее 8 знаков, включать минимум 1 заглавную
         букву и спецсимвол
       </mat-hint>
-      <button (click)="toggleVisible()" matSuffix mat-icon-button>
+      <button (click)="toggleVisible()" mat-icon-button matSuffix>
         <mat-icon>{{ isVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
     </mat-form-field>
@@ -45,8 +45,8 @@
       (click)="registerUser()"
       [disabled]="registerForm.invalid"
       class="register-form_button"
-      mat-flat-button
-      color="primary">
+      color="primary"
+      mat-flat-button>
       Зарегистрироваться
     </button>
     <a class="register-form_button" mat-stroked-button routerLink="../login">

@@ -1,17 +1,37 @@
+import {CommonModule} from '@angular/common';
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {AuthHttpService} from 'app/http/auth-http/auth-http.service';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {Router, RouterModule} from '@angular/router';
 
-import {IRegisterUserDto} from '../../../http/auth-http/user.interface';
-import {LoggedUserService} from '../../services/logged-user/logged-user.service';
+import {LoggedUserService} from '../../auth/services/logged-user/logged-user.service';
+import {AuthHttpService} from '../../http/auth-http/auth-http.service';
+import {IRegisterUserDto} from '../../http/auth-http/user.interface';
+import {HttpModule} from '../../http/http.module';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  selector: 'app-registration-page',
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    HttpModule,
+  ],
+  templateUrl: './registration-page.component.html',
+  styleUrls: ['./registration-page.component.scss'],
 })
-export class RegisterComponent implements OnInit {
+export class RegistrationPageComponent implements OnInit {
   registerForm!: FormGroup;
   isVisible = false;
 
@@ -21,7 +41,6 @@ export class RegisterComponent implements OnInit {
     private authHttpService: AuthHttpService,
     private loggedUserService: LoggedUserService
   ) {}
-
   ngOnInit(): void {
     this.registerForm = this.fb.group({
       firstName: '',
@@ -49,11 +68,9 @@ export class RegisterComponent implements OnInit {
       ],
     });
   }
-
   toggleVisible() {
     this.isVisible = !this.isVisible;
   }
-
   registerUser() {
     const registerUserDto: IRegisterUserDto = this.registerForm.value;
     this.authHttpService.registerUser(registerUserDto).subscribe(async user => {

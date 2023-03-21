@@ -1,13 +1,28 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {AllPostsComponent} from './all-posts/all-posts.component';
-
 const routes: Routes = [
-  {path: 'all', component: AllPostsComponent},
+  {path: '', pathMatch: 'full', redirectTo: 'all'},
   {
-    path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+    path: 'all',
+    loadComponent: () =>
+      import('./pages/all-posts/all-posts.component').then(
+        c => c.AllPostsComponent
+      ),
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./pages/login-page/login-page.component').then(
+        c => c.LoginPageComponent
+      ),
+  },
+  {
+    path: 'registration',
+    loadComponent: () =>
+      import('./pages/registration-page/registration-page.component').then(
+        c => c.RegistrationPageComponent
+      ),
   },
   {
     path: 'profile',
@@ -23,7 +38,6 @@ const routes: Routes = [
     path: 'post',
     loadChildren: () => import('./post/post.module').then(m => m.PostModule),
   },
-  {path: '', redirectTo: 'all', pathMatch: 'full'},
 ];
 
 @NgModule({
