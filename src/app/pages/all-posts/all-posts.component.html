@@ -1,7 +1,6 @@
-<div class="list-container" [@listAnimation]="posts.length">
-  <h1>All Posts</h1>
-  <!--<app-post-card
+<div [@listAnimation]="posts.length" class="list-container">
+  <app-post-card
     *ngFor="let post of posts"
     [post]="post"
-    [userId]="userId$ | async"></app-post-card>-->
+    [userId]="userId$ | async"></app-post-card>
 </div>

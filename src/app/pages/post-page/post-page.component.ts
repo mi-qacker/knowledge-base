@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import EditorJS from '@editorjs/editorjs';
-import {IPost} from 'app/http/post-http/post.interface';
-import {PostHttpService} from 'app/http/post-http/post-http.service';
 
+import {IPost} from '../../http/post-http/post.interface';
+import {PostHttpService} from '../../http/post-http/post-http.service';
 import {editorjsConfig} from './editor.config';
 
 @Component({

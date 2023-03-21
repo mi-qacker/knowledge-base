@@ -27,10 +27,10 @@
       </a>
     </div>
     <div *ngIf="posts$ | async as posts" class="list-container">
-      <!--<app-post-card
+      <app-post-card
         *ngFor="let post of posts"
         [post]="post"
-        [userId]="user._id"></app-post-card>-->
+        [userId]="user._id"></app-post-card>
     </div>
   </div>
 </div>
