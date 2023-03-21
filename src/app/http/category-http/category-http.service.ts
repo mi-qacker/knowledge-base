@@ -4,9 +4,7 @@ import {Observable} from 'rxjs';
 
 import {ICategory} from './category';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class CategoryHttpService {
   private apiPath = 'api/categories';
 

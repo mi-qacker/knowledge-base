@@ -4,9 +4,7 @@ import {Observable} from 'rxjs';
 
 import {IPost} from './post.interface';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class PostHttpService {
   private apiPath = 'api/articles';
 

@@ -1,5 +1,4 @@
 import {CommonModule} from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
@@ -18,7 +17,6 @@ import {ProfileRoutingModule} from './profile-routing.module';
     MatDividerModule,
     MatIconModule,
     MatButtonModule,
-    HttpClientModule,
     PostModule,
   ],
 })

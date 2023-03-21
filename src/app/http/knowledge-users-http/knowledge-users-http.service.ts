@@ -4,9 +4,7 @@ import {Observable} from 'rxjs';
 
 import {IKnowledgeUser} from './knowledge-user';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class KnowledgeUsersHttpService {
   private apiPath = 'api/knowledge-users';
   constructor(private http: HttpClient) {}

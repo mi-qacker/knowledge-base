@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {AuthHttpService} from 'app/http/auth-http/auth-http.service';
 import {IPost} from 'app/http/post-http/post.interface';
 import {PostHttpService} from 'app/http/post-http/post-http.service';
-import {ProfileHttpService} from 'app/http/profile-http/profile-http.service';
 import {Observable} from 'rxjs';
 import {shareReplay} from 'rxjs/operators';
 
@@ -12,13 +12,13 @@ import {shareReplay} from 'rxjs/operators';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  user$ = this.profileHttpService.getUserInfo().pipe(shareReplay(1));
+  user$ = this.authHttpService.getLoggedUser().pipe(shareReplay(1));
   posts$!: Observable<IPost[]>;
   userId!: string;
 
   constructor(
     private route: ActivatedRoute,
-    private profileHttpService: ProfileHttpService,
+    private authHttpService: AuthHttpService,
     private postHttpService: PostHttpService
   ) {
     this.route.params.subscribe(({id}) => {
