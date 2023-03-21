@@ -5,11 +5,11 @@
   </a>
   <span class="example-spacer"></span>
   <ng-container *ngIf="user$ | async as user; else noLogin">
-    <a mat-icon-button matTooltip="Песочница" routerLink="/sandbox">
+    <a mat-icon-button matTooltip="Написать публикацию" routerLink="/new">
       <mat-icon>article</mat-icon>
     </a>
     <a
-      [routerLink]="'/profile/' + user.id"
+      [routerLink]="['/profile', user.id]"
       mat-icon-button
       matTooltip="Профиль">
       <mat-icon>person</mat-icon>
