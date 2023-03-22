@@ -3,9 +3,9 @@ import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs';
 import {shareReplay} from 'rxjs/operators';
 
-import {AuthHttpService} from '../../http/auth-http/auth-http.service';
-import {IPost} from '../../http/post-http/post.interface';
-import {PostHttpService} from '../../http/post-http/post-http.service';
+import {AuthHttpService} from '../../services/http/auth-http/auth-http.service';
+import {IPost} from '../../services/http/post-http/post.interface';
+import {PostHttpService} from '../../services/http/post-http/post-http.service';
 
 @Component({
   selector: 'app-profile-page',

@@ -4,7 +4,7 @@ import {
   ILoginUserDto,
   IRegisterUserDto,
   IUser,
-} from 'app/http/auth-http/user.interface';
+} from 'app/services/http/auth-http/user.interface';
 import {Observable} from 'rxjs';
 
 import {HttpModule} from '../http.module';

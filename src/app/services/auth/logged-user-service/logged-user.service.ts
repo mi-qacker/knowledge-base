@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {KnowledgeUsersHttpService} from 'app/http/knowledge-users-http/knowledge-users-http.service';
+import {KnowledgeUsersHttpService} from 'app/services/http/knowledge-users-http/knowledge-users-http.service';
 import {BehaviorSubject, Observable, of, switchMap} from 'rxjs';
 
 import {IUser} from '../../http/auth-http/user.interface';

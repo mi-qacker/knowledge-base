@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
-import {LoggedUserService} from './auth/logged-user-service/logged-user.service';
-import {AuthHttpService} from './http/auth-http/auth-http.service';
+import {LoggedUserService} from './services/auth/logged-user-service/logged-user.service';
+import {AuthHttpService} from './services/http/auth-http/auth-http.service';
 
 @Component({
   selector: 'app-root',

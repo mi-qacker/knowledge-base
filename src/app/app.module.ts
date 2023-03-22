@@ -4,10 +4,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {AuthModule} from './auth/auth.module';
-import {HttpModule} from './http/http.module';
-import {NavbarComponent} from './navbar/navbar.component';
+import {AuthModule} from './services/auth/auth.module';
+import {HttpModule} from './services/http/http.module';
 import {SharedModule} from './shared/shared.module';
+import {NavbarComponent} from './widgets/navbar/navbar.component';
 
 @NgModule({
   declarations: [AppComponent],

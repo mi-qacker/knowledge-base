@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IPost} from 'app/http/post-http/post.interface';
-import {PostHttpService} from 'app/http/post-http/post-http.service';
+import {IPost} from 'app/services/http/post-http/post.interface';
+import {PostHttpService} from 'app/services/http/post-http/post-http.service';
 
 @Component({
   selector: 'app-post-card',
@@ -11,6 +11,7 @@ export class PostCardComponent implements OnInit {
   @Input() public post!: IPost;
   @Input() public userId?: string | null;
   likeOwner = false;
+
   constructor(private postHttpService: PostHttpService) {}
 
   ngOnInit(): void {

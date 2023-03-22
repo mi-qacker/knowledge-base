@@ -1,4 +1,4 @@
-import { PostStartPipe } from './post-start.pipe';
+import {PostStartPipe} from './post-start.pipe';
 
 describe('PostStartPipe', () => {
   it('create an instance', () => {

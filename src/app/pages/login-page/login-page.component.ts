@@ -11,9 +11,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {Router, RouterModule} from '@angular/router';
 
-import {LoggedUserService} from '../../auth/logged-user-service/logged-user.service';
-import {AuthHttpService} from '../../http/auth-http/auth-http.service';
-import {ILoginUserDto} from '../../http/auth-http/user.interface';
+import {LoggedUserService} from '../../services/auth/logged-user-service/logged-user.service';
+import {AuthHttpService} from '../../services/http/auth-http/auth-http.service';
+import {ILoginUserDto} from '../../services/http/auth-http/user.interface';
 
 @Component({
   selector: 'app-login-page',

@@ -11,9 +11,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {Router, RouterModule} from '@angular/router';
 
-import {LoggedUserService} from '../../auth/logged-user-service/logged-user.service';
-import {AuthHttpService} from '../../http/auth-http/auth-http.service';
-import {IRegisterUserDto} from '../../http/auth-http/user.interface';
+import {LoggedUserService} from '../../services/auth/logged-user-service/logged-user.service';
+import {AuthHttpService} from '../../services/http/auth-http/auth-http.service';
+import {IRegisterUserDto} from '../../services/http/auth-http/user.interface';
 
 @Component({
   selector: 'app-registration-page',
@@ -39,6 +39,7 @@ export class RegistrationPageComponent implements OnInit {
     private authHttpService: AuthHttpService,
     private loggedUserService: LoggedUserService
   ) {}
+
   ngOnInit(): void {
     this.registerForm = this.fb.group({
       firstName: '',
@@ -66,9 +67,11 @@ export class RegistrationPageComponent implements OnInit {
       ],
     });
   }
+
   toggleVisible() {
     this.isVisible = !this.isVisible;
   }
+
   registerUser() {
     const registerUserDto: IRegisterUserDto = this.registerForm.value;
     this.authHttpService.registerUser(registerUserDto).subscribe(async user => {

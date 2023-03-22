@@ -10,10 +10,10 @@ import {CommonModule} from '@angular/common';
 import {Component, OnInit} from '@angular/core';
 import {map} from 'rxjs/operators';
 
-import {LoggedUserService} from '../../auth/logged-user-service/logged-user.service';
-import {IPost} from '../../http/post-http/post.interface';
-import {PostHttpService} from '../../http/post-http/post-http.service';
-import {PostModule} from '../../post/post.module';
+import {LoggedUserService} from '../../services/auth/logged-user-service/logged-user.service';
+import {IPost} from '../../services/http/post-http/post.interface';
+import {PostHttpService} from '../../services/http/post-http/post-http.service';
+import {PostModule} from '../../widgets/post/post.module';
 
 @Component({
   selector: 'app-all-posts',

@@ -6,8 +6,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {Router, RouterModule} from '@angular/router';
 
-import {LoggedUserService} from '../auth/logged-user-service/logged-user.service';
-import {AuthHttpService} from '../http/auth-http/auth-http.service';
+import {LoggedUserService} from '../../services/auth/logged-user-service/logged-user.service';
+import {AuthHttpService} from '../../services/http/auth-http/auth-http.service';
 
 @Component({
   selector: 'app-navbar',

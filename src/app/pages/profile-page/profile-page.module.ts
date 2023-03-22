@@ -4,7 +4,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 
-import {PostModule} from '../../post/post.module';
+import {PostModule} from '../../widgets/post/post.module';
 import {ProfilePageComponent} from './profile-page.component';
 import {ProfilePageRoutingModule} from './profile-page-routing.module';
 
