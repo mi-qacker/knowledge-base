@@ -7,7 +7,11 @@ import {
 } from 'app/http/auth-http/user.interface';
 import {Observable} from 'rxjs';
 
-@Injectable()
+import {HttpModule} from '../http.module';
+
+@Injectable({
+  providedIn: HttpModule,
+})
 export class AuthHttpService {
   private apiPath = 'api/user';
   constructor(private http: HttpClient) {}

@@ -4,8 +4,11 @@ import {BehaviorSubject, Observable, of, switchMap} from 'rxjs';
 
 import {IUser} from '../../http/auth-http/user.interface';
 import {IKnowledgeUser} from '../../http/knowledge-users-http/knowledge-user';
+import {AuthModule} from '../auth.module';
 
-@Injectable()
+@Injectable({
+  providedIn: AuthModule,
+})
 export class LoggedUserService {
   private _user$ = new BehaviorSubject<IUser | undefined | null>(undefined);
   public user$: Observable<null | undefined | IKnowledgeUser> =

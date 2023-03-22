@@ -2,9 +2,12 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
+import {HttpModule} from '../http.module';
 import {IPost} from './post.interface';
 
-@Injectable()
+@Injectable({
+  providedIn: HttpModule,
+})
 export class PostHttpService {
   private apiPath = 'api/articles';
 

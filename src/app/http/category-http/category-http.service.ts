@@ -2,9 +2,12 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
+import {HttpModule} from '../http.module';
 import {ICategory} from './category';
 
-@Injectable()
+@Injectable({
+  providedIn: HttpModule,
+})
 export class CategoryHttpService {
   private apiPath = 'api/categories';
 
