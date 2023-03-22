@@ -13,7 +13,7 @@ import {editorjsConfig} from './editor.config';
 })
 export class PostPageComponent implements OnInit {
   editor!: EditorJS;
-  post!: IPost;
+  post?: IPost;
   postId!: string;
 
   constructor(
