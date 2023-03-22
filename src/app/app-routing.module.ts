@@ -32,6 +32,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'moderator',
+    loadChildren: () =>
+      import(
+        './pages/profile-moderator-page/profile-moderator-page.module'
+      ).then(m => m.ProfileModeratorPageModule),
+  },
+  {
     path: 'new',
     loadComponent: () =>
       import('./pages/editor-page/editor-page.component').then(
@@ -42,6 +49,20 @@ const routes: Routes = [
     path: 'post',
     loadChildren: () =>
       import('./pages/post-page/post-page.module').then(m => m.PostPageModule),
+  },
+  {
+    path: 'category',
+    loadChildren: () =>
+      import('./pages/category-pages/category-pages.module').then(
+        m => m.CategoryPagesModule
+      ),
+  },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./pages/admin-pages/admin-pages.module').then(
+        m => m.AdminPagesModule
+      ),
   },
 ];
 
