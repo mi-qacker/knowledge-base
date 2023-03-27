@@ -1,1 +1,62 @@
-<p>profile-moderator-page works!</p>
+<div class="container">
+    <div *ngIf="user$ | async as user" class="info">
+        <h1>Профиль модератора</h1>
+
+        <ng-container *ngIf="user.avatar !== null; else noAvatar">
+            <img src]="user.avatar" alt="user avatar" class="info_avatar" />
+        </ng-container>
+
+        <ng-template #noAvatar>
+            <img alt="user avatar placeholder" class="info_avatar"
+                src="https://okeygeek.ru/wp-content/uploads/2020/03/no_avatar.png" />
+        </ng-template>
+
+        <div class="info_field">Имя: {{ user.firstName }}</div>
+        <div class="info_field">Фамилия: {{ user.lastName }} </div>
+        <div class="info_field">Логин: {{ user.login }}</div>
+        <div class="info_field">Email: {{ user.email }}</div>
+    </div>
+
+    <mat-divider [vertical]="true"></mat-divider>
+
+    <div *ngIf="user$ | async as user" class="categories">
+        <h1>Категории</h1>
+        <div class="button">
+            <a color="accent" mat-flat-button routerLink="">
+                <mat-icon>add</mat-icon>
+                <span>Добавить</span>
+            </a>
+        </div>
+        <div *ngIf="categories$ | async as categories" class="list-container">
+            <div class="categories">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Категория 1</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-actions align="end">
+                        <button mat-button>Редактировать</button>
+                        <button mat-button>Удалить</button>
+                    </mat-card-actions>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Категория 2</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-actions align="end">
+                        <button mat-button>Редактировать</button>
+                        <button mat-button>Удалить</button>
+                    </mat-card-actions>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Категория 3</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-actions align="end">
+                        <button mat-button>Редактировать</button>
+                        <button mat-button>Удалить</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

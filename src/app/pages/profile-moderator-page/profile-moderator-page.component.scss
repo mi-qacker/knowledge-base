@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: row;
+
+  box-sizing: border-box;
+  height: 100%;
+  padding-bottom: 0;
+}
+
+.info {
+  flex-shrink: 0;
+  width: 360px;
+  padding: 16px;
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  &_field {
+    margin-bottom: 8px;
+    font-size: 16px;
+  }
+
+  &_avatar {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 24px 48px;
+    border-radius: 50%;
+  }
+}
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  box-sizing: border-box;
+  height: 100%;
+  padding: 16px;
+}
+
+mat-card {
+  margin-top: 32px;
+}
+
+.list-container {
+  overflow-y: auto;
+  flex-grow: 1;
+  width: 100%;
+  margin-left: -16px;
+}
