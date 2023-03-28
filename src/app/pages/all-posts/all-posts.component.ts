@@ -6,19 +6,20 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import {CommonModule} from '@angular/common';
-import {Component, OnInit} from '@angular/core';
-import {map} from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { MatListModule } from '@angular/material/list';
+import { map } from 'rxjs/operators';
 
-import {LoggedUserService} from '../../services/auth/logged-user-service/logged-user.service';
-import {IPost} from '../../services/http/post-http/post.interface';
-import {PostHttpService} from '../../services/http/post-http/post-http.service';
-import {PostModule} from '../../widgets/post/post.module';
+import { LoggedUserService } from '../../services/auth/logged-user-service/logged-user.service';
+import { IPost } from '../../services/http/post-http/post.interface';
+import { PostHttpService } from '../../services/http/post-http/post-http.service';
+import { PostModule } from '../../widgets/post/post.module';
 
 @Component({
   selector: 'app-all-posts',
   standalone: true,
-  imports: [CommonModule, PostModule],
+  imports: [CommonModule, PostModule, MatListModule],
   templateUrl: './all-posts.component.html',
   styleUrls: ['./all-posts.component.scss'],
   animations: [
@@ -27,10 +28,10 @@ import {PostModule} from '../../widgets/post/post.module';
         query(
           ':enter',
           [
-            style({opacity: 0}),
-            stagger(100, [animate('0.25s', style({opacity: 1}))]),
+            style({ opacity: 0 }),
+            stagger(100, [animate('0.25s', style({ opacity: 1 }))]),
           ],
-          {optional: true}
+          { optional: true }
         ),
       ]),
     ]),
@@ -43,7 +44,7 @@ export class AllPostsComponent implements OnInit {
   constructor(
     private postHttpService: PostHttpService,
     private loggedUserService: LoggedUserService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.postHttpService.getPosts(true).subscribe(posts => {
