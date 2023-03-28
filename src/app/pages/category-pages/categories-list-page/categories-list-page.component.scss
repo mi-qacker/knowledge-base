@@ -1,0 +1,14 @@
+.container-list {
+  overflow-y: auto;
+
+  box-sizing: border-box;
+  max-width: 680px;
+  height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-bottom: 0;
+}
+
+mat-card {
+  margin-top: 32px;
+}
