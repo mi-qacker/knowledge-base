@@ -1,13 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatIconModule } from '@angular/material/icon';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatIconModule} from '@angular/material/icon';
 
-import { PostModule } from '../../widgets/post/post.module';
-import { ProfileModeratorPageComponent } from './profile-moderator-page.component';
-import { ProfileModeratorPageRoutingModule } from './profile-moderator-page-routing.module';
+import {PostModule} from '../../widgets/post/post.module';
+import {ProfileModeratorPageComponent} from './profile-moderator-page.component';
+import {ProfileModeratorPageRoutingModule} from './profile-moderator-page-routing.module';
 
 @NgModule({
   declarations: [ProfileModeratorPageComponent],
@@ -19,6 +19,7 @@ import { ProfileModeratorPageRoutingModule } from './profile-moderator-page-rout
     MatIconModule,
     MatButtonModule,
     PostModule,
+    NgOptimizedImage,
   ],
 })
-export class ProfileModeratorPageModule { }
+export class ProfileModeratorPageModule {}

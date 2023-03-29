@@ -1,2 +1,13 @@
-.prettierrc
+.prettierrc.json
 package.json
+package-lock.json
+karma.conf.js
+
+# Compiled output
+/dist
+.angular/cache
+
+# Node
+/node_modules
+
+db.json

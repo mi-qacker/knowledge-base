@@ -8,7 +8,10 @@
     <a mat-icon-button matTooltip="Написать публикацию" routerLink="/new">
       <mat-icon>article</mat-icon>
     </a>
-    <a [routerLink]="['/profile', user.id]" mat-icon-button matTooltip="Профиль">
+    <a
+      [routerLink]="['/profile', user.id]"
+      mat-icon-button
+      matTooltip="Профиль">
       <mat-icon>person</mat-icon>
     </a>
     <button (click)="logoutUser()" mat-icon-button matTooltip="Выйти">
