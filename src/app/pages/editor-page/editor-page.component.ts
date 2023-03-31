@@ -40,11 +40,11 @@ export class EditorPageComponent implements OnInit {
         switchMap(user => {
           if (!user) return EMPTY;
           const newPost: Omit<IPost, 'id'> = {
-            userId: user.user._id,
+            userId: user._id,
             moderation: false,
             title: this.header,
             data: outputData,
-            likes: [user.user._id],
+            likes: [user._id],
           };
           return this.postHttpService.postNewPost(newPost);
         })

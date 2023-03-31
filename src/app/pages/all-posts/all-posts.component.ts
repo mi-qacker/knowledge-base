@@ -39,7 +39,7 @@ import {PostModule} from '../../widgets/post/post.module';
 })
 export class AllPostsComponent implements OnInit {
   posts: IPost[] = [];
-  userId$ = this.loggedUserService.user$.pipe(map(user => user?.user._id));
+  userId$ = this.loggedUserService.user$.pipe(map(user => user?._id));
 
   constructor(
     private postHttpService: PostHttpService,

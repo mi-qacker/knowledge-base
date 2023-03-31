@@ -11,7 +11,7 @@ export class KnowledgeUsersHttpService {
 
   constructor(private http: HttpClient) {}
 
-  getKnowledgeUserById(id: string): Observable<IKnowledgeUser> {
-    return this.http.get<IKnowledgeUser>(`${this.apiPath}/${id}`);
+  getKnowledgeUserById(id: string): Observable<IKnowledgeUser | null> {
+    return this.http.get<IKnowledgeUser | null>(`${this.apiPath}/${id}`);
   }
 }
