@@ -14,4 +14,8 @@ export class KnowledgeUsersHttpService {
   getKnowledgeUserById(id: string): Observable<IKnowledgeUser | null> {
     return this.http.get<IKnowledgeUser | null>(`${this.apiPath}/${id}`);
   }
+
+  getKnowledgeUsers(): Observable<IKnowledgeUser[]> {
+    return this.http.get<IKnowledgeUser[]>(this.apiPath);
+  }
 }

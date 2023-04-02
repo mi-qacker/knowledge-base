@@ -3,26 +3,22 @@
     <mat-label>Электронная почта</mat-label>
     <input matInput placeholder="pat@example.com" />
   </mat-form-field>
-  <button mat-raised-button color="accent" class="new-button">
+  <button class="new-button" color="accent" mat-raised-button>
     Пригласить
   </button>
 
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Лаврененко Илья</mat-card-title>
-      <mat-card-subtitle>Моделирование в САПР</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-actions align="end">
-      <button mat-button color="primary">Редактировать</button>
-    </mat-card-actions>
-  </mat-card>
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Толстиков Антон</mat-card-title>
-      <mat-card-subtitle>Проектная деятельность</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-actions align="end">
-      <button mat-button color="primary">Редактировать</button>
-    </mat-card-actions>
-  </mat-card>
+  <ng-container *ngIf="users$ | async as users">
+    <mat-card *ngFor="let user of users">
+      <mat-card-header>
+        <mat-card-title>{{user.user.lastName}} {{user.user.firstName}}</mat-card-title>
+        <mat-card-subtitle *ngIf="user.mainAdmin">Администратор</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="!user.mainAdmin">{{user.categoriesAdmin | join:'name'}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions align="end">
+        <button [disabled]="user.mainAdmin" color="primary" mat-button>
+          Редактировать
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
 </div>
