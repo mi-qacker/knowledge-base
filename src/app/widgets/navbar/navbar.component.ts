@@ -25,6 +25,7 @@ import {AuthHttpService} from '../../services/http/auth-http/auth-http.service';
 })
 export class NavbarComponent {
   user$ = this.loggedUserService.user$;
+  knowledgeUser$ = this.loggedUserService.knowledgeUser$;
 
   constructor(
     private router: Router,
