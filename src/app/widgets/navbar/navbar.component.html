@@ -15,12 +15,24 @@
          matTooltip="Профиль модератора">
         <mat-icon>badge</mat-icon>
       </a>
-      <a *ngIf="knowledgeUser.mainAdmin === true"
-         [routerLink]="['/admin','users']"
+      <ng-container *ngIf="knowledgeUser.mainAdmin === true">
+      <button
+        [matMenuTriggerFor]="adminMenu"
          mat-icon-button
-         matTooltip="Страница администратора">
+         matTooltip="Панель администратора">
         <mat-icon>admin_panel_settings</mat-icon>
-      </a>
+      </button>
+        <mat-menu #adminMenu>
+          <a [routerLink]="['/admin','users']" mat-menu-item>
+            <mat-icon>group</mat-icon>
+            <span>Модераторы</span>
+          </a>
+          <a [routerLink]="['/admin','categories']" mat-menu-item>
+            <mat-icon>school</mat-icon>
+            <span>Категории</span>
+          </a>
+        </mat-menu>
+      </ng-container>
     </ng-container>
 
     <a
