@@ -3,8 +3,9 @@ import {NgModule} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
+import {SharedModule} from 'app/shared/shared.module';
 
-import {SharedModule} from '../../shared/shared.module';
+import {AdminCategoriesService} from './admin-categories-page/admin-categories.service';
 import {AdminCategoriesPageComponent} from './admin-categories-page/admin-categories-page.component';
 import {AdminPagesRoutingModule} from './admin-pages-routing.module';
 import {AdminUsersService} from './admin-users-page/admin-users.service';
@@ -20,6 +21,6 @@ import {AdminUsersPageComponent} from './admin-users-page/admin-users-page.compo
     MatButtonModule,
     MatCardModule,
   ],
-  providers: [AdminUsersService],
+  providers: [AdminUsersService, AdminCategoriesService],
 })
 export class AdminPagesModule {}
