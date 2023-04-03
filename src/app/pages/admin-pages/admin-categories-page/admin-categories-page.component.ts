@@ -1,5 +1,10 @@
 import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
 
+import {ICategory} from '../../../services/http/category-http/category';
+import {ConfirmDialogComponent} from '../../../shared/ui/confirm-dialog/confirm-dialog.component';
+import {IConfirmDialogData} from '../../../shared/ui/confirm-dialog/confirm-dialog-data';
+import {CategoryEditDialogComponent} from '../category-edit-dialog/category-edit-dialog.component';
 import {AdminCategoriesService} from './admin-categories.service';
 
 @Component({
@@ -10,7 +15,10 @@ import {AdminCategoriesService} from './admin-categories.service';
 export class AdminCategoriesPageComponent implements OnInit {
   public categories$ = this.adminCategoriesService.categories$;
   newCategoryName: string = '';
-  constructor(private adminCategoriesService: AdminCategoriesService) {}
+  constructor(
+    private adminCategoriesService: AdminCategoriesService,
+    private dialog: MatDialog
+  ) {}
   ngOnInit() {
     this.adminCategoriesService.loadCategories();
   }
@@ -18,5 +26,31 @@ export class AdminCategoriesPageComponent implements OnInit {
   addNewCategory() {
     this.adminCategoriesService.createCategory({name: this.newCategoryName});
     this.newCategoryName = '';
+  }
+
+  openEditDialog(category: ICategory) {
+    const dialogRef = this.dialog.open(CategoryEditDialogComponent, {
+      minWidth: '480px',
+      data: {...category},
+    });
+    dialogRef.afterClosed().subscribe((result: ICategory) => {
+      this.adminCategoriesService.editCategory(result.id, {name: result.name});
+    });
+  }
+
+  deleteCategory(category: ICategory) {
+    const dialogRef = this.dialog.open<
+      ConfirmDialogComponent,
+      IConfirmDialogData,
+      boolean
+    >(ConfirmDialogComponent, {
+      data: {
+        title: 'Удаление категории',
+        content: `Вы действительно хотите удалить категорию «${category.name}»?`,
+      },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) this.adminCategoriesService.deleteCategory(category.id);
+    });
   }
 }

@@ -2,6 +2,7 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {SharedModule} from 'app/shared/shared.module';
 
@@ -10,9 +11,14 @@ import {AdminCategoriesPageComponent} from './admin-categories-page/admin-catego
 import {AdminPagesRoutingModule} from './admin-pages-routing.module';
 import {AdminUsersService} from './admin-users-page/admin-users.service';
 import {AdminUsersPageComponent} from './admin-users-page/admin-users-page.component';
+import {CategoryEditDialogComponent} from './category-edit-dialog/category-edit-dialog.component';
 
 @NgModule({
-  declarations: [AdminUsersPageComponent, AdminCategoriesPageComponent],
+  declarations: [
+    AdminUsersPageComponent,
+    AdminCategoriesPageComponent,
+    CategoryEditDialogComponent,
+  ],
   imports: [
     CommonModule,
     AdminPagesRoutingModule,
@@ -20,6 +26,7 @@ import {AdminUsersPageComponent} from './admin-users-page/admin-users-page.compo
     MatInputModule,
     MatButtonModule,
     MatCardModule,
+    MatDialogModule,
   ],
   providers: [AdminUsersService, AdminCategoriesService],
 })

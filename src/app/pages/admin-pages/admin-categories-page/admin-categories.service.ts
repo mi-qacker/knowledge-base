@@ -60,6 +60,21 @@ export class AdminCategoriesService {
     });
   }
 
+  editCategory(id: string, newCategory: Partial<ICategory>) {
+    this.categoriesHttpService.patchCategory(id, newCategory).subscribe(res => {
+      const categories = this._categories$.value;
+      if (!categories) return;
+      this._categories$.next(categories.map(c => (c.id === res.id ? res : c)));
+    });
+  }
+
+  deleteCategory(id: string) {
+    this.categoriesHttpService.deleteCategory(id).subscribe(() => {
+      const categories = this._categories$.value?.filter(c => c.id !== id);
+      if (categories) this._categories$.next(categories);
+    });
+  }
+
   private getCategoryModeratorsCount(
     categoryId: string,
     moderators: IKnowledgeUser[]

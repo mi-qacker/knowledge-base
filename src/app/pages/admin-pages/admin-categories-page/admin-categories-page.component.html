@@ -19,10 +19,10 @@
         <mat-card-subtitle>Количество модераторов: {{category.moderatorsCount}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-actions align="end">
-        <button class="card-button" color="primary" mat-button>
+        <button (click)="openEditDialog(category)" class="card-button" color="primary" mat-button>
           Редактировать
         </button>
-        <button class="card-button" color="warn" mat-button>Удалить</button>
+        <button class="card-button" color="warn" mat-button (click)="deleteCategory(category)">Удалить</button>
       </mat-card-actions>
     </mat-card>
   </ng-container>
