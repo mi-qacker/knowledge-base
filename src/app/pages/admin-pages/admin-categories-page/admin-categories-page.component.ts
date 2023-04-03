@@ -29,12 +29,19 @@ export class AdminCategoriesPageComponent implements OnInit {
   }
 
   openEditDialog(category: ICategory) {
-    const dialogRef = this.dialog.open(CategoryEditDialogComponent, {
+    const dialogRef = this.dialog.open<
+      CategoryEditDialogComponent,
+      ICategory,
+      ICategory
+    >(CategoryEditDialogComponent, {
       minWidth: '480px',
       data: {...category},
     });
-    dialogRef.afterClosed().subscribe((result: ICategory) => {
-      this.adminCategoriesService.editCategory(result.id, {name: result.name});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result)
+        this.adminCategoriesService.editCategory(result.id, {
+          name: result.name,
+        });
     });
   }
 
