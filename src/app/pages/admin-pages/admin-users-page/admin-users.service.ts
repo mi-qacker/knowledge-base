@@ -10,11 +10,33 @@ export class AdminUsersService {
     undefined
   );
   public knowledgeUsers$ = this._knowledgeUsers$.asObservable();
+
   constructor(private knowledgeUsersHttpService: KnowledgeUsersHttpService) {}
 
   loadUsers() {
     this.knowledgeUsersHttpService.getKnowledgeUsers().subscribe(users => {
       this._knowledgeUsers$.next(users);
     });
+  }
+
+  inviteModerator(email: string, error: () => void, success: () => void) {
+    this.knowledgeUsersHttpService
+      .postKnowledgeUserByEmail(email)
+      .subscribe(newUser => {
+        if (!newUser) {
+          error();
+          return;
+        }
+        success();
+        const oldUsers = this._knowledgeUsers$.value;
+        if (oldUsers) this._knowledgeUsers$.next([...oldUsers, newUser]);
+        else this._knowledgeUsers$.next([newUser]);
+      });
+  }
+
+  editModeratorCategories(id: string, categories: string[]) {
+    this.knowledgeUsersHttpService
+      .patchKnowledgeUserByEmail(id, categories)
+      .subscribe(() => this.loadUsers());
   }
 }
