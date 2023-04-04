@@ -1,32 +1,30 @@
 <div class="container">
   <mat-form-field class="example-full-width">
     <mat-label>Новая категория</mat-label>
-    <input matInput value="" />
+    <input [(ngModel)]="newCategoryName" matInput />
   </mat-form-field>
-  <button mat-raised-button color="accent" class="new-button">Создать</button>
+  <button (click)="addNewCategory()"
+          [disabled]="newCategoryName.length === 0"
+          class="new-button"
+          color="accent"
+          mat-raised-button>
+    Создать
+  </button>
 
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Программирование</mat-card-title>
-      <mat-card-subtitle>Количество модераторов: 2</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-actions align="end">
-      <button mat-button color="primary" class="card-button">
-        Редактировать
-      </button>
-      <button mat-button color="warn" class="card-button">Удалить</button>
-    </mat-card-actions>
-  </mat-card>
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Моделирование в САПР</mat-card-title>
-      <mat-card-subtitle>Количество модераторов: 3</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-actions align="end">
-      <button mat-button color="primary" class="card-button">
-        Редактировать
-      </button>
-      <button mat-button color="warn" class="card-button">Удалить</button>
-    </mat-card-actions>
-  </mat-card>
+  <ng-container *ngIf="categories$ | async as categories">
+
+    <mat-card *ngFor="let category of categories">
+      <mat-card-header>
+        <mat-card-title>{{category.name}}</mat-card-title>
+        <mat-card-subtitle>Количество модераторов: {{category.moderatorsCount}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions align="end">
+        <button (click)="openEditDialog(category)" class="card-button" color="primary" mat-button>
+          Редактировать
+        </button>
+        <button class="card-button" color="warn" mat-button (click)="deleteCategory(category)">Удалить</button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
+
 </div>

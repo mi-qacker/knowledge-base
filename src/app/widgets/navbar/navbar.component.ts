@@ -2,6 +2,7 @@ import {CommonModule} from '@angular/common';
 import {Component} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {Router, RouterModule} from '@angular/router';
@@ -19,12 +20,14 @@ import {AuthHttpService} from '../../services/http/auth-http/auth-http.service';
     MatTooltipModule,
     MatIconModule,
     MatButtonModule,
+    MatMenuModule,
   ],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
   user$ = this.loggedUserService.user$;
+  knowledgeUser$ = this.loggedUserService.knowledgeUser$;
 
   constructor(
     private router: Router,

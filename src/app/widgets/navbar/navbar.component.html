@@ -8,6 +8,33 @@
     <a mat-icon-button matTooltip="Написать публикацию" routerLink="/new">
       <mat-icon>article</mat-icon>
     </a>
+
+    <ng-container *ngIf="knowledgeUser$ | async as knowledgeUser">
+      <a *ngIf="knowledgeUser.mainAdmin === false && knowledgeUser.categoriesAdmin.length > 0"
+         mat-icon-button
+         matTooltip="Профиль модератора">
+        <mat-icon>badge</mat-icon>
+      </a>
+      <ng-container *ngIf="knowledgeUser.mainAdmin === true">
+      <button
+        [matMenuTriggerFor]="adminMenu"
+         mat-icon-button
+         matTooltip="Панель администратора">
+        <mat-icon>admin_panel_settings</mat-icon>
+      </button>
+        <mat-menu #adminMenu>
+          <a [routerLink]="['/admin','users']" mat-menu-item>
+            <mat-icon>group</mat-icon>
+            <span>Модераторы</span>
+          </a>
+          <a [routerLink]="['/admin','categories']" mat-menu-item>
+            <mat-icon>school</mat-icon>
+            <span>Категории</span>
+          </a>
+        </mat-menu>
+      </ng-container>
+    </ng-container>
+
     <a
       [routerLink]="['/profile', user._id]"
       mat-icon-button
