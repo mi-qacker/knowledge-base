@@ -36,7 +36,7 @@ export class AdminUsersService {
 
   editModeratorCategories(id: string, categories: string[]) {
     this.knowledgeUsersHttpService
-      .patchKnowledgeUserByEmail(id, categories)
+      .patchKnowledgeUserById(id, categories)
       .subscribe(() => this.loadUsers());
   }
 }

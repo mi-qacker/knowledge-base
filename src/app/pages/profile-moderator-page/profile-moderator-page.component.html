@@ -1,64 +1,50 @@
 <div class="container">
-  <div *ngIf="user$ | async as user" class="info">
+  <div *ngIf="moderator$ | async as moderator" class="info">
     <h1>Профиль модератора</h1>
 
-    <ng-container *ngIf="user.avatar !== null; else noAvatar">
-      <img [src]="user.avatar" alt="user avatar" class="info_avatar" />
+    <ng-container *ngIf="moderator.user.avatar !== null; else noAvatar">
+      <img [src]="moderator.user.avatar" alt="user avatar" class="info_avatar" />
     </ng-container>
 
     <ng-template #noAvatar>
       <img
         alt="user avatar placeholder"
         class="info_avatar"
-        src="https://okeygeek.ru/wp-content/uploads/2020/03/no_avatar.png" />
+        src="assets/no_avatar.webp"  />
     </ng-template>
 
-    <div class="info_field">Имя: {{ user.firstName }}</div>
-    <div class="info_field">Фамилия: {{ user.lastName }}</div>
-    <div class="info_field">Логин: {{ user.login }}</div>
-    <div class="info_field">Email: {{ user.email }}</div>
+    <div class="info_field">Имя: {{ moderator.user.firstName }}</div>
+    <div class="info_field">Фамилия: {{ moderator.user.lastName }}</div>
+    <div class="info_field">Логин: {{ moderator.user.login }}</div>
+    <div class="info_field">Email: {{ moderator.user.email }}</div>
   </div>
 
   <mat-divider [vertical]="true"></mat-divider>
 
-  <div *ngIf="user$ | async as user" class="categories">
+  <div *ngIf="moderator$ | async as moderator" class="categories">
     <h1>Категории</h1>
-    <div class="button">
-      <a color="accent" mat-flat-button routerLink="">
+    <div *ngIf="!moderator.mainAdmin" class="button">
+      <a [routerLink]="['/admin', 'users']" color="accent" mat-flat-button>
         <mat-icon>add</mat-icon>
         <span>Добавить</span>
       </a>
     </div>
-    <div *ngIf="categories$ | async as categories" class="list-container">
-      <div class="categories">
-        <mat-card>
+    <div class="list-container">
+      <div *ngIf="!moderator.mainAdmin; else admin" class="categories">
+        <mat-card *ngFor="let category of moderator.categoriesAdmin">
           <mat-card-header>
-            <mat-card-title>Категория 1</mat-card-title>
+            <mat-card-title>{{category.name}}</mat-card-title>
           </mat-card-header>
           <mat-card-actions align="end">
-            <button mat-button>Редактировать</button>
-            <button mat-button>Удалить</button>
-          </mat-card-actions>
-        </mat-card>
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Категория 2</mat-card-title>
-          </mat-card-header>
-          <mat-card-actions align="end">
-            <button mat-button>Редактировать</button>
-            <button mat-button>Удалить</button>
-          </mat-card-actions>
-        </mat-card>
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Категория 3</mat-card-title>
-          </mat-card-header>
-          <mat-card-actions align="end">
-            <button mat-button>Редактировать</button>
-            <button mat-button>Удалить</button>
+            <button (click)="deleteCategory(category, moderator)" mat-button>Удалить</button>
           </mat-card-actions>
         </mat-card>
       </div>
+      <ng-template #admin>
+        <div class="admin-info">
+          Администратор базы знаний
+        </div>
+      </ng-template>
     </div>
   </div>
 </div>

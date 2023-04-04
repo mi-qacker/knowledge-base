@@ -25,7 +25,7 @@ export class KnowledgeUsersHttpService {
       .pipe(catchError(() => of(null)));
   }
 
-  patchKnowledgeUserByEmail(
+  patchKnowledgeUserById(
     id: string,
     categoriesAdmin: string[]
   ): Observable<IKnowledgeUser> {

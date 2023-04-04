@@ -9,28 +9,6 @@
   padding-bottom: 0;
 }
 
-.info {
-  flex-shrink: 0;
-  width: 360px;
-  padding: 16px;
-
-  h1 {
-    margin-bottom: 0;
-  }
-
-  &_field {
-    margin-bottom: 8px;
-    font-size: 16px;
-  }
-
-  &_avatar {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 24px 48px;
-    border-radius: 50%;
-  }
-}
-
 .posts {
   display: flex;
   flex-direction: column;
