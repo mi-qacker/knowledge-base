@@ -11,17 +11,18 @@
 
     <ng-container *ngIf="knowledgeUser$ | async as knowledgeUser">
       <a *ngIf="knowledgeUser.mainAdmin === false && knowledgeUser.categoriesAdmin.length > 0"
+         [routerLink]="['/moderator', user._id]"
          mat-icon-button
          matTooltip="Профиль модератора">
         <mat-icon>badge</mat-icon>
       </a>
       <ng-container *ngIf="knowledgeUser.mainAdmin === true">
-      <button
-        [matMenuTriggerFor]="adminMenu"
-         mat-icon-button
-         matTooltip="Панель администратора">
-        <mat-icon>admin_panel_settings</mat-icon>
-      </button>
+        <button
+          [matMenuTriggerFor]="adminMenu"
+          mat-icon-button
+          matTooltip="Панель администратора">
+          <mat-icon>admin_panel_settings</mat-icon>
+        </button>
         <mat-menu #adminMenu>
           <a [routerLink]="['/admin','users']" mat-menu-item>
             <mat-icon>group</mat-icon>

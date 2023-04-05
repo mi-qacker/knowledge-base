@@ -23,7 +23,7 @@
 
   <div *ngIf="moderator$ | async as moderator" class="categories">
     <h1>Категории</h1>
-    <div *ngIf="!moderator.mainAdmin" class="button">
+    <div *ngIf="!moderator.mainAdmin && loggedUser?.mainAdmin" class="button">
       <a [routerLink]="['/admin', 'users']" color="accent" mat-flat-button>
         <mat-icon>add</mat-icon>
         <span>Добавить</span>
