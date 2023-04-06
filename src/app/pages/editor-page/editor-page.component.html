@@ -1,18 +1,26 @@
-<div class="container">
+<form [formGroup]="formGroup" class="container">
   <input
-    type="text"
+    autofocus
     class="input-header"
-    [(ngModel)]="header"
+    formControlName="title"
     placeholder="Заголовок"
-    autofocus />
-  <div id="editorjs" class="editor"></div>
+    type="text" />
+  <div class="editor" id="editorjs"></div>
+  <mat-form-field>
+    <mat-label>Категория статьи</mat-label>
+    <mat-select formControlName="category">
+      <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
+        {{category.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <button
-    mat-flat-button
-    color="accent"
+    (click)="saveEditorData()"
+    [disabled]="formGroup.invalid"
     class="save-button"
-    [disabled]="header === ''"
-    (click)="saveEditorData()">
+    color="accent"
+    mat-flat-button>
     <mat-icon>check</mat-icon>
     <span>Опубликовать</span>
   </button>
-</div>
+</form>

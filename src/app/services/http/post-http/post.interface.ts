@@ -1,3 +1,5 @@
+import {ICategory} from '../category-http/category';
+
 export interface IPost {
   id: string;
   userId: string;
@@ -5,6 +7,7 @@ export interface IPost {
   title: string;
   data: IPostData;
   likes: string[];
+  category: ICategory;
 }
 
 export interface IPostData {

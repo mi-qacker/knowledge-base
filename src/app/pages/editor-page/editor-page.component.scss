@@ -36,6 +36,12 @@
   flex-grow: 1;
 }
 
+mat-form-field {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
 .save-button {
   width: 100%;
   max-width: 650px;
