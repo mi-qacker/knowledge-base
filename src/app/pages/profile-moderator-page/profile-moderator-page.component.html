@@ -36,7 +36,7 @@
             <mat-card-title>{{category.name}}</mat-card-title>
           </mat-card-header>
           <mat-card-actions align="end">
-            <button (click)="deleteCategory(category, moderator)" mat-button>Удалить</button>
+            <button (click)="deleteCategory(category, moderator)" mat-button *ngIf="loggedUser?.mainAdmin">Удалить</button>
           </mat-card-actions>
         </mat-card>
       </div>
