@@ -1,1 +1,26 @@
-<p>moderation-page works!</p>
+<div class="container">
+  <mat-list *ngIf="categories$ | async as categories" role="navigation">
+    <mat-list-item *ngFor="let category of categories">
+      <span
+        (click)="selectCategory(category.id)"
+        [ngClass]="{selected: selectedCategory === category.id}"
+        class="category-list-item">
+        {{ category.name }}
+      </span>
+    </mat-list-item>
+  </mat-list>
+
+  <div
+    *ngIf="posts$ | async as posts; else noPost"
+    [@listAnimation]="posts.length"
+    class="list-container">
+    <div *ngIf="posts.length === 0" class="no-posts">Здесь пока нет постов</div>
+    <app-post-card
+      *ngFor="let post of posts"
+      [post]="post"
+      [userId]="userId$ | async"></app-post-card>
+  </div>
+  <ng-template #noPost>
+    <div>Постов нет. Нужно выбрать категорию</div>
+  </ng-template>
+</div>

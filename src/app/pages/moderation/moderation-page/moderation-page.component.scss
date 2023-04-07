@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: row;
+
+  box-sizing: border-box;
+  height: 100%;
+  margin-left: 12.5%;
+  padding-bottom: 0;
+}
+
+mat-list {
+  width: 320px;
+}
+
+.category-list-item {
+  cursor: pointer;
+}
+
+.selected {
+  font-weight: 500;
+}
