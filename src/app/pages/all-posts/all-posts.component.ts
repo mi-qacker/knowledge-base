@@ -9,6 +9,7 @@ import {
 import {CommonModule} from '@angular/common';
 import {Component} from '@angular/core';
 import {MatListModule} from '@angular/material/list';
+import {ActivatedRoute, Router} from '@angular/router';
 import {LoggedUserService} from 'app/services/auth/logged-user-service/logged-user.service';
 import {ICategory} from 'app/services/http/category-http/category';
 import {CategoryHttpService} from 'app/services/http/category-http/category-http.service';
@@ -41,24 +42,35 @@ import {map} from 'rxjs/operators';
 export class AllPostsComponent {
   userId$ = this.loggedUserService.user$.pipe(map(user => user?._id));
   categories$ = this.categoryHttpService.getCategories();
-  selectedCategory$ = new BehaviorSubject<ICategory | undefined>(undefined);
+  selectedCategory$ = new BehaviorSubject<string | undefined>(undefined);
+  selectedCategory?: string;
   posts$ = this.selectedCategory$.pipe(
-    switchMap(selected =>
-      this.postHttpService.getPosts(
-        selected
-          ? {moderation: true, categoryId: selected.id}
-          : {moderation: true}
-      )
-    )
+    switchMap(selected => {
+      this.selectedCategory = selected;
+      return this.postHttpService.getPosts(
+        selected ? {moderation: true, categoryId: selected} : {moderation: true}
+      );
+    })
   );
 
   constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
     private postHttpService: PostHttpService,
     private loggedUserService: LoggedUserService,
     private categoryHttpService: CategoryHttpService
-  ) {}
+  ) {
+    this.activatedRoute.queryParams.subscribe(params => {
+      const categoryId = params['categoryId'];
+      this.selectedCategory$.next(categoryId);
+    });
+  }
 
-  selectCategory(category?: ICategory) {
-    this.selectedCategory$.next(category);
+  async selectCategory(category?: ICategory) {
+    const queryParams = category ? {categoryId: category.id} : {};
+    await this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams,
+    });
   }
 }

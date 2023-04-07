@@ -5,8 +5,8 @@
         <h2 class="category-item">Все категории</h2>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item *ngFor="let category of categories" (click)="selectCategory(category)">
-        <span class="category-item">{{category.name}}</span>
+      <mat-list-item (click)="selectCategory(category)" *ngFor="let category of categories">
+        <span [ngClass]="{selected: selectedCategory === category.id}" class="category-item">{{category.name}}</span>
       </mat-list-item>
     </mat-list>
   </div>
