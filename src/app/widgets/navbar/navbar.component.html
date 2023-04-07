@@ -10,12 +10,20 @@
     </a>
 
     <ng-container *ngIf="knowledgeUser$ | async as knowledgeUser">
-      <a *ngIf="knowledgeUser.mainAdmin === false && knowledgeUser.categoriesAdmin.length > 0"
-         [routerLink]="['/moderator', user._id]"
-         mat-icon-button
-         matTooltip="Профиль модератора">
-        <mat-icon>badge</mat-icon>
-      </a>
+      <ng-container *ngIf="knowledgeUser.mainAdmin === false && knowledgeUser.categoriesAdmin.length > 0">
+        <a
+          [routerLink]="['/moderator', user._id]"
+          mat-icon-button
+          matTooltip="Профиль модератора">
+          <mat-icon>badge</mat-icon>
+        </a>
+        <a
+          routerLink="/moderation"
+          mat-icon-button
+          matTooltip="Лаборатория">
+          <mat-icon>lightbulb</mat-icon>
+        </a>
+      </ng-container>
       <ng-container *ngIf="knowledgeUser.mainAdmin === true">
         <button
           [matMenuTriggerFor]="adminMenu"
@@ -33,6 +41,12 @@
             <span>Категории</span>
           </a>
         </mat-menu>
+        <a
+          routerLink="/moderation"
+          mat-icon-button
+          matTooltip="Лаборатория">
+          <mat-icon>lightbulb</mat-icon>
+        </a>
       </ng-container>
     </ng-container>
 

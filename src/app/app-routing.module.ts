@@ -39,6 +39,13 @@ const routes: Routes = [
       ).then(m => m.ProfileModeratorPageModule),
   },
   {
+    path: 'moderation',
+    loadChildren: () =>
+      import('./pages/moderation/moderation.module').then(
+        m => m.ModerationModule
+      ),
+  },
+  {
     path: 'new',
     loadComponent: () =>
       import('./pages/editor-page/editor-page.component').then(
