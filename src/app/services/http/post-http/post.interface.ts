@@ -1,13 +1,27 @@
+import {IUser} from '../auth-http/user.interface';
 import {ICategory} from '../category-http/category';
 
 export interface IPost {
   id: string;
-  userId: string;
+  user: IUser;
   moderation: boolean;
   title: string;
   data: IPostData;
   likes: string[];
   category: ICategory;
+}
+
+export interface IPostCreateDto {
+  data: IPostData;
+  title: string;
+  userId: string;
+  category: string;
+}
+
+export interface IPostsFilters {
+  moderation?: boolean;
+  userId?: string;
+  categoryId?: string;
 }
 
 export interface IPostData {

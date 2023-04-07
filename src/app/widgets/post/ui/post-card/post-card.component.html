@@ -1,19 +1,18 @@
-<div class="post-card">
-  <a [routerLink]="'/post/' + post.id" class="title">
-    {{ post.title }}
-  </a>
-  <div>{{ post.data | postStart }}</div>
-  <div class="likes">
-    <ng-container *ngIf="likeOwner; else noLike">
-      <button mat-icon-button color="primary" (click)="likePost()">
-        <mat-icon>thumb_up</mat-icon>
-      </button>
-    </ng-container>
-    <ng-template #noLike>
-      <button mat-icon-button (click)="likePost()">
-        <mat-icon>thumb_up</mat-icon>
-      </button>
-    </ng-template>
-    <span>{{ post.likes.length }}</span>
-  </div>
-</div>
+<mat-card>
+  <mat-card-header>
+    <mat-card-subtitle>{{post.category.name}}</mat-card-subtitle>
+    <mat-card-title>
+      <a [routerLink]="'/post/' + post.id" class="title">{{ post.title }}</a>
+    </mat-card-title>
+    <mat-card-subtitle>{{post.user.lastName}} {{post.user.firstName}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div>{{ post.data | postStart }}</div>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button (click)="likePost()" [color]="likeOwner ? 'primary' : undefined" mat-button>
+      <mat-icon>thumb_up</mat-icon>
+      <span>{{ post.likes.length }}</span>
+    </button>
+  </mat-card-actions>
+</mat-card>

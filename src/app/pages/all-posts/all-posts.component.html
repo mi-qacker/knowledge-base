@@ -1,19 +1,18 @@
 <div class="container">
-  <div class="list-categories">
+  <div *ngIf="categories$ | async as categories" class="list-categories">
     <mat-list>
-      <mat-list-item style="cursor: pointer">
-        <h2>Все категории</h2>
+      <mat-list-item (click)="selectCategory(undefined)">
+        <h2 class="category-item">Все категории</h2>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item style="cursor: pointer">Программирование</mat-list-item>
-      <mat-list-item style="cursor: pointer">Моделирование</mat-list-item>
-      <mat-list-item style="cursor: pointer"
-        >Проектная деятельность</mat-list-item
-      >
+      <mat-list-item *ngFor="let category of categories" (click)="selectCategory(category)">
+        <span class="category-item">{{category.name}}</span>
+      </mat-list-item>
     </mat-list>
   </div>
 
-  <div [@listAnimation]="posts.length" class="list-container">
+  <div *ngIf="posts$ | async as posts" [@listAnimation]="posts.length" class="list-container">
+    <div *ngIf="posts.length === 0" class="no-posts">Здесь пока нет постов</div>
     <app-post-card
       *ngFor="let post of posts"
       [post]="post"

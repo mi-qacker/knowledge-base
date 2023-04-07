@@ -1,9 +1,9 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
 import {HttpModule} from '../http.module';
-import {IPost} from './post.interface';
+import {IPost, IPostCreateDto, IPostsFilters} from './post.interface';
 
 @Injectable({
   providedIn: HttpModule,
@@ -13,9 +13,9 @@ export class PostHttpService {
 
   constructor(private http: HttpClient) {}
 
-  getPosts(moderation: boolean): Observable<IPost[]> {
+  getPosts(filters: IPostsFilters): Observable<IPost[]> {
     return this.http.get<IPost[]>(`${this.apiPath}`, {
-      params: {moderation: `${moderation}`},
+      params: new HttpParams({fromObject: {...filters}}),
     });
   }
 
@@ -27,7 +27,7 @@ export class PostHttpService {
     return this.http.get<IPost[]>(this.apiPath, {params: {userId}});
   }
 
-  postNewPost(newPost: Omit<IPost, 'id'>): Observable<IPost> {
+  postNewPost(newPost: IPostCreateDto): Observable<IPost> {
     return this.http.post<IPost>(this.apiPath, newPost);
   }
 

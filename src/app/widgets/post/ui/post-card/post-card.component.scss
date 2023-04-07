@@ -1,27 +1,7 @@
-.post-card {
-  margin-bottom: 28px;
-  padding: 20px;
-  background-color: white;
-  border-radius: 8px;
-}
-
 .title {
   cursor: pointer;
 
-  display: inline-block;
-
-  margin-bottom: 16px;
-
-  font-size: 28px;
-  font-weight: 500;
   color: inherit;
   text-decoration: inherit;
-}
-
-.likes {
-  display: flex;
-  flex-direction: row;
-  column-gap: 8px;
-  align-items: baseline;
-  justify-content: flex-end;
+  line-height: 1em;
 }

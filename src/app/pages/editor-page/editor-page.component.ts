@@ -16,7 +16,7 @@ import EditorJS from '@editorjs/editorjs';
 import {LoggedUserService} from 'app/services/auth/logged-user-service/logged-user.service';
 import {ICategory} from 'app/services/http/category-http/category';
 import {CategoryHttpService} from 'app/services/http/category-http/category-http.service';
-import {IPost} from 'app/services/http/post-http/post.interface';
+import {IPostCreateDto} from 'app/services/http/post-http/post.interface';
 import {PostHttpService} from 'app/services/http/post-http/post-http.service';
 import {EMPTY, Observable, switchMap} from 'rxjs';
 
@@ -69,12 +69,10 @@ export class EditorPageComponent implements OnInit {
           const {
             value: {title, category},
           } = this.formGroup;
-          const newPost: Omit<IPost, 'id'> = {
+          const newPost: IPostCreateDto = {
             userId: user._id,
-            moderation: false,
             title,
             data: outputData,
-            likes: [],
             category,
           };
           return this.postHttpService.postNewPost(newPost);

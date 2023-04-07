@@ -7,14 +7,15 @@ import {
   trigger,
 } from '@angular/animations';
 import {CommonModule} from '@angular/common';
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatListModule} from '@angular/material/list';
+import {LoggedUserService} from 'app/services/auth/logged-user-service/logged-user.service';
+import {ICategory} from 'app/services/http/category-http/category';
+import {CategoryHttpService} from 'app/services/http/category-http/category-http.service';
+import {PostHttpService} from 'app/services/http/post-http/post-http.service';
+import {PostModule} from 'app/widgets/post/post.module';
+import {BehaviorSubject, switchMap} from 'rxjs';
 import {map} from 'rxjs/operators';
-
-import {LoggedUserService} from '../../services/auth/logged-user-service/logged-user.service';
-import {IPost} from '../../services/http/post-http/post.interface';
-import {PostHttpService} from '../../services/http/post-http/post-http.service';
-import {PostModule} from '../../widgets/post/post.module';
 
 @Component({
   selector: 'app-all-posts',
@@ -37,18 +38,27 @@ import {PostModule} from '../../widgets/post/post.module';
     ]),
   ],
 })
-export class AllPostsComponent implements OnInit {
-  posts: IPost[] = [];
+export class AllPostsComponent {
   userId$ = this.loggedUserService.user$.pipe(map(user => user?._id));
+  categories$ = this.categoryHttpService.getCategories();
+  selectedCategory$ = new BehaviorSubject<ICategory | undefined>(undefined);
+  posts$ = this.selectedCategory$.pipe(
+    switchMap(selected =>
+      this.postHttpService.getPosts(
+        selected
+          ? {moderation: true, categoryId: selected.id}
+          : {moderation: true}
+      )
+    )
+  );
 
   constructor(
     private postHttpService: PostHttpService,
-    private loggedUserService: LoggedUserService
+    private loggedUserService: LoggedUserService,
+    private categoryHttpService: CategoryHttpService
   ) {}
 
-  ngOnInit(): void {
-    this.postHttpService.getPosts(true).subscribe(posts => {
-      posts.forEach(post => this.posts.push(post));
-    });
+  selectCategory(category?: ICategory) {
+    this.selectedCategory$.next(category);
   }
 }
