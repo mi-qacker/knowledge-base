@@ -10,6 +10,7 @@ import {PostHttpService} from 'app/services/http/post-http/post-http.service';
 export class PostCardComponent implements OnInit {
   @Input() public post!: IPost;
   @Input() public userId?: string | null;
+  @Input() public routePath: 'post' | 'moderation' = 'post';
   likeOwner = false;
 
   constructor(private postHttpService: PostHttpService) {}

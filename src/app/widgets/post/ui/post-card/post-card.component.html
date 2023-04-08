@@ -2,7 +2,7 @@
   <mat-card-header>
     <mat-card-subtitle>{{post.category.name}}</mat-card-subtitle>
     <mat-card-title>
-      <a [routerLink]="'/post/' + post.id" class="title">{{ post.title }}</a>
+      <a [routerLink]="['/', routePath ,post.id]" class="title">{{ post.title }}</a>
     </mat-card-title>
     <mat-card-subtitle>{{post.user.lastName}} {{post.user.firstName}}</mat-card-subtitle>
   </mat-card-header>
