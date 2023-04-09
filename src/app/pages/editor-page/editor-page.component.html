@@ -1,14 +1,16 @@
 <form
   [formGroup]="formGroup"
-  class="container mx-auto py-4 md:w-full md:px-2 lg:w-4/6">
+  class="container mx-auto flex h-full flex-col py-4 md:w-full md:px-2 lg:w-4/6">
   <input
     autofocus
     formControlName="title"
     placeholder="Заголовок"
     type="text"
     class="w-full border-none text-4xl outline-none placeholder:text-gray-200" />
-  <div id="editorjs" class="w-full"></div>
-  <mat-form-field class="w-full">
+  <div class="flex-grow overflow-y-auto">
+    <div id="editorjs" class="w-full"></div>
+  </div>
+  <mat-form-field class="w-full shrink-0">
     <mat-label>Категория статьи</mat-label>
     <mat-select formControlName="category">
       <mat-option
@@ -22,7 +24,7 @@
     (click)="saveEditorData()"
     [disabled]="formGroup.invalid"
     color="accent"
-    class="w-full"
+    class="w-full shrink-0"
     mat-flat-button>
     <mat-icon>check</mat-icon>
     <span>Опубликовать</span>
