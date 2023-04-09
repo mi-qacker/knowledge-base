@@ -1,29 +1,42 @@
-<div class="container">
-  <mat-form-field appearance="fill">
+<div class="container mx-auto py-4">
+  <mat-form-field class="w-5/6 pr-3">
     <mat-label>Электронная почта</mat-label>
     <input [formControl]="email" matInput placeholder="pat@example.com" />
-    <mat-error *ngIf="email.invalid">Пользователь с таким Email не найден</mat-error>
+    <mat-error *ngIf="email.invalid"
+      >Пользователь с таким Email не найден</mat-error
+    >
   </mat-form-field>
-  <button (click)="inviteModerator()"
-          [disabled]="email.invalid"
-          class="new-button"
-          color="accent"
-          mat-raised-button
-          type="submit">
+  <button
+    class="w-1/6"
+    (click)="inviteModerator()"
+    [disabled]="email.invalid"
+    color="accent"
+    mat-raised-button
+    type="submit">
     Пригласить
   </button>
 
   <ng-container *ngIf="users$ | async as users">
-    <mat-card *ngFor="let user of users">
+    <mat-card *ngFor="let user of users" class="mb-4">
       <mat-card-header>
         <mat-card-title>
-          <a [routerLink]="['/moderator', user.user._id]">{{user.user.lastName}} {{user.user.firstName}}</a>
+          <a [routerLink]="['/moderator', user.user._id]">
+            {{ user.user.lastName }} {{ user.user.firstName }}
+          </a>
         </mat-card-title>
-        <mat-card-subtitle *ngIf="user.mainAdmin">Администратор</mat-card-subtitle>
-        <mat-card-subtitle *ngIf="!user.mainAdmin">{{user.categoriesAdmin | join:'name'}}</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="user.mainAdmin">
+          Администратор
+        </mat-card-subtitle>
+        <mat-card-subtitle *ngIf="!user.mainAdmin">
+          {{ user.categoriesAdmin | join : 'name' }}
+        </mat-card-subtitle>
       </mat-card-header>
       <mat-card-actions align="end">
-        <button (click)="editModerator(user)" [disabled]="user.mainAdmin" color="primary" mat-button>
+        <button
+          (click)="editModerator(user)"
+          [disabled]="user.mainAdmin"
+          color="primary"
+          mat-button>
           Редактировать
         </button>
       </mat-card-actions>
