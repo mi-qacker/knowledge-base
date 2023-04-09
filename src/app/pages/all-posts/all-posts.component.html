@@ -1,18 +1,30 @@
-<div class="container">
-  <div *ngIf="categories$ | async as categories" class="list-categories">
+<div
+  class="container mx-auto grid grid-cols-[380px_1fr] gap-x-8 py-4 lg:w-full">
+  <aside *ngIf="categories$ | async as categories" class="w-80">
     <mat-list>
       <mat-list-item (click)="selectCategory(undefined)">
-        <h2 class="category-item">Все категории</h2>
+        <h2>Все категории</h2>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item (click)="selectCategory(category)" *ngFor="let category of categories">
-        <span [ngClass]="{selected: selectedCategory === category.id}" class="category-item">{{category.name}}</span>
+      <mat-list-item
+        (click)="selectCategory(category)"
+        *ngFor="let category of categories">
+        <span [ngClass]="{'font-medium': selectedCategory === category.id}">
+          {{ category.name }}
+        </span>
       </mat-list-item>
     </mat-list>
-  </div>
+  </aside>
 
-  <div *ngIf="posts$ | async as posts" [@listAnimation]="posts.length" class="list-container">
-    <div *ngIf="posts.length === 0" class="no-posts">Здесь пока нет постов</div>
+  <div
+    *ngIf="posts$ | async as posts"
+    [@listAnimation]="posts.length"
+    class="flex flex-col gap-y-4">
+    <div
+      *ngIf="posts.length === 0"
+      class="inline-block py-8 text-center align-middle text-lg font-medium">
+      В выбранной категории пока нет постов
+    </div>
     <app-post-card
       *ngFor="let post of posts"
       [post]="post"
