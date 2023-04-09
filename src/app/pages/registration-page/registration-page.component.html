@@ -1,56 +1,53 @@
-<div class="register-container">
-  <form [formGroup]="registerForm" class="register-form">
-    <h1>Регистрация</h1>
+<form
+  [formGroup]="registerForm"
+  class="container mx-auto flex flex-col rounded-lg px-3 py-4 shadow-2xl md:w-full lg:w-3/5">
+  <h1>Регистрация</h1>
 
-    <mat-form-field appearance="outline" class="register-form_input">
-      <mat-label>Имя</mat-label>
-      <input formControlName="firstName" matInput type="text" />
-    </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Имя</mat-label>
+    <input formControlName="firstName" matInput type="text" />
+  </mat-form-field>
 
-    <mat-form-field appearance="outline" class="register-form_input">
-      <mat-label>Фамилия</mat-label>
-      <input formControlName="lastName" matInput type="text" />
-    </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Фамилия</mat-label>
+    <input formControlName="lastName" matInput type="text" />
+  </mat-form-field>
 
-    <mat-form-field appearance="outline" class="register-form_input">
-      <mat-label>Email</mat-label>
-      <input formControlName="email" matInput type="text" />
-    </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input formControlName="email" matInput type="text" />
+  </mat-form-field>
 
-    <mat-form-field appearance="outline" class="register-form_input">
-      <mat-label>Логин</mat-label>
-      <mat-hint>
-        Логин должен содержать латинские символы и цифру (но не начинаться с
-        неё)
-      </mat-hint>
-      <input formControlName="login" matInput type="text" />
-    </mat-form-field>
+  <mat-form-field appearance="outline" class="mb-4">
+    <mat-label>Логин</mat-label>
+    <input formControlName="login" matInput type="text" />
+    <mat-hint>
+      Логин должен содержать латинские символы и цифру (но не начинаться с неё)
+    </mat-hint>
+  </mat-form-field>
 
-    <mat-form-field appearance="outline" class="register-form_input">
-      <mat-label>Пароль</mat-label>
-      <input
-        [type]="isVisible ? 'text' : 'password'"
-        formControlName="password"
-        matInput />
-      <mat-hint>
-        Пароль должен содержать не менее 8 знаков, включать минимум 1 заглавную
-        букву и спецсимвол
-      </mat-hint>
-      <button (click)="toggleVisible()" mat-icon-button matSuffix>
-        <mat-icon>{{ isVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
-      </button>
-    </mat-form-field>
-
-    <button
-      (click)="registerUser()"
-      [disabled]="registerForm.invalid"
-      class="register-form_button"
-      color="primary"
-      mat-flat-button>
-      Зарегистрироваться
+  <mat-form-field appearance="outline" class="mb-6">
+    <mat-label>Пароль</mat-label>
+    <input
+      [type]="isVisible ? 'text' : 'password'"
+      formControlName="password"
+      matInput />
+    <button (click)="toggleVisible()" mat-icon-button matSuffix>
+      <mat-icon>{{ isVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
     </button>
-    <a class="register-form_button" mat-stroked-button routerLink="/login">
-      Уже есть аккаунт? Войдите!
-    </a>
-  </form>
-</div>
+    <mat-hint>
+      Пароль должен содержать не менее 8 знаков, включать минимум 1 заглавную
+      букву и спецсимвол
+    </mat-hint>
+  </mat-form-field>
+
+  <button
+    (click)="registerUser()"
+    [disabled]="registerForm.invalid"
+    class="mb-2"
+    color="primary"
+    mat-flat-button>
+    Зарегистрироваться
+  </button>
+  <a mat-stroked-button routerLink="/login"> Уже есть аккаунт? Войдите! </a>
+</form>

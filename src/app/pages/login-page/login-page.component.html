@@ -1,30 +1,28 @@
-<div class="login-container">
-  <form [formGroup]="loginForm" class="login-form">
-    <h1>Вход в аккаунт</h1>
-    <mat-form-field appearance="outline" class="login-form_input">
-      <mat-label>Email</mat-label>
-      <input type="text" matInput formControlName="login" />
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="login-form_input">
-      <mat-label>Пароль</mat-label>
-      <input
-        formControlName="password"
-        [type]="isVisible ? 'text' : 'password'"
-        matInput />
-      <button matSuffix mat-icon-button (click)="toggleVisible()" type="button">
-        <mat-icon>{{ isVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
-      </button>
-    </mat-form-field>
-    <button
-      class="login-form_button"
-      mat-flat-button
-      color="primary"
-      (click)="loginUser()"
-      [disabled]="loginForm.invalid">
-      Войти
+<form
+  [formGroup]="loginForm"
+  class="container mx-auto flex flex-col rounded-lg px-3 py-4 shadow-2xl sm:w-full md:w-2/5 lg:w-1/4">
+  <h1>Вход в аккаунт</h1>
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input formControlName="login" matInput type="text" />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Пароль</mat-label>
+    <input
+      [type]="isVisible ? 'text' : 'password'"
+      formControlName="password"
+      matInput />
+    <button (click)="toggleVisible()" mat-icon-button matSuffix type="button">
+      <mat-icon>{{ isVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
     </button>
-    <a class="login-form_button" mat-stroked-button routerLink="/registration">
-      Создать аккаунт
-    </a>
-  </form>
-</div>
+  </mat-form-field>
+  <button
+    (click)="loginUser()"
+    [disabled]="loginForm.invalid"
+    class="mb-2"
+    color="primary"
+    mat-flat-button>
+    Войти
+  </button>
+  <a mat-stroked-button routerLink="/registration"> Создать аккаунт </a>
+</form>
