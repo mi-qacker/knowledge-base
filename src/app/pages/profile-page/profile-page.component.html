@@ -1,33 +1,34 @@
-<div class="container">
-  <div *ngIf="user$ | async as user" class="info">
+<div class="container mx-auto flex h-full flex-row">
+  <div *ngIf="user$ | async as user" class="h-full w-1/4 shrink-0 p-4">
     <h1>Информация о профиле</h1>
 
     <ng-container *ngIf="user.avatar !== null; else noAvatar">
-      <img [src]="user.avatar" alt="user avatar" class="info_avatar" />
+      <img
+        [src]="user.avatar"
+        alt="user avatar"
+        class="mx-auto mb-6 w-64 rounded-full" />
     </ng-container>
     <ng-template #noAvatar>
       <img
         alt="user avatar placeholder"
-        class="info_avatar"
-        src="https://okeygeek.ru/wp-content/uploads/2020/03/no_avatar.png" />
+        class="mx-auto mb-6 w-64 rounded-full"
+        src="assets/no_avatar.webp" />
     </ng-template>
-    <div class="info_field">Имя: {{ user.firstName }}</div>
-    <div class="info_field">Фамилия: {{ user.lastName }}</div>
-    <div class="info_field">Логин: {{ user.login }}</div>
-    <div class="info_field">Email: {{ user.email }}</div>
+    <div class="mb-1 text-base">Имя: {{ user.firstName }}</div>
+    <div class="mb-1 text-base">Фамилия: {{ user.lastName }}</div>
+    <div class="mb-1 text-base">Логин: {{ user.login }}</div>
+    <div class="mb-1 text-base">Email: {{ user.email }}</div>
   </div>
 
   <mat-divider [vertical]="true"></mat-divider>
 
-  <div *ngIf="user$ | async as user" class="posts">
+  <div *ngIf="user$ | async as user" class="grow overflow-auto p-4">
     <h1>Статьи профиля:</h1>
-    <div class="button">
-      <a color="accent" mat-flat-button routerLink="/new">
-        <mat-icon>add</mat-icon>
-        <span>Создать</span>
-      </a>
-    </div>
-    <div *ngIf="posts$ | async as posts" class="list-container">
+    <a color="accent" mat-flat-button routerLink="/new" class="mb-4">
+      <mat-icon>add</mat-icon>
+      <span>Создать</span>
+    </a>
+    <div *ngIf="posts$ | async as posts" class="flex flex-col gap-y-4">
       <app-post-card
         *ngFor="let post of posts"
         [post]="post"
