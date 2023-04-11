@@ -18,9 +18,13 @@
     <app-post-card
       *ngFor="let post of posts"
       [post]="post"
-      [userId]="userId$ | async"></app-post-card>
+      [userId]="userId$ | async"
+      routePath="moderation">
+    </app-post-card>
   </div>
   <ng-template #noPost>
-    <div>Постов нет. Нужно выбрать категорию</div>
+    <div class="need-select-category">
+      Постов нет. Нужно выбрать категорию из списка слева.
+    </div>
   </ng-template>
 </div>

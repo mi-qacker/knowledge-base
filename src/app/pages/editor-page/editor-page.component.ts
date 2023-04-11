@@ -18,9 +18,8 @@ import {ICategory} from 'app/services/http/category-http/category';
 import {CategoryHttpService} from 'app/services/http/category-http/category-http.service';
 import {IPostCreateDto} from 'app/services/http/post-http/post.interface';
 import {PostHttpService} from 'app/services/http/post-http/post-http.service';
+import {editorjsConfig} from 'assets/editorjs-configs/editor.config';
 import {EMPTY, Observable, switchMap} from 'rxjs';
-
-import {editorjsConfig} from './editor.config';
 
 @Component({
   selector: 'app-editor-page',

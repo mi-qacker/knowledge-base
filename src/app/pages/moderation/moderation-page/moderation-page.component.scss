@@ -8,6 +8,19 @@
   padding-bottom: 0;
 }
 
+.list-container {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+
+  max-width: 680px;
+  height: calc(100% - 64px);
+  margin-right: 17%;
+  margin-left: 7%;
+  padding: 16px 0;
+  row-gap: 8px;
+}
+
 mat-list {
   width: 320px;
 }
@@ -18,4 +31,22 @@ mat-list {
 
 .selected {
   font-weight: 500;
+}
+
+.no-posts{
+  padding-top: 5em;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1em;
+  max-width: 680px;
+  text-align: center;
+}
+
+.need-select-category {
+  padding-top: 5em;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1em;
+  max-width: 680px;
+  text-align: center;
 }

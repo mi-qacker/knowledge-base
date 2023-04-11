@@ -1,3 +1,11 @@
+import {
+  animate,
+  query,
+  stagger,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import {Component} from '@angular/core';
 import {LoggedUserService} from 'app/services/auth/logged-user-service/logged-user.service';
 import {ICategory} from 'app/services/http/category-http/category';
@@ -11,6 +19,20 @@ import {PostHttpService} from '../../../services/http/post-http/post-http.servic
   selector: 'app-moderation-page',
   templateUrl: './moderation-page.component.html',
   styleUrls: ['./moderation-page.component.scss'],
+  animations: [
+    trigger('listAnimation', [
+      transition('* => *', [
+        query(
+          ':enter',
+          [
+            style({opacity: 0}),
+            stagger(100, [animate('0.25s', style({opacity: 1}))]),
+          ],
+          {optional: true}
+        ),
+      ]),
+    ]),
+  ],
 })
 export class ModerationPageComponent {
   userId$ = this.loggedUserService.user$.pipe(map(user => user?._id));
