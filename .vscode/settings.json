@@ -8,5 +8,18 @@
   "eslint.validate": ["javascript", "typescript"],
   "css.validate": true,
   "scss.validate": true,
-  "stylelint.validate": ["scss"]
+  "stylelint.validate": ["scss"],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "tailwindCSS.files.exclude": [
+    "**/.git/**",
+    "**/node_modules/**",
+    "**/.hg/**",
+    "**/.svn/**",
+    "**/dist/**"
+  ]
 }

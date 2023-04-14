@@ -1,52 +1,65 @@
 <mat-toolbar color="primary">
-  <a class="link" routerLink="/">
-    <mat-icon>book</mat-icon>
-    <span>База знаний</span>
-  </a>
-  <span class="example-spacer"></span>
-  <ng-container *ngIf="user$ | async as user; else noLogin">
-    <a mat-icon-button matTooltip="Написать публикацию" routerLink="/new">
-      <mat-icon>article</mat-icon>
+  <nav class="container mx-auto inline-flex">
+    <a class="inline-flex items-center gap-x-1" routerLink="/">
+      <mat-icon>book</mat-icon>
+      <span>База знаний</span>
     </a>
-
-    <ng-container *ngIf="knowledgeUser$ | async as knowledgeUser">
-      <a *ngIf="knowledgeUser.mainAdmin === false && knowledgeUser.categoriesAdmin.length > 0"
-         [routerLink]="['/moderator', user._id]"
-         mat-icon-button
-         matTooltip="Профиль модератора">
-        <mat-icon>badge</mat-icon>
+    <span class="example-spacer"></span>
+    <ng-container *ngIf="user$ | async as user; else noLogin">
+      <a mat-icon-button matTooltip="Написать публикацию" routerLink="/new">
+        <mat-icon>article</mat-icon>
       </a>
-      <ng-container *ngIf="knowledgeUser.mainAdmin === true">
-        <button
-          [matMenuTriggerFor]="adminMenu"
-          mat-icon-button
-          matTooltip="Панель администратора">
-          <mat-icon>admin_panel_settings</mat-icon>
-        </button>
-        <mat-menu #adminMenu>
-          <a [routerLink]="['/admin','users']" mat-menu-item>
-            <mat-icon>group</mat-icon>
-            <span>Модераторы</span>
+      <ng-container *ngIf="knowledgeUser$ | async as knowledgeUser">
+        <ng-container
+          *ngIf="
+            knowledgeUser.mainAdmin === false &&
+            knowledgeUser.categoriesAdmin.length > 0
+          ">
+          <a
+            [routerLink]="['/moderator', user._id]"
+            mat-icon-button
+            matTooltip="Профиль модератора">
+            <mat-icon>badge</mat-icon>
           </a>
-          <a [routerLink]="['/admin','categories']" mat-menu-item>
-            <mat-icon>school</mat-icon>
-            <span>Категории</span>
+          <a mat-icon-button matTooltip="Лаборатория" routerLink="/moderation">
+            <mat-icon>lightbulb</mat-icon>
           </a>
-        </mat-menu>
+        </ng-container>
+        <ng-container *ngIf="knowledgeUser.mainAdmin === true">
+          <button
+            [matMenuTriggerFor]="adminMenu"
+            mat-icon-button
+            matTooltip="Панель администратора">
+            <mat-icon>admin_panel_settings</mat-icon>
+          </button>
+          <mat-menu #adminMenu>
+            <a [routerLink]="['/admin', 'users']" mat-menu-item>
+              <mat-icon>group</mat-icon>
+              <span>Модераторы</span>
+            </a>
+            <a [routerLink]="['/admin', 'categories']" mat-menu-item>
+              <mat-icon>school</mat-icon>
+              <span>Категории</span>
+            </a>
+          </mat-menu>
+          <a mat-icon-button matTooltip="Лаборатория" routerLink="/moderation">
+            <mat-icon>lightbulb</mat-icon>
+          </a>
+        </ng-container>
       </ng-container>
-    </ng-container>
 
-    <a
-      [routerLink]="['/profile', user._id]"
-      mat-icon-button
-      matTooltip="Профиль">
-      <mat-icon>person</mat-icon>
-    </a>
-    <button (click)="logoutUser()" mat-icon-button matTooltip="Выйти">
-      <mat-icon>logout</mat-icon>
-    </button>
-  </ng-container>
-  <ng-template #noLogin>
-    <a mat-flat-button routerLink="/login">Войти</a>
-  </ng-template>
+      <a
+        [routerLink]="['/profile', user._id]"
+        mat-icon-button
+        matTooltip="Профиль">
+        <mat-icon>person</mat-icon>
+      </a>
+      <button (click)="logoutUser()" mat-icon-button matTooltip="Выйти">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </ng-container>
+    <ng-template #noLogin>
+      <a mat-flat-button routerLink="/login">Войти</a>
+    </ng-template>
+  </nav>
 </mat-toolbar>

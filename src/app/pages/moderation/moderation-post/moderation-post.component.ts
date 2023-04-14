@@ -1,21 +1,22 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import EditorJS from '@editorjs/editorjs';
 import {IPost} from 'app/services/http/post-http/post.interface';
 import {PostHttpService} from 'app/services/http/post-http/post-http.service';
 import {editorjsConfig} from 'assets/editorjs-configs/editor-readonly.config';
 
 @Component({
-  selector: 'app-post-page',
-  templateUrl: './post-page.component.html',
-  styleUrls: ['./post-page.component.scss'],
+  selector: 'app-moderation-post',
+  templateUrl: './moderation-post.component.html',
+  styleUrls: ['./moderation-post.component.scss'],
 })
-export class PostPageComponent implements OnInit {
+export class ModerationPostComponent implements OnInit {
   editor!: EditorJS;
   post?: IPost;
   postId!: string;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private postHttpService: PostHttpService
   ) {
@@ -29,5 +30,13 @@ export class PostPageComponent implements OnInit {
       this.post = post;
       this.editor = new EditorJS({...editorjsConfig, data: post.data});
     });
+  }
+
+  applyPost() {
+    this.postHttpService
+      .setModeration(this.postId, true)
+      .subscribe(async () => {
+        await this.router.navigate(['/post', this.postId]);
+      });
   }
 }

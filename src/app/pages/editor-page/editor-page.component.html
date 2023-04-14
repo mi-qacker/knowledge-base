@@ -1,24 +1,30 @@
-<form [formGroup]="formGroup" class="container">
+<form
+  [formGroup]="formGroup"
+  class="container mx-auto flex h-full flex-col py-4 md:w-full md:px-2 lg:w-4/6">
   <input
     autofocus
-    class="input-header"
     formControlName="title"
     placeholder="Заголовок"
-    type="text" />
-  <div class="editor" id="editorjs"></div>
-  <mat-form-field>
+    type="text"
+    class="w-full border-none px-16 text-4xl outline-none placeholder:text-gray-200" />
+  <div class="flex-grow overflow-y-auto">
+    <div id="editorjs" class="w-full px-16"></div>
+  </div>
+  <mat-form-field class="w-full shrink-0 px-16">
     <mat-label>Категория статьи</mat-label>
     <mat-select formControlName="category">
-      <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
-        {{category.name}}
+      <mat-option
+        *ngFor="let category of categories$ | async"
+        [value]="category.id">
+        {{ category.name }}
       </mat-option>
     </mat-select>
   </mat-form-field>
   <button
     (click)="saveEditorData()"
     [disabled]="formGroup.invalid"
-    class="save-button"
     color="accent"
+    class="w-full shrink-0"
     mat-flat-button>
     <mat-icon>check</mat-icon>
     <span>Опубликовать</span>

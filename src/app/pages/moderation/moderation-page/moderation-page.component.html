@@ -1,0 +1,37 @@
+<div
+  class="container mx-auto grid grid-cols-[380px_1fr] gap-x-8 py-4 lg:w-full">
+  <aside *ngIf="categories$ | async as categories" class="w-80">
+    <mat-list role="navigation">
+      <mat-list-item
+        (click)="selectCategory(category.id)"
+        *ngFor="let category of categories">
+        <span [ngClass]="{'font-medium': selectedCategory === category.id}">
+          {{ category.name }}
+        </span>
+      </mat-list-item>
+    </mat-list>
+  </aside>
+
+  <div
+    *ngIf="posts$ | async as posts; else noPost"
+    [@listAnimation]="posts.length"
+    class="flex flex-col gap-y-4">
+    <div
+      *ngIf="posts.length === 0"
+      class="inline-block w-full py-8 text-center align-middle text-lg font-medium">
+      В выбранной категории пока нет постов на проверку
+    </div>
+    <app-post-card
+      class="w-full"
+      *ngFor="let post of posts"
+      [post]="post"
+      [userId]="userId$ | async"
+      routePath="moderation">
+    </app-post-card>
+  </div>
+  <ng-template #noPost>
+    <div class="inline-block py-8 text-center align-middle text-lg font-medium">
+      Постов нет. Нужно выбрать категорию из списка слева.
+    </div>
+  </ng-template>
+</div>
