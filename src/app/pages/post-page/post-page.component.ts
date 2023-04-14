@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import EditorJS from '@editorjs/editorjs';
+import {IPost} from 'app/services/http/post-http/post.interface';
+import {PostHttpService} from 'app/services/http/post-http/post-http.service';
 import {editorjsConfig} from 'assets/editorjs-configs/editor-readonly.config';
-
-import {IPost} from '../../services/http/post-http/post.interface';
-import {PostHttpService} from '../../services/http/post-http/post-http.service';
 
 @Component({
   selector: 'app-post-page',

@@ -1,1 +1,14 @@
-<p>moderation-post works!</p>
+<div
+  class="container mx-auto flex h-full flex-col py-4 md:w-full md:px-2 lg:w-4/6">
+  <h1 class="pb-2 text-center">{{ post?.title }}</h1>
+  <div class="w-full flex-grow px-16" id="editorjs"></div>
+  <button
+    [disabled]="post === undefined"
+    (click)="applyPost()"
+    class="w-full shrink-0"
+    color="accent"
+    mat-flat-button>
+    <mat-icon>check</mat-icon>
+    <span>Принять</span>
+  </button>
+</div>

@@ -15,7 +15,7 @@
   <div
     *ngIf="posts$ | async as posts; else noPost"
     [@listAnimation]="posts.length"
-    class="flex flex-row gap-y-4">
+    class="flex flex-col gap-y-4">
     <div
       *ngIf="posts.length === 0"
       class="inline-block w-full py-8 text-center align-middle text-lg font-medium">

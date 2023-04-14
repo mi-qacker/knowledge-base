@@ -34,19 +34,21 @@ export class PostHttpService {
   addLike(post: IPost, userId: string): Observable<IPost> {
     const postId = post.id;
     const likes = [...post.likes, userId];
-    const moderation = likes.length >= 2;
     return this.http.patch<IPost>(`${this.apiPath}/${postId}`, {
       likes,
-      moderation,
     });
   }
 
   removeLike(post: IPost, userId: string): Observable<IPost> {
     const postId = post.id;
     const likes = post.likes.filter(id => id !== userId);
-    const moderation = likes.length >= 2;
     return this.http.patch<IPost>(`${this.apiPath}/${postId}`, {
       likes,
+    });
+  }
+
+  setModeration(postId: string, moderation: boolean): Observable<IPost> {
+    return this.http.patch<IPost>(`${this.apiPath}/${postId}`, {
       moderation,
     });
   }
