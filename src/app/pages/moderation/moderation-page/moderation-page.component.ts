@@ -10,10 +10,9 @@ import {Component} from '@angular/core';
 import {LoggedUserService} from 'app/services/auth/logged-user-service/logged-user.service';
 import {ICategory} from 'app/services/http/category-http/category';
 import {CategoryHttpService} from 'app/services/http/category-http/category-http.service';
+import {PostHttpService} from 'app/services/http/post-http/post-http.service';
 import {BehaviorSubject, filter, Observable, of, switchMap} from 'rxjs';
 import {map} from 'rxjs/operators';
-
-import {PostHttpService} from '../../../services/http/post-http/post-http.service';
 
 @Component({
   selector: 'app-moderation-page',
