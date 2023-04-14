@@ -7,6 +7,7 @@ import {
   trigger,
 } from '@angular/animations';
 import {Component} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {LoggedUserService} from 'app/services/auth/logged-user-service/logged-user.service';
 import {ICategory} from 'app/services/http/category-http/category';
 import {CategoryHttpService} from 'app/services/http/category-http/category-http.service';
@@ -50,10 +51,16 @@ export class ModerationPageComponent {
   );
 
   constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
     private loggedUserService: LoggedUserService,
     private categoryHttpService: CategoryHttpService,
     private postHttpService: PostHttpService
   ) {
+    this.activatedRoute.queryParams.subscribe(params => {
+      const categoryId = params['categoryId'];
+      this.selectedCategory$.next(categoryId);
+    });
     this.categories$ = this.loggedUserService.knowledgeUser$.pipe(
       switchMap(user => {
         if (!user) return of(undefined);
@@ -64,7 +71,11 @@ export class ModerationPageComponent {
     );
   }
 
-  selectCategory(categoryId: string) {
-    this.selectedCategory$.next(categoryId);
+  async selectCategory(categoryId: string) {
+    const queryParams = {categoryId};
+    await this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams,
+    });
   }
 }
