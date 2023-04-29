@@ -13,12 +13,12 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {Router} from '@angular/router';
 import EditorJS from '@editorjs/editorjs';
+import {editorjsConfig} from 'app/editorjs/configs/editor.config';
 import {LoggedUserService} from 'app/services/auth/logged-user-service/logged-user.service';
 import {ICategory} from 'app/services/http/category-http/category';
 import {CategoryHttpService} from 'app/services/http/category-http/category-http.service';
 import {IPostCreateDto} from 'app/services/http/post-http/post.interface';
 import {PostHttpService} from 'app/services/http/post-http/post-http.service';
-import {editorjsConfig} from 'assets/editorjs-configs/editor.config';
 import {EMPTY, Observable, switchMap} from 'rxjs';
 
 @Component({

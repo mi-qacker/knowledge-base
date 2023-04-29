@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import EditorJS from '@editorjs/editorjs';
+import {editorjsConfig} from 'app/editorjs/configs/editor-readonly.config';
 import {IPost} from 'app/services/http/post-http/post.interface';
 import {PostHttpService} from 'app/services/http/post-http/post-http.service';
-import {editorjsConfig} from 'assets/editorjs-configs/editor-readonly.config';
 
 @Component({
   selector: 'app-moderation-post',

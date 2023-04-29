@@ -1,4 +1,6 @@
 // @ts-ignore
+import CodeTool from '@editorjs/code';
+// @ts-ignore
 import Embed from '@editorjs/embed';
 // @ts-ignore
 import Header from '@editorjs/header';
@@ -15,15 +17,9 @@ export const editorjsConfig = {
     header: Header,
     list: List,
     embed: Embed,
+    code: CodeTool,
     Marker: Marker,
-    image: {
-      class: ImageTool,
-      config: {
-        endpoints: {
-          byFile: 'api/image/upload', // Your backend file uploader endpoint
-        },
-      },
-    },
+    image: ImageTool,
   },
-  placeholder: 'Нажмите Tab для выбора инструмента',
+  readOnly: true,
 };
