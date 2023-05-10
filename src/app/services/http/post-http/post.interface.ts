@@ -9,6 +9,8 @@ export interface IPost {
   data: IPostData;
   likes: string[];
   category: ICategory;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface IPostCreateDto {
