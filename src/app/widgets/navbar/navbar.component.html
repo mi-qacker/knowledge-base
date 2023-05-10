@@ -1,10 +1,16 @@
 <mat-toolbar color="primary">
-  <nav class="container mx-auto inline-flex">
+  <nav class="container mx-auto inline-flex items-baseline justify-between">
     <a class="inline-flex items-center gap-x-1" routerLink="/">
       <mat-icon>book</mat-icon>
       <span>База знаний</span>
     </a>
-    <span class="example-spacer"></span>
+    <a routerLink="/maps" class="ml-4 inline-flex items-center gap-x-1">
+      <mat-icon>map</mat-icon>
+      <span>Дорожные карты</span>
+    </a>
+
+    <span class="flex-auto"></span>
+
     <ng-container *ngIf="user$ | async as user; else noLogin">
       <a mat-icon-button matTooltip="Написать публикацию" routerLink="/new">
         <mat-icon>article</mat-icon>

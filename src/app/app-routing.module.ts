@@ -1,13 +1,20 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'all' },
+  {path: '', pathMatch: 'full', redirectTo: 'posts'},
   {
-    path: 'all',
+    path: 'posts',
     loadComponent: () =>
       import('./pages/all-posts/all-posts.component').then(
         c => c.AllPostsComponent
+      ),
+  },
+  {
+    path: 'maps',
+    loadComponent: () =>
+      import('./pages/road-maps/road-maps.component').then(
+        c => c.RoadMapsComponent
       ),
   },
   {
@@ -74,7 +81,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
