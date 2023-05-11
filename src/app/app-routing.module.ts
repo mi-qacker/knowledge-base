@@ -12,10 +12,23 @@ const routes: Routes = [
   },
   {
     path: 'maps',
-    loadComponent: () =>
-      import('./pages/road-maps/road-maps.component').then(
-        c => c.RoadMapsComponent
-      ),
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./pages/road-maps/road-maps.component').then(
+            c => c.RoadMapsComponent
+          ),
+      },
+      {
+        path: ':id',
+        loadComponent: () =>
+          import('./pages/road-map-page/road-map-page.component').then(
+            c => c.RoadMapPageComponent
+          ),
+      },
+    ],
   },
   {
     path: 'login',

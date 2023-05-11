@@ -1,1 +1,22 @@
-<p>road-maps works!</p>
+<div class="container mx-auto grid grid-cols-2 gap-x-8 gap-y-4 py-4 lg:w-full">
+  <h1 class="col-span-2 py-6 text-center">Дорожные карты</h1>
+  <ng-container *ngIf="roadMaps$ | async as roadMaps">
+    <mat-card *ngFor="let roadMap of roadMaps">
+      <mat-card-header>
+        <mat-card-title>{{ roadMap.name }}</mat-card-title>
+        <mat-card-subtitle>
+          Автор:
+          {{ roadMap.author.firstName }}
+          {{ roadMap.author.lastName }}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ roadMap.shortDescription }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-button [routerLink]="['.', roadMap.id]">Перейти</a>
+        <button mat-button>Подписаться</button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
+</div>
