@@ -1,7 +1,4 @@
-<div
-  class="grid grid-cols-2"
-  *ngIf="roadMap !== null"
-  [formGroup]="roadMapFormGroup">
+<div class="grid grid-cols-2" [formGroup]="roadMapFormGroup">
   <ng-container [ngSwitch]="mode">
     <h1 *ngSwitchCase="'idle'">{{ roadMap.name }}</h1>
     <mat-form-field *ngSwitchCase="'edit'" appearance="outline">
@@ -9,18 +6,26 @@
       <input matInput formControlName="name" required />
     </mat-form-field>
   </ng-container>
-  <button
-    [ngSwitch]="mode"
-    [disabled]="(mode === 'edit' && roadMapFormGroup.invalid) || loading"
-    mat-fab
-    extended
-    class="justify-self-end"
-    (click)="toggleMode(roadMap)">
-    <mat-icon *ngSwitchCase="'idle'">edit</mat-icon>
-    <mat-icon *ngSwitchCase="'edit'">save</mat-icon>
-    <ng-container *ngSwitchCase="'idle'">Редактировать</ng-container>
-    <ng-container *ngSwitchCase="'edit'">Сохранить</ng-container>
-  </button>
+  <ng-container [ngSwitch]="isOwnerRoadMap$ | async">
+    <button
+      *ngSwitchCase="true"
+      [ngSwitch]="mode"
+      [disabled]="(mode === 'edit' && roadMapFormGroup.invalid) || loading"
+      mat-fab
+      extended
+      class="justify-self-end"
+      (click)="toggleMode()">
+      <mat-icon *ngSwitchCase="'idle'">edit</mat-icon>
+      <mat-icon *ngSwitchCase="'edit'">save</mat-icon>
+      <ng-container *ngSwitchCase="'idle'">Редактировать</ng-container>
+      <ng-container *ngSwitchCase="'edit'">Сохранить</ng-container>
+    </button>
+    <button *ngSwitchCase="false" mat-fab extended class="justify-self-end">
+      <mat-icon>favorite_outline</mat-icon>
+      Подписаться
+    </button>
+  </ng-container>
+
   <ng-container [ngSwitch]="mode">
     <p *ngSwitchCase="'idle'" class="col-span-2">
       {{ roadMap.shortDescription }}

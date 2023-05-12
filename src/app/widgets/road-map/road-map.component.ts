@@ -11,8 +11,11 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
+import {LoggedUserService} from 'app/services/auth/logged-user-service/logged-user.service';
 import {IRoadMap} from 'app/services/http/road-map-http/road-map';
 import {RoadMapHttpService} from 'app/services/http/road-map-http/road-map-http.service';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-road-map',
@@ -28,18 +31,20 @@ import {RoadMapHttpService} from 'app/services/http/road-map-http/road-map-http.
   templateUrl: './road-map.component.html',
   styleUrls: ['./road-map.component.scss'],
 })
-export class RoadMapComponent {
-  @Input({required: true}) public roadMap: IRoadMap | null = null;
-  mode: 'idle' | 'edit' = 'idle';
-  loading: boolean = false;
-  roadMapFormGroup: FormGroup<{
+export class RoadMapComponent implements OnInit {
+  @Input({required: true}) public roadMap!: IRoadMap;
+  public mode: 'idle' | 'edit' = 'idle';
+  public loading: boolean = false;
+  public roadMapFormGroup: FormGroup<{
     name: FormControl<string>;
     shortDescription: FormControl<string>;
   }>;
+  public isOwnerRoadMap$!: Observable<boolean>;
 
   constructor(
     private fb: FormBuilder,
-    private roadMapHttpService: RoadMapHttpService
+    private roadMapHttpService: RoadMapHttpService,
+    private loggedUserService: LoggedUserService
   ) {
     this.roadMapFormGroup = this.fb.nonNullable.group({
       name: ['', [Validators.required]],
@@ -47,18 +52,23 @@ export class RoadMapComponent {
     });
   }
 
-  toggleMode(roadMap: IRoadMap) {
+  ngOnInit(): void {
+    this.isOwnerRoadMap$ = this.loggedUserService.user$.pipe(
+      map(user => user?._id === this.roadMap.author._id)
+    );
+  }
+
+  toggleMode() {
     if (this.mode === 'idle') {
-      this.roadMapFormGroup.controls.name.setValue(this.roadMap?.name ?? '');
+      this.roadMapFormGroup.controls.name.setValue(this.roadMap.name);
       this.roadMapFormGroup.controls.shortDescription.setValue(
-        this.roadMap?.shortDescription ?? ''
+        this.roadMap.shortDescription
       );
       this.mode = 'edit';
     } else if (this.mode === 'edit') {
-      const fromValues = this.roadMapFormGroup.value;
       this.loading = true;
       this.roadMapHttpService
-        .updateRoadMap(roadMap.id, fromValues)
+        .updateRoadMap(this.roadMap.id, this.roadMapFormGroup.value)
         .subscribe(roadMap => {
           this.roadMap = roadMap;
           this.loading = false;
