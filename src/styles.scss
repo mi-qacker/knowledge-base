@@ -2,15 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-.ce-block__content,
-.ce-toolbar__content {
-  max-width: unset;
+.ce-toolbar,
+.ce-block {
+  &__content {
+    max-width: unset;
+  }
 }
 
-.codex-editor__redactor {
-  padding-bottom: 0 !important;
+.codex-editor {
+  &__redactor {
+    padding-bottom: 0 !important;
+  }
 }
 
-.mdc-notched-outline__notch {
-  border: none;
+.mdc-notched-outline {
+  &__notch {
+    border: none;
+  }
 }
