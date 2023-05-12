@@ -1,0 +1,29 @@
+<div class="container mx-auto py-4 lg:w-full">
+  <header class="mx-auto my-6 flex w-3/5 flex-row items-center justify-between">
+    <h1>Создание новой дорожной карты</h1>
+    <button
+      mat-fab
+      extended
+      [disabled]="newRoadMapFormGroup.invalid"
+      (click)="createButtonClick()">
+      <mat-icon>add</mat-icon>
+      Создать
+    </button>
+  </header>
+  <form
+    class="mx-auto flex w-3/5 flex-col items-center"
+    [formGroup]="newRoadMapFormGroup">
+    <mat-form-field class="w-full" appearance="outline">
+      <mat-label>Название дорожной карты</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+    <mat-form-field class="w-full" appearance="outline">
+      <mat-label>Краткое описание новой дорожной карты</mat-label>
+      <textarea
+        matInput
+        style="resize: none"
+        [rows]="4"
+        formControlName="shortDescription"></textarea>
+    </mat-form-field>
+  </form>
+</div>

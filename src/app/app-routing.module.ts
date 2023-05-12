@@ -24,6 +24,14 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'new',
+        title: 'Создание дорожной карты',
+        loadComponent: () =>
+          import('./pages/road-map-new/road-map-new.component').then(
+            c => c.RoadMapNewComponent
+          ),
+      },
+      {
         path: ':id',
         loadComponent: () =>
           import('./pages/road-map-page/road-map-page.component').then(

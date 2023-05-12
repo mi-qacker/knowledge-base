@@ -7,3 +7,9 @@ export interface IRoadMap {
   author: IUser;
   subscribes: IUser[];
 }
+
+export interface ICreateRoadMapDto {
+  name: string;
+  author: string;
+  shortDescription: string;
+}
