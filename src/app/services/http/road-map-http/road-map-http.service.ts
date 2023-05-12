@@ -19,4 +19,11 @@ export class RoadMapHttpService {
   getRoadMapById(id: string): Observable<IRoadMap> {
     return this.http.get<IRoadMap>(`${this.apiPath}/${id}`);
   }
+
+  updateRoadMap(
+    id: string,
+    updateRoadMap: Partial<Omit<IRoadMap, 'id'>>
+  ): Observable<IRoadMap> {
+    return this.http.patch<IRoadMap>(`${this.apiPath}/${id}`, updateRoadMap);
+  }
 }

@@ -1,18 +1,21 @@
-<div class="grid grid-cols-2" *ngIf="roadMap !== null">
+<div
+  class="grid grid-cols-2"
+  *ngIf="roadMap !== null"
+  [formGroup]="roadMapFormGroup">
   <ng-container [ngSwitch]="mode">
     <h1 *ngSwitchCase="'idle'">{{ roadMap.name }}</h1>
     <mat-form-field *ngSwitchCase="'edit'" appearance="outline">
       <mat-label>Название дорожной карты</mat-label>
-      <input matInput [formControl]="name" required />
+      <input matInput formControlName="name" required />
     </mat-form-field>
   </ng-container>
   <button
     [ngSwitch]="mode"
-    [disabled]="mode === 'edit' && (name.invalid || shortDescription.invalid)"
+    [disabled]="(mode === 'edit' && roadMapFormGroup.invalid) || loading"
     mat-fab
     extended
     class="justify-self-end"
-    (click)="toggleMode()">
+    (click)="toggleMode(roadMap)">
     <mat-icon *ngSwitchCase="'idle'">edit</mat-icon>
     <mat-icon *ngSwitchCase="'edit'">save</mat-icon>
     <ng-container *ngSwitchCase="'idle'">Редактировать</ng-container>
@@ -27,7 +30,7 @@
       class="col-span-2"
       appearance="outline">
       <mat-label>Краткое описание дорожной карты</mat-label>
-      <textarea matInput [formControl]="shortDescription" required></textarea>
+      <textarea matInput formControlName="shortDescription" required></textarea>
     </mat-form-field>
   </ng-container>
 </div>

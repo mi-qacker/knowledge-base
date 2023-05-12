@@ -12,6 +12,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {IRoadMap} from 'app/services/http/road-map-http/road-map';
+import {RoadMapHttpService} from 'app/services/http/road-map-http/road-map-http.service';
 
 @Component({
   selector: 'app-road-map',
@@ -28,19 +29,41 @@ import {IRoadMap} from 'app/services/http/road-map-http/road-map';
   styleUrls: ['./road-map.component.scss'],
 })
 export class RoadMapComponent {
-  mode: 'idle' | 'edit' = 'idle';
-  name = new FormControl('', [Validators.required]);
-  shortDescription = new FormControl('', [Validators.required]);
-
   @Input({required: true}) public roadMap: IRoadMap | null = null;
+  mode: 'idle' | 'edit' = 'idle';
+  loading: boolean = false;
+  roadMapFormGroup: FormGroup<{
+    name: FormControl<string>;
+    shortDescription: FormControl<string>;
+  }>;
 
-  toggleMode() {
+  constructor(
+    private fb: FormBuilder,
+    private roadMapHttpService: RoadMapHttpService
+  ) {
+    this.roadMapFormGroup = this.fb.nonNullable.group({
+      name: ['', [Validators.required]],
+      shortDescription: ['', [Validators.required]],
+    });
+  }
+
+  toggleMode(roadMap: IRoadMap) {
     if (this.mode === 'idle') {
-      this.name.setValue(this.roadMap?.name ?? null);
-      this.shortDescription.setValue(this.roadMap?.shortDescription ?? null);
+      this.roadMapFormGroup.controls.name.setValue(this.roadMap?.name ?? '');
+      this.roadMapFormGroup.controls.shortDescription.setValue(
+        this.roadMap?.shortDescription ?? ''
+      );
       this.mode = 'edit';
     } else if (this.mode === 'edit') {
-      this.mode = 'idle';
+      const fromValues = this.roadMapFormGroup.value;
+      this.loading = true;
+      this.roadMapHttpService
+        .updateRoadMap(roadMap.id, fromValues)
+        .subscribe(roadMap => {
+          this.roadMap = roadMap;
+          this.loading = false;
+          this.mode = 'idle';
+        });
     }
   }
 }
