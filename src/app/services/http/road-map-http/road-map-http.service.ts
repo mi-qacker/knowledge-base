@@ -30,4 +30,8 @@ export class RoadMapHttpService {
   ): Observable<IRoadMap> {
     return this.http.patch<IRoadMap>(`${this.apiPath}/${id}`, updateRoadMap);
   }
+
+  deleteRoadMap(id: string): Observable<IRoadMap> {
+    return this.http.delete<IRoadMap>(`${this.apiPath}/${id}`);
+  }
 }

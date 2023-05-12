@@ -8,21 +8,26 @@ import {
   Validators,
 } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDialog} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
+import {Router} from '@angular/router';
 import {LoggedUserService} from 'app/services/auth/logged-user-service/logged-user.service';
 import {IRoadMap} from 'app/services/http/road-map-http/road-map';
 import {RoadMapHttpService} from 'app/services/http/road-map-http/road-map-http.service';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {SharedModule} from 'app/shared/shared.module';
+import {ConfirmDialogComponent} from 'app/shared/ui/confirm-dialog/confirm-dialog.component';
+import {IConfirmDialogData} from 'app/shared/ui/confirm-dialog/confirm-dialog-data';
+import {EMPTY, Observable} from 'rxjs';
+import {map, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-road-map',
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    SharedModule,
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
@@ -43,6 +48,8 @@ export class RoadMapComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private dialog: MatDialog,
+    private router: Router,
     private roadMapHttpService: RoadMapHttpService,
     private loggedUserService: LoggedUserService
   ) {
@@ -75,5 +82,30 @@ export class RoadMapComponent implements OnInit {
           this.mode = 'idle';
         });
     }
+  }
+
+  deleteRoadMap() {
+    const dialogRef = this.dialog.open<
+      ConfirmDialogComponent,
+      IConfirmDialogData,
+      boolean
+    >(ConfirmDialogComponent, {
+      data: {
+        title: 'Удаление дорожной карты',
+        content: `Вы действительно хотите удалить дорожную карту «${this.roadMap.name}»?`,
+      },
+    });
+    dialogRef
+      .afterClosed()
+      .pipe(
+        switchMap(result =>
+          result
+            ? this.roadMapHttpService.deleteRoadMap(this.roadMap.id)
+            : EMPTY
+        )
+      )
+      .subscribe(() => {
+        this.router.navigateByUrl('/maps');
+      });
   }
 }

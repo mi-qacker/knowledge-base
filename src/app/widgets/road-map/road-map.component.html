@@ -7,19 +7,26 @@
     </mat-form-field>
   </ng-container>
   <ng-container [ngSwitch]="isOwnerRoadMap$ | async">
-    <button
+    <div
       *ngSwitchCase="true"
-      [ngSwitch]="mode"
-      [disabled]="(mode === 'edit' && roadMapFormGroup.invalid) || loading"
-      mat-fab
-      extended
-      class="justify-self-end"
-      (click)="toggleMode()">
-      <mat-icon *ngSwitchCase="'idle'">edit</mat-icon>
-      <mat-icon *ngSwitchCase="'edit'">save</mat-icon>
-      <ng-container *ngSwitchCase="'idle'">Редактировать</ng-container>
-      <ng-container *ngSwitchCase="'edit'">Сохранить</ng-container>
-    </button>
+      class="flex flex-row items-center gap-x-4 justify-self-end">
+      <button
+        [ngSwitch]="mode"
+        [disabled]="(mode === 'edit' && roadMapFormGroup.invalid) || loading"
+        mat-fab
+        extended
+        (click)="toggleMode()">
+        <mat-icon *ngSwitchCase="'idle'">edit</mat-icon>
+        <mat-icon *ngSwitchCase="'edit'">save</mat-icon>
+        <ng-container *ngSwitchCase="'idle'">Редактировать</ng-container>
+        <ng-container *ngSwitchCase="'edit'">Сохранить</ng-container>
+      </button>
+      <button mat-fab extended color="warn" (click)="deleteRoadMap()">
+        <mat-icon>delete</mat-icon>
+        Удалить
+      </button>
+    </div>
+
     <button *ngSwitchCase="false" mat-fab extended class="justify-self-end">
       <mat-icon>favorite_outline</mat-icon>
       Подписаться
