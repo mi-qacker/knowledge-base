@@ -4,30 +4,41 @@
     Добавить
   </button>
 
-  <mat-tree
+  <cdk-tree
     [dataSource]="dataSource"
     [treeControl]="treeControl"
-    class="example-tree">
-    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-      {{ node.title }}
-    </mat-tree-node>
-    <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-      <div class="mat-tree-node">
+    class="divide-y divide-solid">
+    <!-- Tree leaf template -->
+    <cdk-nested-tree-node
+      *cdkTreeNodeDef="let node"
+      class="flex h-12 flex-row items-center text-gray-900 hover:font-medium">
+      <a href="#">{{ node.title }}</a>
+    </cdk-nested-tree-node>
+
+    <!-- Tree node template -->
+    <cdk-nested-tree-node
+      *cdkTreeNodeDef="let node; when: hasChild"
+      class="block">
+      <div class="flex h-12 flex-row items-center">
         <button
           mat-icon-button
-          matTreeNodeToggle
-          [attr.aria-label]="'Toggle ' + node.name">
-          <mat-icon class="mat-icon-rtl-mirror">
-            {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+          cdkTreeNodeToggle
+          [attr.aria-label]="'Toggle ' + node.title">
+          <mat-icon
+            [class.expand-more__expanded]="treeControl.isExpanded(node)"
+            class="expand-more">
+            expand_more
           </mat-icon>
         </button>
-        {{ node.title }}
+
+        <a href="#" class="text-gray-900 hover:font-medium">{{ node.title }}</a>
       </div>
+
       <div
-        [class.example-tree-invisible]="!treeControl.isExpanded(node)"
-        role="group">
-        <ng-container matTreeNodeOutlet></ng-container>
+        [class.tree-invisible]="!treeControl.isExpanded(node)"
+        class="divide-y divide-solid ps-12">
+        <ng-container cdkTreeNodeOutlet></ng-container>
       </div>
-    </mat-nested-tree-node>
-  </mat-tree>
+    </cdk-nested-tree-node>
+  </cdk-tree>
 </div>

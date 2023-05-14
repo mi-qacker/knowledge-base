@@ -1,60 +1,39 @@
-import {NestedTreeControl} from '@angular/cdk/tree';
+import {ArrayDataSource} from '@angular/cdk/collections';
+import {CdkTreeModule, NestedTreeControl} from '@angular/cdk/tree';
 import {CommonModule} from '@angular/common';
-import {Component} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {MatTreeModule, MatTreeNestedDataSource} from '@angular/material/tree';
-
-interface Node {
-  title: string;
-  child?: Node[];
-}
+import {IRoadMapNode} from 'app/services/http/road-map-node-http/road-map-node';
 
 @Component({
   selector: 'app-road-map-tree',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatTreeModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, CdkTreeModule],
   templateUrl: './road-map-tree.component.html',
   styleUrls: ['./road-map-tree.component.scss'],
 })
-export class RoadMapTreeComponent {
-  treeControl = new NestedTreeControl<Node>(node => node.child);
-  dataSource = new MatTreeNestedDataSource<Node>();
-  hasChild = (_: number, node: Node) => !!node.child && node.child.length > 0;
+export class RoadMapTreeComponent implements OnInit {
+  @Input({required: true}) roadMapNodes: IRoadMapNode[] = [];
 
-  constructor() {
-    this.dataSource.data = this.treeDataMock;
+  getNextNodes = (node: IRoadMapNode): IRoadMapNode[] => {
+    const next: IRoadMapNode[] = [];
+    node.next.forEach(nextNodeId => {
+      const nextNode = this.roadMapNodes.find(
+        roadMapNode => roadMapNode.id === nextNodeId
+      );
+      if (nextNode && !nextNode.root) next.push(nextNode);
+    });
+    return next;
+  };
+  hasChild = (_: number, node: IRoadMapNode) => node.next.length > 0;
+
+  dataSource = new ArrayDataSource<IRoadMapNode>([]);
+  treeControl = new NestedTreeControl<IRoadMapNode>(this.getNextNodes);
+
+  ngOnInit(): void {
+    this.dataSource = new ArrayDataSource<IRoadMapNode>(
+      this.roadMapNodes.filter(node => node.root)
+    );
   }
-
-  treeDataMock: Node[] = [
-    {
-      title: 'Internet',
-      child: [
-        {title: 'What is HTTP?'},
-        {title: 'Browsers'},
-        {title: 'DNS'},
-        {title: 'Domain Name'},
-        {title: 'Hosting'},
-      ],
-    },
-    {
-      title: 'HTML',
-      child: [
-        {title: 'HTML Basics'},
-        {title: 'Semantic HTML'},
-        {title: 'Forms and Validations'},
-        {title: 'Best Practices'},
-        {title: 'Accessibility'},
-        {title: 'Basics of SEO'},
-      ],
-    },
-    {
-      title: 'CSS',
-      child: [
-        {title: 'CSS Basics'},
-        {title: 'Making layouts', child: [{title: 'Making layouts'}]},
-        {title: 'Responsive Web Design'},
-      ],
-    },
-  ];
 }

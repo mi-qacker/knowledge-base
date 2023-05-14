@@ -5,9 +5,12 @@
     <div *ngIf="roadMap$ | async as roadMap" class="flex h-full flex-col">
       <app-road-map [roadMap]="roadMap" />
 
-      <mat-drawer-container class="flex-grow rounded-lg" autosize>
+      <mat-drawer-container
+        *ngIf="roadMapNodes$ | async as roadMapNodes"
+        class="flex-grow rounded-lg"
+        autosize>
         <mat-drawer mode="side" opened class="p-4">
-          <app-road-map-tree />
+          <app-road-map-tree [roadMapNodes]="roadMapNodes" />
         </mat-drawer>
         <mat-drawer-content class="p-4">
           <app-road-map-node />
