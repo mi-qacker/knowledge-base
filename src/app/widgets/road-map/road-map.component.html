@@ -6,7 +6,7 @@
       <input matInput formControlName="name" required />
     </mat-form-field>
   </ng-container>
-  <ng-container [ngSwitch]="isOwnerRoadMap$ | async">
+  <ng-container [ngSwitch]="isOwnerRoadMap">
     <div
       *ngSwitchCase="true"
       class="flex flex-row items-center gap-x-4 justify-self-end">

@@ -15,6 +15,7 @@ import {IRoadMapNode} from 'app/services/http/road-map-node-http/road-map-node';
 })
 export class RoadMapTreeComponent implements OnInit {
   @Input({required: true}) roadMapNodes: IRoadMapNode[] = [];
+  @Input({required: true}) public isOwnerRoadMap?: boolean = false;
 
   getNextNodes = (node: IRoadMapNode): IRoadMapNode[] => {
     const next: IRoadMapNode[] = [];

@@ -1,12 +1,6 @@
 import {CommonModule} from '@angular/common';
 import {Component, Input, OnInit} from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialog} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -36,33 +30,26 @@ import {map, switchMap} from 'rxjs/operators';
   templateUrl: './road-map.component.html',
   styleUrls: ['./road-map.component.scss'],
 })
-export class RoadMapComponent implements OnInit {
+export class RoadMapComponent {
   @Input({required: true}) public roadMap!: IRoadMap;
+  @Input({required: true}) public isOwnerRoadMap?: boolean = false;
   public mode: 'idle' | 'edit' = 'idle';
   public loading: boolean = false;
   public roadMapFormGroup: FormGroup<{
     name: FormControl<string>;
     shortDescription: FormControl<string>;
   }>;
-  public isOwnerRoadMap$!: Observable<boolean>;
 
   constructor(
     private fb: FormBuilder,
     private dialog: MatDialog,
     private router: Router,
-    private roadMapHttpService: RoadMapHttpService,
-    private loggedUserService: LoggedUserService
+    private roadMapHttpService: RoadMapHttpService
   ) {
     this.roadMapFormGroup = this.fb.nonNullable.group({
       name: ['', [Validators.required]],
       shortDescription: ['', [Validators.required]],
     });
-  }
-
-  ngOnInit(): void {
-    this.isOwnerRoadMap$ = this.loggedUserService.user$.pipe(
-      map(user => user?._id === this.roadMap.author._id)
-    );
   }
 
   toggleMode() {
