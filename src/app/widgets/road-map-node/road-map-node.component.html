@@ -1,5 +1,30 @@
 <ng-container *ngIf="roadMapNode; else noRoadMapNode">
-  <p>{{ roadMapNode.title }}</p>
+  <div class="flex flex-row justify-between">
+    <h2>{{ roadMapNode.title }}</h2>
+    <button
+      mat-flat-button
+      color="success"
+      class="justify-self-end"
+      *ngIf="!isOwnerRoadMap">
+      <mat-icon>check</mat-icon>
+      Выполнено
+    </button>
+    <button
+      mat-fab
+      extended
+      color="primary"
+      class="justify-self-end"
+      *ngIf="isOwnerRoadMap"
+      [disabled]="loading"
+      (click)="saveEditorData(roadMapNode.id)">
+      <mat-icon>edit</mat-icon>
+      Сохранить
+    </button>
+  </div>
+
+  <div class="flex-grow overflow-y-auto">
+    <div id="editorjs" class="w-full px-16"></div>
+  </div>
 </ng-container>
 
 <ng-template #noRoadMapNode>
