@@ -10,7 +10,7 @@ import {RoadMapNodeHttpService} from 'app/services/http/road-map-node-http/road-
 import {RoadMapComponent} from 'app/widgets/road-map/road-map.component';
 import {RoadMapNodeComponent} from 'app/widgets/road-map-node/road-map-node.component';
 import {RoadMapTreeComponent} from 'app/widgets/road-map-tree/road-map-tree.component';
-import {combineLatest, first, Observable, take} from 'rxjs';
+import {combineLatest} from 'rxjs';
 
 @Component({
   selector: 'app-road-map-page',
@@ -26,9 +26,10 @@ import {combineLatest, first, Observable, take} from 'rxjs';
   styleUrls: ['./road-map-page.component.scss'],
 })
 export default class RoadMapPageComponent {
-  roadMapNodes$!: Observable<IRoadMapNode[]>;
   roadMap?: IRoadMap;
   isOwnerRoadMap?: boolean;
+  roadMapNodes?: IRoadMapNode[];
+  selectedRoadMapNode?: IRoadMapNode;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,22 +37,29 @@ export default class RoadMapPageComponent {
     private roadMapNodeHttpService: RoadMapNodeHttpService,
     private loggedUserService: LoggedUserService
   ) {
-    this.route.params.subscribe(({id}) => {
-      const roadMapId: string = id;
-
-      this.roadMapNodes$ = this.roadMapNodeHttpService.getRoadMapNodes({
-        roadMap: roadMapId,
-      });
-
-      combineLatest([
-        this.roadMapHttpService.getRoadMapById(roadMapId),
-        this.loggedUserService.user$,
-      ])
-        .pipe(first())
-        .subscribe(([roadMap, user]) => {
+    combineLatest([
+      this.route.paramMap,
+      this.route.queryParamMap,
+      this.loggedUserService.user$,
+    ]).subscribe(([params, queryParams, user]) => {
+      const roadMapId = params.get('id');
+      const roadMapNodeId = queryParams.get('node');
+      if (roadMapId) {
+        this.roadMapHttpService.getRoadMapById(roadMapId).subscribe(roadMap => {
           this.roadMap = roadMap;
           this.isOwnerRoadMap = roadMap.author._id === user?._id;
         });
+
+        this.roadMapNodeHttpService
+          .getRoadMapNodes({roadMap: roadMapId})
+          .subscribe(roadMapNodes => {
+            this.roadMapNodes = roadMapNodes;
+            if (roadMapNodeId)
+              this.selectedRoadMapNode = roadMapNodes.find(
+                node => node.id === roadMapNodeId
+              );
+          });
+      }
     });
   }
 }

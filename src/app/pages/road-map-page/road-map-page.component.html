@@ -4,7 +4,7 @@
       <app-road-map [roadMap]="roadMap" [isOwnerRoadMap]="isOwnerRoadMap" />
 
       <mat-drawer-container
-        *ngIf="roadMapNodes$ | async as roadMapNodes"
+        *ngIf="roadMapNodes"
         class="flex-grow rounded-lg"
         autosize>
         <mat-drawer mode="side" opened class="p-4">
@@ -13,7 +13,9 @@
             [isOwnerRoadMap]="isOwnerRoadMap" />
         </mat-drawer>
         <mat-drawer-content class="p-4">
-          <app-road-map-node />
+          <app-road-map-node
+            [roadMapNode]="selectedRoadMapNode"
+            [isOwnerRoadMap]="isOwnerRoadMap" />
         </mat-drawer-content>
       </mat-drawer-container>
     </div>

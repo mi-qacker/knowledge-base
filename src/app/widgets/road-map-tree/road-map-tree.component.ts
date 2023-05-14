@@ -4,12 +4,20 @@ import {CommonModule} from '@angular/common';
 import {Component, Input, OnInit} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {RouterLink, RouterLinkActive} from '@angular/router';
 import {IRoadMapNode} from 'app/services/http/road-map-node-http/road-map-node';
 
 @Component({
   selector: 'app-road-map-tree',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, CdkTreeModule],
+  imports: [
+    CommonModule,
+    RouterLink,
+    RouterLinkActive,
+    MatButtonModule,
+    MatIconModule,
+    CdkTreeModule,
+  ],
   templateUrl: './road-map-tree.component.html',
   styleUrls: ['./road-map-tree.component.scss'],
 })

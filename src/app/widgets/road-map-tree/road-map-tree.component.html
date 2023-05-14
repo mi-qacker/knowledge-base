@@ -12,7 +12,12 @@
     <cdk-nested-tree-node
       *cdkTreeNodeDef="let node"
       class="flex h-12 flex-row items-center text-gray-900 hover:font-medium">
-      <a href="#">{{ node.title }}</a>
+      <a
+        routerLink="."
+        [queryParams]="{node: node.id}"
+        routerLinkActive="font-medium">
+        {{ node.title }}
+      </a>
     </cdk-nested-tree-node>
 
     <!-- Tree node template -->
@@ -31,7 +36,13 @@
           </mat-icon>
         </button>
 
-        <a href="#" class="text-gray-900 hover:font-medium">{{ node.title }}</a>
+        <a
+          routerLink="."
+          [queryParams]="{node: node.id}"
+          routerLinkActive="font-medium"
+          class="text-gray-900 hover:font-medium">
+          {{ node.title }}
+        </a>
       </div>
 
       <div

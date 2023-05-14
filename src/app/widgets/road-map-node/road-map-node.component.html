@@ -1,1 +1,7 @@
-<p>road-map-node works!</p>
+<ng-container *ngIf="roadMapNode; else noRoadMapNode">
+  <p>{{ roadMapNode.title }}</p>
+</ng-container>
+
+<ng-template #noRoadMapNode>
+  <p>Select node</p>
+</ng-template>
