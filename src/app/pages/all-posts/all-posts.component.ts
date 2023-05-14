@@ -39,7 +39,7 @@ import {map} from 'rxjs/operators';
     ]),
   ],
 })
-export class AllPostsComponent {
+export default class AllPostsComponent {
   userId$ = this.loggedUserService.user$.pipe(map(user => user?._id));
   categories$ = this.categoryHttpService.getCategories();
   selectedCategory$ = new BehaviorSubject<string | undefined>(undefined);

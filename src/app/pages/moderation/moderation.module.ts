@@ -22,4 +22,4 @@ import {ModerationRoutingModule} from './moderation-routing.module';
     ReactiveFormsModule,
   ],
 })
-export class ModerationModule {}
+export default class ModerationModule {}

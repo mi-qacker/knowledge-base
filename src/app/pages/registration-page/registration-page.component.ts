@@ -29,7 +29,7 @@ import {IRegisterUserDto} from '../../services/http/auth-http/user.interface';
   templateUrl: './registration-page.component.html',
   styleUrls: ['./registration-page.component.scss'],
 })
-export class RegistrationPageComponent implements OnInit {
+export default class RegistrationPageComponent implements OnInit {
   registerForm!: FormGroup;
   isVisible = false;
 

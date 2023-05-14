@@ -34,4 +34,4 @@ import {UserEditDialogComponent} from './user-edit-dialog/user-edit-dialog.compo
   ],
   providers: [AdminUsersService, AdminCategoriesService],
 })
-export class AdminPagesModule {}
+export default class AdminPagesModule {}

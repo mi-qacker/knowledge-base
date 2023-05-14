@@ -20,4 +20,4 @@ import {CategoryPagesRoutingModule} from './category-pages-routing.module';
     MatChipsModule,
   ],
 })
-export class CategoryPagesModule {}
+export default class CategoryPagesModule {}

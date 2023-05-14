@@ -25,7 +25,7 @@ import {combineLatest, first, Observable, take} from 'rxjs';
   templateUrl: './road-map-page.component.html',
   styleUrls: ['./road-map-page.component.scss'],
 })
-export class RoadMapPageComponent {
+export default class RoadMapPageComponent {
   roadMapNodes$!: Observable<IRoadMapNode[]>;
   roadMap?: IRoadMap;
   isOwnerRoadMap?: boolean;

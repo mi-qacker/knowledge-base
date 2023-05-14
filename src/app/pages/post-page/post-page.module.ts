@@ -8,4 +8,4 @@ import {PostPageRoutingModule} from './post-page-routing.module';
   declarations: [PostPageComponent],
   imports: [CommonModule, PostPageRoutingModule],
 })
-export class PostPageModule {}
+export default class PostPageModule {}

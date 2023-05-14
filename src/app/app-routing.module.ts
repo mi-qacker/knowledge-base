@@ -6,10 +6,7 @@ const routes: Routes = [
   {
     path: 'posts',
     title: 'Публикации',
-    loadComponent: () =>
-      import('./pages/all-posts/all-posts.component').then(
-        c => c.AllPostsComponent
-      ),
+    loadComponent: () => import('./pages/all-posts/all-posts.component'),
   },
   {
     path: 'maps',
@@ -18,97 +15,67 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        loadComponent: () =>
-          import('./pages/road-maps/road-maps.component').then(
-            c => c.RoadMapsComponent
-          ),
+        loadComponent: () => import('./pages/road-maps/road-maps.component'),
       },
       {
         path: 'new',
         title: 'Создание дорожной карты',
         loadComponent: () =>
-          import('./pages/road-map-new/road-map-new.component').then(
-            c => c.RoadMapNewComponent
-          ),
+          import('./pages/road-map-new/road-map-new.component'),
       },
       {
         path: ':id',
         loadComponent: () =>
-          import('./pages/road-map-page/road-map-page.component').then(
-            c => c.RoadMapPageComponent
-          ),
+          import('./pages/road-map-page/road-map-page.component'),
       },
     ],
   },
   {
     path: 'login',
     title: 'Войти',
-    loadComponent: () =>
-      import('./pages/login-page/login-page.component').then(
-        c => c.LoginPageComponent
-      ),
+    loadComponent: () => import('./pages/login-page/login-page.component'),
   },
   {
     path: 'registration',
     title: 'Регистрация',
     loadComponent: () =>
-      import('./pages/registration-page/registration-page.component').then(
-        c => c.RegistrationPageComponent
-      ),
+      import('./pages/registration-page/registration-page.component'),
   },
   {
     path: 'profile',
     title: 'Профиль',
-    loadChildren: () =>
-      import('./pages/profile-page/profile-page.module').then(
-        m => m.ProfilePageModule
-      ),
+    loadChildren: () => import('./pages/profile-page/profile-page.module'),
   },
   {
     path: 'moderator',
     title: 'Страница модератора',
     loadChildren: () =>
-      import(
-        './pages/profile-moderator-page/profile-moderator-page.module'
-      ).then(m => m.ProfileModeratorPageModule),
+      import('./pages/profile-moderator-page/profile-moderator-page.module'),
   },
   {
     path: 'moderation',
     title: 'Лаборатория',
-    loadChildren: () =>
-      import('./pages/moderation/moderation.module').then(
-        m => m.ModerationModule
-      ),
+    loadChildren: () => import('./pages/moderation/moderation.module'),
   },
   {
     path: 'new',
     title: 'Создание публикации',
-    loadComponent: () =>
-      import('./pages/editor-page/editor-page.component').then(
-        c => c.EditorPageComponent
-      ),
+    loadComponent: () => import('./pages/editor-page/editor-page.component'),
   },
   {
     path: 'post',
     title: 'Публикация',
-    loadChildren: () =>
-      import('./pages/post-page/post-page.module').then(m => m.PostPageModule),
+    loadChildren: () => import('./pages/post-page/post-page.module'),
   },
   {
     path: 'category',
     title: 'Категории',
-    loadChildren: () =>
-      import('./pages/category-pages/category-pages.module').then(
-        m => m.CategoryPagesModule
-      ),
+    loadChildren: () => import('./pages/category-pages/category-pages.module'),
   },
   {
     path: 'admin',
     title: 'Панель администратора',
-    loadChildren: () =>
-      import('./pages/admin-pages/admin-pages.module').then(
-        m => m.AdminPagesModule
-      ),
+    loadChildren: () => import('./pages/admin-pages/admin-pages.module'),
   },
 ];
 

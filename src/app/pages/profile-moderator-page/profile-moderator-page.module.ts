@@ -21,4 +21,4 @@ import {ProfileModeratorPageRoutingModule} from './profile-moderator-page-routin
     MatDialogModule,
   ],
 })
-export class ProfileModeratorPageModule {}
+export default class ProfileModeratorPageModule {}

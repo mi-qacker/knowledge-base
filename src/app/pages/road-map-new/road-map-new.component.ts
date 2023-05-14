@@ -35,7 +35,7 @@ import {first, switchMap} from 'rxjs/operators';
   templateUrl: './road-map-new.component.html',
   styleUrls: ['./road-map-new.component.scss'],
 })
-export class RoadMapNewComponent {
+export default class RoadMapNewComponent {
   public loading = false;
   public newRoadMapFormGroup: FormGroup<{
     name: FormControl<string>;

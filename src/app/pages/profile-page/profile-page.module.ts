@@ -19,4 +19,4 @@ import {ProfilePageRoutingModule} from './profile-page-routing.module';
     PostModule,
   ],
 })
-export class ProfilePageModule {}
+export default class ProfilePageModule {}

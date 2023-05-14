@@ -22,7 +22,7 @@ import {map} from 'rxjs/operators';
   templateUrl: './road-maps.component.html',
   styleUrls: ['./road-maps.component.scss'],
 })
-export class RoadMapsComponent {
+export default class RoadMapsComponent {
   roadMaps$: Observable<IRoadMap[]>;
 
   constructor(private roadMapHttpService: RoadMapHttpService) {

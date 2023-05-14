@@ -29,7 +29,7 @@ import {ILoginUserDto} from '../../services/http/auth-http/user.interface';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
 })
-export class LoginPageComponent implements OnInit {
+export default class LoginPageComponent implements OnInit {
   loginForm!: FormGroup;
   isVisible = false;
 

@@ -36,7 +36,7 @@ import {EMPTY, Observable, switchMap} from 'rxjs';
   templateUrl: './editor-page.component.html',
   styleUrls: ['./editor-page.component.scss'],
 })
-export class EditorPageComponent implements OnInit {
+export default class EditorPageComponent implements OnInit {
   editor!: EditorJS;
   categories$: Observable<ICategory[]>;
   formGroup: FormGroup;
