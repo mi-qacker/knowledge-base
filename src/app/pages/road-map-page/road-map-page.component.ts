@@ -1,16 +1,14 @@
 import {CommonModule} from '@angular/common';
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {ActivatedRoute} from '@angular/router';
-import {LoggedUserService} from 'app/services/auth/logged-user-service/logged-user.service';
-import {IRoadMap} from 'app/services/http/road-map-http/road-map';
-import {RoadMapHttpService} from 'app/services/http/road-map-http/road-map-http.service';
 import {IRoadMapNode} from 'app/services/http/road-map-node-http/road-map-node';
-import {RoadMapNodeHttpService} from 'app/services/http/road-map-node-http/road-map-node-http.service';
+import {RoadMapStoreModule} from 'app/services/road-map-store/road-map-store.module';
+import {RoadMapStoreService} from 'app/services/road-map-store/road-map-store.service';
 import {RoadMapComponent} from 'app/widgets/road-map/road-map.component';
 import {RoadMapNodeComponent} from 'app/widgets/road-map-node/road-map-node.component';
 import {RoadMapTreeComponent} from 'app/widgets/road-map-tree/road-map-tree.component';
-import {combineLatest} from 'rxjs';
+import {combineLatest, Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-road-map-page',
@@ -21,45 +19,33 @@ import {combineLatest} from 'rxjs';
     RoadMapComponent,
     RoadMapTreeComponent,
     RoadMapNodeComponent,
+    RoadMapStoreModule,
   ],
   templateUrl: './road-map-page.component.html',
   styleUrls: ['./road-map-page.component.scss'],
 })
 export default class RoadMapPageComponent {
-  roadMap?: IRoadMap;
-  isOwnerRoadMap?: boolean;
-  roadMapNodes?: IRoadMapNode[];
-  selectedRoadMapNode?: IRoadMapNode;
+  roadMap$ = this.roadMapStoreService.roadMap$;
+  roadMapNodes$ = this.roadMapStoreService.roadMapNodes$;
+  isOwnerRoadMap$ = this.roadMapStoreService.isOwnerRoadMap$;
+  selectedRoadMapNode$: Observable<IRoadMapNode | undefined> = of(undefined);
 
   constructor(
     private route: ActivatedRoute,
-    private roadMapHttpService: RoadMapHttpService,
-    private roadMapNodeHttpService: RoadMapNodeHttpService,
-    private loggedUserService: LoggedUserService
+    private roadMapStoreService: RoadMapStoreService
   ) {
-    combineLatest([
-      this.route.paramMap,
-      this.route.queryParamMap,
-      this.loggedUserService.user$,
-    ]).subscribe(([params, queryParams, user]) => {
-      const roadMapId = params.get('id');
-      const roadMapNodeId = queryParams.get('node');
-      if (roadMapId) {
-        this.roadMapHttpService.getRoadMapById(roadMapId).subscribe(roadMap => {
-          this.roadMap = roadMap;
-          this.isOwnerRoadMap = roadMap.author._id === user?._id;
-        });
-
-        this.roadMapNodeHttpService
-          .getRoadMapNodes({roadMap: roadMapId})
-          .subscribe(roadMapNodes => {
-            this.roadMapNodes = roadMapNodes;
-            if (roadMapNodeId)
-              this.selectedRoadMapNode = roadMapNodes.find(
-                node => node.id === roadMapNodeId
-              );
-          });
+    combineLatest([this.route.paramMap, this.route.queryParamMap]).subscribe(
+      ([params, queryParams]) => {
+        const roadMapId = params.get('id');
+        const roadMapNodeId = queryParams.get('node');
+        if (roadMapId) {
+          this.roadMapStoreService.loadRoadMap(roadMapId);
+        }
+        if (roadMapNodeId) {
+          this.selectedRoadMapNode$ =
+            this.roadMapStoreService.selectNode(roadMapNodeId);
+        }
       }
-    });
+    );
   }
 }

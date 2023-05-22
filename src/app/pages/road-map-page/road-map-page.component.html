@@ -1,21 +1,29 @@
 <div class="container mx-auto h-full py-4 lg:w-full">
-  <ng-container *ngIf="roadMap">
-    <div class="flex h-full flex-col">
-      <app-road-map [roadMap]="roadMap" [isOwnerRoadMap]="isOwnerRoadMap" />
+  <ng-container
+    *ngIf="{
+      roadMap: roadMap$ | async,
+      isOwnerRoadMap: isOwnerRoadMap$ | async
+    } as templateData">
+    <div
+      class="flex h-full flex-col"
+      *ngIf="templateData.roadMap && templateData.isOwnerRoadMap !== null">
+      <app-road-map
+        [roadMap]="templateData.roadMap"
+        [isOwnerRoadMap]="templateData.isOwnerRoadMap" />
 
       <mat-drawer-container
-        *ngIf="roadMapNodes"
+        *ngIf="roadMapNodes$ | async as roadMapNodes"
         class="flex-grow rounded-lg"
         autosize>
         <mat-drawer mode="side" opened class="p-4">
           <app-road-map-tree
             [roadMapNodes]="roadMapNodes"
-            [isOwnerRoadMap]="isOwnerRoadMap" />
+            [isOwnerRoadMap]="templateData.isOwnerRoadMap" />
         </mat-drawer>
         <mat-drawer-content class="p-4">
           <app-road-map-node
-            [roadMapNode]="selectedRoadMapNode"
-            [isOwnerRoadMap]="isOwnerRoadMap" />
+            [roadMapNode]="selectedRoadMapNode$ | async"
+            [isOwnerRoadMap]="templateData.isOwnerRoadMap" />
         </mat-drawer-content>
       </mat-drawer-container>
     </div>

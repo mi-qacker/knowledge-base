@@ -7,8 +7,7 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import {RouterLink, RouterLinkActive} from '@angular/router';
 import {IRoadMapNode} from 'app/services/http/road-map-node-http/road-map-node';
-import {RoadMapNodeHttpService} from 'app/services/http/road-map-node-http/road-map-node-http.service';
-import {combineLatest, Observable} from 'rxjs';
+import {RoadMapStoreService} from 'app/services/road-map-store/road-map-store.service';
 
 import {RoadMapEditDialogComponent} from '../road-map-edit-dialog/road-map-edit-dialog.component';
 import {
@@ -34,7 +33,7 @@ import {
 export class RoadMapTreeComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
-    private roadMapNodeHttp: RoadMapNodeHttpService
+    private roadMapStoreService: RoadMapStoreService
   ) {}
 
   @Input({required: true}) roadMapNodes: IRoadMapNode[] = [];
@@ -72,27 +71,20 @@ export class RoadMapTreeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result === undefined) return;
       const {title, removeFrom, addTo} = result;
-      const requests$: Observable<IRoadMapNode>[] = [];
-      const editCurrentNode$ = this.roadMapNodeHttp.editRoadMapNode(node.id, {
+      this.roadMapStoreService.editRoadMapNode(node.id, {
         title,
         root: addTo === null,
       });
-      requests$.push(editCurrentNode$);
       if (removeFrom !== null) {
-        const editLastParentNode$ = this.roadMapNodeHttp.editRoadMapNode(
-          removeFrom.id,
-          {next: removeFrom.next.filter(id => id !== node.id)}
-        );
-        requests$.push(editLastParentNode$);
+        this.roadMapStoreService.editRoadMapNode(removeFrom.id, {
+          next: removeFrom.next.filter(id => id !== node.id),
+        });
       }
       if (addTo !== null) {
-        const editNewParentNode$ = this.roadMapNodeHttp.editRoadMapNode(
-          addTo.id,
-          {next: [...addTo.next, node.id]}
-        );
-        requests$.push(editNewParentNode$);
+        this.roadMapStoreService.editRoadMapNode(addTo.id, {
+          next: [...addTo.next, node.id],
+        });
       }
-      combineLatest(requests$).subscribe();
     });
   }
 }
