@@ -18,6 +18,12 @@
         routerLinkActive="font-medium">
         {{ node.title }}
       </a>
+
+      <div class="grow text-end">
+        <button mat-icon-button (click)="editNode(node)" *ngIf="isOwnerRoadMap">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
     </cdk-nested-tree-node>
 
     <!-- Tree node template -->
@@ -43,6 +49,15 @@
           class="text-gray-900 hover:font-medium">
           {{ node.title }}
         </a>
+
+        <div class="grow text-end">
+          <button
+            mat-icon-button
+            (click)="editNode(node)"
+            *ngIf="isOwnerRoadMap">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
       </div>
 
       <div

@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Редактирование узла дорожной карты</h1>
+<form mat-dialog-content [formGroup]="formGroup">
+  <mat-form-field class="w-full">
+    <mat-label>Заголовок</mat-label>
+    <input matInput formControlName="title" />
+  </mat-form-field>
+
+  <mat-form-field class="w-full">
+    <mat-label>Родительский элемент</mat-label>
+    <mat-select formControlName="parentNodeId">
+      <mat-option>Без родительского</mat-option>
+      <mat-option
+        *ngFor="let node of roadMapNodes"
+        [value]="node.id"
+        [disabled]="node.id === roadMapNode.id">
+        {{ node.title }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+
+<div mat-dialog-actions [align]="'end'">
+  <button mat-flat-button color="warn" mat-dialog-close>Отмена</button>
+  <button
+    mat-flat-button
+    color="primary"
+    [disabled]="formGroup.invalid"
+    (click)="saveNode()">
+    Сохранить
+  </button>
+</div>
