@@ -10,11 +10,14 @@ import ImageTool from '@editorjs/image';
 import List from '@editorjs/list';
 // @ts-ignore
 import Marker from '@editorjs/marker';
+// @ts-ignore
+import Table from '@editorjs/table'
 
 import IframeSceneTool from '../plugins/iframe-scene';
 
 export const editorjsConfig = {
   holder: 'editorjs',
+
   tools: {
     header: Header,
     list: List,
@@ -23,6 +26,9 @@ export const editorjsConfig = {
     Marker: Marker,
     image: ImageTool,
     scene: IframeSceneTool,
+    table: Table,
   },
+
+
   readOnly: true,
 };
