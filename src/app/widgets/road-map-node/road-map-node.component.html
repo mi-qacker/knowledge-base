@@ -1,14 +1,25 @@
 <ng-container *ngIf="roadMapNode; else noRoadMapNode">
   <div class="flex flex-row justify-between">
     <h2>{{ roadMapNode.title }}</h2>
-    <button
-      mat-flat-button
-      color="success"
-      class="justify-self-end"
-      *ngIf="!isOwnerRoadMap">
-      <mat-icon>check</mat-icon>
-      Выполнено
-    </button>
+    <ng-container *ngIf="!isOwnerRoadMap" [ngSwitch]="checked">
+      <button
+        *ngSwitchCase="true"
+        mat-flat-button
+        color="success"
+        class="justify-self-end"
+        (click)="check(false)">
+        <mat-icon>check</mat-icon>
+        Выполнено
+      </button>
+      <button
+        *ngSwitchCase="false"
+        mat-stroked-button
+        class="justify-self-end"
+        (click)="check(true)">
+        <mat-icon>check</mat-icon>
+        Выполнено
+      </button>
+    </ng-container>
     <button
       mat-fab
       extended
@@ -28,5 +39,5 @@
 </ng-container>
 
 <ng-template #noRoadMapNode>
-  <p>Select node</p>
+  <p class="text-center text-lg font-medium">Выберите элемент в списке слева</p>
 </ng-template>

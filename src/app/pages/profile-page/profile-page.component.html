@@ -31,7 +31,9 @@
     <div *ngIf="posts$ | async as posts" class="flex flex-col gap-y-4">
       <app-post-card
         *ngFor="let post of posts"
+        (delete)="handleDeletePost($event)"
         [post]="post"
+        [owner]="true"
         [userId]="user._id"></app-post-card>
     </div>
   </div>

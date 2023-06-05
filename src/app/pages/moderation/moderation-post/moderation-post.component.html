@@ -11,4 +11,14 @@
     <mat-icon>check</mat-icon>
     <span>Принять</span>
   </button>
+  <button
+    [disabled]="post === undefined"
+    (click)="cancelPost()"
+    class="mt-4 w-full shrink-0"
+    color="warn"
+    routerLink="/"
+    mat-flat-button>
+    <mat-icon>close</mat-icon>
+    <span>Отклонить</span>
+  </button>
 </div>

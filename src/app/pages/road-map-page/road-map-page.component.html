@@ -22,6 +22,7 @@
         </mat-drawer>
         <mat-drawer-content class="p-4">
           <app-road-map-node
+            (checkedEvent)="checkNode($event)"
             [roadMapNode]="selectedRoadMapNode$ | async"
             [isOwnerRoadMap]="templateData.isOwnerRoadMap" />
         </mat-drawer-content>

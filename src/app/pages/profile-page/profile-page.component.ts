@@ -30,4 +30,7 @@ export class ProfilePageComponent implements OnInit {
   ngOnInit(): void {
     this.posts$ = this.postHttpService.getPostByUserId(this.userId);
   }
+  handleDeletePost(postId: string): void {
+    this.posts$ = this.postHttpService.getPostByUserId(this.userId);
+  }
 }

@@ -29,6 +29,7 @@ export default class RoadMapPageComponent {
   roadMapNodes$ = this.roadMapStoreService.roadMapNodes$;
   isOwnerRoadMap$ = this.roadMapStoreService.isOwnerRoadMap$;
   selectedRoadMapNode$: Observable<IRoadMapNode | undefined> = of(undefined);
+  checkedNodes = new Set<string>();
 
   constructor(
     private route: ActivatedRoute,
@@ -47,5 +48,13 @@ export default class RoadMapPageComponent {
         }
       }
     );
+  }
+
+  checkNode(event: {checked: boolean; id: string}) {
+    if (event.checked) {
+      this.checkedNodes.add(event.id);
+    } else {
+      this.checkedNodes.delete(event.id);
+    }
   }
 }

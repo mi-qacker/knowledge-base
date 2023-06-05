@@ -39,4 +39,10 @@ export class ModerationPostComponent implements OnInit {
         await this.router.navigate(['/post', this.postId]);
       });
   }
+
+  cancelPost() {
+    this.postHttpService.deletePost(this.postId).subscribe(async () => {
+      await this.router.navigate(['/moderation']);
+    });
+  }
 }

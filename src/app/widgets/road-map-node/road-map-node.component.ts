@@ -1,5 +1,12 @@
 import {CommonModule} from '@angular/common';
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import EditorJS from '@editorjs/editorjs';
@@ -18,6 +25,11 @@ import {RoadMapStoreService} from 'app/services/road-map-store/road-map-store.se
 export class RoadMapNodeComponent implements OnChanges {
   @Input({required: true}) public roadMapNode?: IRoadMapNode | null = null;
   @Input({required: true}) public isOwnerRoadMap?: boolean = false;
+  @Input() public checked = false;
+  @Output() public checkedEvent = new EventEmitter<{
+    checked: boolean;
+    id: string;
+  }>();
   public editor?: EditorJS;
   public loading = false;
 
@@ -36,11 +48,18 @@ export class RoadMapNodeComponent implements OnChanges {
       ...config,
       data: this.roadMapNode.data,
     });
+    this.checked = false;
   }
 
   async saveEditorData(roadMapId: string) {
     this.loading = true;
     const outputData: any = await this.editor!.save();
     this.roadMapStoreService.editRoadMapNode(roadMapId, {data: outputData});
+  }
+
+  check(checked: boolean) {
+    this.checked = checked;
+    if (this.roadMapNode)
+      this.checkedEvent.emit({checked, id: this.roadMapNode?.id});
   }
 }
